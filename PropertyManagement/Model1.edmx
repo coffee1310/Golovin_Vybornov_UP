@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PropertyManagementModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Apartments">
+          <Key>
+            <PropertyRef Name="apartment_id" />
+          </Key>
+          <Property Name="apartment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="building_id" Type="int" Nullable="false" />
+          <Property Name="apartment_number" Type="int" Nullable="false" />
+          <Property Name="area" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Buildings">
+          <Key>
+            <PropertyRef Name="building_id" />
+          </Key>
+          <Property Name="building_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="management_start_date" Type="date" />
+          <Property Name="floors" Type="int" />
+          <Property Name="apartments_count" Type="int" />
+          <Property Name="construction_year" Type="int" />
+          <Property Name="total_area" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Debts">
+          <Key>
+            <PropertyRef Name="debt_id" />
+          </Key>
+          <Property Name="debt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="apartment_id" Type="int" Nullable="false" />
+          <Property Name="report_date" Type="date" Nullable="false" />
+          <Property Name="water_debt" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="electricity_debt" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="position" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="20" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Owners">
+          <Key>
+            <PropertyRef Name="owner_id" />
+          </Key>
+          <Property Name="owner_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="20" />
+          <Property Name="passport_data" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="apartment_id" Type="int" Nullable="false" />
+          <Property Name="period_month" Type="int" Nullable="false" />
+          <Property Name="period_year" Type="int" Nullable="false" />
+          <Property Name="amount_charged" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="amount_paid" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="PropertyOwnership">
+          <Key>
+            <PropertyRef Name="ownership_id" />
+          </Key>
+          <Property Name="ownership_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="owner_id" Type="int" Nullable="false" />
+          <Property Name="apartment_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceRequests">
+          <Key>
+            <PropertyRef Name="request_id" />
+          </Key>
+          <Property Name="request_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="apartment_id" Type="int" Nullable="false" />
+          <Property Name="employee_id" Type="int" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="request_type" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Apartment__build__398D8EEE">
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buildings">
+              <PropertyRef Name="building_id" />
+            </Principal>
+            <Dependent Role="Apartments">
+              <PropertyRef Name="building_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Debts__apartment__4222D4EF">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="Debts" Type="Self.Debts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="apartment_id" />
+            </Principal>
+            <Dependent Role="Debts">
+              <PropertyRef Name="apartment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__apartm__44FF419A">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="apartment_id" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="apartment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PropertyO__apart__3F466844">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="PropertyOwnership" Type="Self.PropertyOwnership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="apartment_id" />
+            </Principal>
+            <Dependent Role="PropertyOwnership">
+              <PropertyRef Name="apartment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PropertyO__owner__3E52440B">
+          <End Role="Owners" Type="Self.Owners" Multiplicity="1" />
+          <End Role="PropertyOwnership" Type="Self.PropertyOwnership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="owner_id" />
+            </Principal>
+            <Dependent Role="PropertyOwnership">
+              <PropertyRef Name="owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceRe__apart__4AB81AF0">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="apartment_id" />
+            </Principal>
+            <Dependent Role="ServiceRequests">
+              <PropertyRef Name="apartment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceRe__emplo__4BAC3F29">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="ServiceRequests">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PropertyManagementModelContainer">
+          <EntitySet Name="Apartments" EntityType="Self.Apartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Buildings" EntityType="Self.Buildings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Debts" EntityType="Self.Debts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Owners" EntityType="Self.Owners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyOwnership" EntityType="Self.PropertyOwnership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequests" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Apartment__build__398D8EEE" Association="Self.FK__Apartment__build__398D8EEE">
+            <End Role="Buildings" EntitySet="Buildings" />
+            <End Role="Apartments" EntitySet="Apartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Debts__apartment__4222D4EF" Association="Self.FK__Debts__apartment__4222D4EF">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Debts" EntitySet="Debts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__apartm__44FF419A" Association="Self.FK__Payments__apartm__44FF419A">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PropertyO__apart__3F466844" Association="Self.FK__PropertyO__apart__3F466844">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="PropertyOwnership" EntitySet="PropertyOwnership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PropertyO__owner__3E52440B" Association="Self.FK__PropertyO__owner__3E52440B">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="PropertyOwnership" EntitySet="PropertyOwnership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceRe__apart__4AB81AF0" Association="Self.FK__ServiceRe__apart__4AB81AF0">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceRe__emplo__4BAC3F29" Association="Self.FK__ServiceRe__emplo__4BAC3F29">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PropertyManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Apartments">
+          <Key>
+            <PropertyRef Name="apartment_id" />
+          </Key>
+          <Property Name="apartment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="building_id" Type="Int32" Nullable="false" />
+          <Property Name="apartment_number" Type="Int32" Nullable="false" />
+          <Property Name="area" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Buildings" Relationship="Self.FK__Apartment__build__398D8EEE" FromRole="Apartments" ToRole="Buildings" />
+          <NavigationProperty Name="Debts" Relationship="Self.FK__Debts__apartment__4222D4EF" FromRole="Apartments" ToRole="Debts" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__apartm__44FF419A" FromRole="Apartments" ToRole="Payments" />
+          <NavigationProperty Name="PropertyOwnership" Relationship="Self.FK__PropertyO__apart__3F466844" FromRole="Apartments" ToRole="PropertyOwnership" />
+          <NavigationProperty Name="ServiceRequests" Relationship="Self.FK__ServiceRe__apart__4AB81AF0" FromRole="Apartments" ToRole="ServiceRequests" />
+        </EntityType>
+        <EntityType Name="Buildings">
+          <Key>
+            <PropertyRef Name="building_id" />
+          </Key>
+          <Property Name="building_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="management_start_date" Type="DateTime" Precision="0" />
+          <Property Name="floors" Type="Int32" />
+          <Property Name="apartments_count" Type="Int32" />
+          <Property Name="construction_year" Type="Int32" />
+          <Property Name="total_area" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__Apartment__build__398D8EEE" FromRole="Buildings" ToRole="Apartments" />
+        </EntityType>
+        <EntityType Name="Debts">
+          <Key>
+            <PropertyRef Name="debt_id" />
+          </Key>
+          <Property Name="debt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="apartment_id" Type="Int32" Nullable="false" />
+          <Property Name="report_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="water_debt" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="electricity_debt" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__Debts__apartment__4222D4EF" FromRole="Debts" ToRole="Apartments" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ServiceRequests" Relationship="Self.FK__ServiceRe__emplo__4BAC3F29" FromRole="Employees" ToRole="ServiceRequests" />
+        </EntityType>
+        <EntityType Name="Owners">
+          <Key>
+            <PropertyRef Name="owner_id" />
+          </Key>
+          <Property Name="owner_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="passport_data" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PropertyOwnership" Relationship="Self.FK__PropertyO__owner__3E52440B" FromRole="Owners" ToRole="PropertyOwnership" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="apartment_id" Type="Int32" Nullable="false" />
+          <Property Name="period_month" Type="Int32" Nullable="false" />
+          <Property Name="period_year" Type="Int32" Nullable="false" />
+          <Property Name="amount_charged" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="amount_paid" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__Payments__apartm__44FF419A" FromRole="Payments" ToRole="Apartments" />
+        </EntityType>
+        <EntityType Name="PropertyOwnership">
+          <Key>
+            <PropertyRef Name="ownership_id" />
+          </Key>
+          <Property Name="ownership_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="owner_id" Type="Int32" Nullable="false" />
+          <Property Name="apartment_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__PropertyO__apart__3F466844" FromRole="PropertyOwnership" ToRole="Apartments" />
+          <NavigationProperty Name="Owners" Relationship="Self.FK__PropertyO__owner__3E52440B" FromRole="PropertyOwnership" ToRole="Owners" />
+        </EntityType>
+        <EntityType Name="ServiceRequests">
+          <Key>
+            <PropertyRef Name="request_id" />
+          </Key>
+          <Property Name="request_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="apartment_id" Type="Int32" Nullable="false" />
+          <Property Name="employee_id" Type="Int32" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="request_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__ServiceRe__apart__4AB81AF0" FromRole="ServiceRequests" ToRole="Apartments" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__ServiceRe__emplo__4BAC3F29" FromRole="ServiceRequests" ToRole="Employees" />
+        </EntityType>
+        <Association Name="FK__Apartment__build__398D8EEE">
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buildings">
+              <PropertyRef Name="building_id" />
+            </Principal>
+            <Dependent Role="Apartments">
+              <PropertyRef Name="building_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Debts__apartment__4222D4EF">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="Debts" Type="Self.Debts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="apartment_id" />
+            </Principal>
+            <Dependent Role="Debts">
+              <PropertyRef Name="apartment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__apartm__44FF419A">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="apartment_id" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="apartment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PropertyO__apart__3F466844">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="PropertyOwnership" Type="Self.PropertyOwnership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="apartment_id" />
+            </Principal>
+            <Dependent Role="PropertyOwnership">
+              <PropertyRef Name="apartment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceRe__apart__4AB81AF0">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="apartment_id" />
+            </Principal>
+            <Dependent Role="ServiceRequests">
+              <PropertyRef Name="apartment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceRe__emplo__4BAC3F29">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="ServiceRequests">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PropertyO__owner__3E52440B">
+          <End Role="Owners" Type="Self.Owners" Multiplicity="1" />
+          <End Role="PropertyOwnership" Type="Self.PropertyOwnership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="owner_id" />
+            </Principal>
+            <Dependent Role="PropertyOwnership">
+              <PropertyRef Name="owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PropertyManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Apartments" EntityType="Self.Apartments" />
+          <EntitySet Name="Buildings" EntityType="Self.Buildings" />
+          <EntitySet Name="Debts" EntityType="Self.Debts" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Owners" EntityType="Self.Owners" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" />
+          <EntitySet Name="PropertyOwnership" EntityType="Self.PropertyOwnership" />
+          <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequests" />
+          <AssociationSet Name="FK__Apartment__build__398D8EEE" Association="Self.FK__Apartment__build__398D8EEE">
+            <End Role="Buildings" EntitySet="Buildings" />
+            <End Role="Apartments" EntitySet="Apartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Debts__apartment__4222D4EF" Association="Self.FK__Debts__apartment__4222D4EF">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Debts" EntitySet="Debts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__apartm__44FF419A" Association="Self.FK__Payments__apartm__44FF419A">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PropertyO__apart__3F466844" Association="Self.FK__PropertyO__apart__3F466844">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="PropertyOwnership" EntitySet="PropertyOwnership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceRe__apart__4AB81AF0" Association="Self.FK__ServiceRe__apart__4AB81AF0">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceRe__emplo__4BAC3F29" Association="Self.FK__ServiceRe__emplo__4BAC3F29">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PropertyO__owner__3E52440B" Association="Self.FK__PropertyO__owner__3E52440B">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="PropertyOwnership" EntitySet="PropertyOwnership" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PropertyManagementModelContainer" CdmEntityContainer="PropertyManagementEntities">
+          <EntitySetMapping Name="Apartments">
+            <EntityTypeMapping TypeName="PropertyManagementModel.Apartments">
+              <MappingFragment StoreEntitySet="Apartments">
+                <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+                <ScalarProperty Name="building_id" ColumnName="building_id" />
+                <ScalarProperty Name="apartment_number" ColumnName="apartment_number" />
+                <ScalarProperty Name="area" ColumnName="area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buildings">
+            <EntityTypeMapping TypeName="PropertyManagementModel.Buildings">
+              <MappingFragment StoreEntitySet="Buildings">
+                <ScalarProperty Name="building_id" ColumnName="building_id" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="management_start_date" ColumnName="management_start_date" />
+                <ScalarProperty Name="floors" ColumnName="floors" />
+                <ScalarProperty Name="apartments_count" ColumnName="apartments_count" />
+                <ScalarProperty Name="construction_year" ColumnName="construction_year" />
+                <ScalarProperty Name="total_area" ColumnName="total_area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Debts">
+            <EntityTypeMapping TypeName="PropertyManagementModel.Debts">
+              <MappingFragment StoreEntitySet="Debts">
+                <ScalarProperty Name="debt_id" ColumnName="debt_id" />
+                <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+                <ScalarProperty Name="report_date" ColumnName="report_date" />
+                <ScalarProperty Name="water_debt" ColumnName="water_debt" />
+                <ScalarProperty Name="electricity_debt" ColumnName="electricity_debt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="PropertyManagementModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Owners">
+            <EntityTypeMapping TypeName="PropertyManagementModel.Owners">
+              <MappingFragment StoreEntitySet="Owners">
+                <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="passport_data" ColumnName="passport_data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="PropertyManagementModel.Payments">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+                <ScalarProperty Name="period_month" ColumnName="period_month" />
+                <ScalarProperty Name="period_year" ColumnName="period_year" />
+                <ScalarProperty Name="amount_charged" ColumnName="amount_charged" />
+                <ScalarProperty Name="amount_paid" ColumnName="amount_paid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyOwnership">
+            <EntityTypeMapping TypeName="PropertyManagementModel.PropertyOwnership">
+              <MappingFragment StoreEntitySet="PropertyOwnership">
+                <ScalarProperty Name="ownership_id" ColumnName="ownership_id" />
+                <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+                <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceRequests">
+            <EntityTypeMapping TypeName="PropertyManagementModel.ServiceRequests">
+              <MappingFragment StoreEntitySet="ServiceRequests">
+                <ScalarProperty Name="request_id" ColumnName="request_id" />
+                <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="request_type" ColumnName="request_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

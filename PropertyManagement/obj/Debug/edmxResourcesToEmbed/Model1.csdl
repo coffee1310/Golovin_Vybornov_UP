@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PropertyManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Apartments">
+    <Key>
+      <PropertyRef Name="apartment_id" />
+    </Key>
+    <Property Name="apartment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="building_id" Type="Int32" Nullable="false" />
+    <Property Name="apartment_number" Type="Int32" Nullable="false" />
+    <Property Name="area" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Buildings" Relationship="Self.FK__Apartment__build__398D8EEE" FromRole="Apartments" ToRole="Buildings" />
+    <NavigationProperty Name="Debts" Relationship="Self.FK__Debts__apartment__4222D4EF" FromRole="Apartments" ToRole="Debts" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__apartm__44FF419A" FromRole="Apartments" ToRole="Payments" />
+    <NavigationProperty Name="PropertyOwnership" Relationship="Self.FK__PropertyO__apart__3F466844" FromRole="Apartments" ToRole="PropertyOwnership" />
+    <NavigationProperty Name="ServiceRequests" Relationship="Self.FK__ServiceRe__apart__4AB81AF0" FromRole="Apartments" ToRole="ServiceRequests" />
+  </EntityType>
+  <EntityType Name="Buildings">
+    <Key>
+      <PropertyRef Name="building_id" />
+    </Key>
+    <Property Name="building_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="management_start_date" Type="DateTime" Precision="0" />
+    <Property Name="floors" Type="Int32" />
+    <Property Name="apartments_count" Type="Int32" />
+    <Property Name="construction_year" Type="Int32" />
+    <Property Name="total_area" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Apartments" Relationship="Self.FK__Apartment__build__398D8EEE" FromRole="Buildings" ToRole="Apartments" />
+  </EntityType>
+  <EntityType Name="Debts">
+    <Key>
+      <PropertyRef Name="debt_id" />
+    </Key>
+    <Property Name="debt_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="apartment_id" Type="Int32" Nullable="false" />
+    <Property Name="report_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="water_debt" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="electricity_debt" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Apartments" Relationship="Self.FK__Debts__apartment__4222D4EF" FromRole="Debts" ToRole="Apartments" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="employee_id" />
+    </Key>
+    <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ServiceRequests" Relationship="Self.FK__ServiceRe__emplo__4BAC3F29" FromRole="Employees" ToRole="ServiceRequests" />
+  </EntityType>
+  <EntityType Name="Owners">
+    <Key>
+      <PropertyRef Name="owner_id" />
+    </Key>
+    <Property Name="owner_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="passport_data" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PropertyOwnership" Relationship="Self.FK__PropertyO__owner__3E52440B" FromRole="Owners" ToRole="PropertyOwnership" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="payment_id" />
+    </Key>
+    <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="apartment_id" Type="Int32" Nullable="false" />
+    <Property Name="period_month" Type="Int32" Nullable="false" />
+    <Property Name="period_year" Type="Int32" Nullable="false" />
+    <Property Name="amount_charged" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="amount_paid" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Apartments" Relationship="Self.FK__Payments__apartm__44FF419A" FromRole="Payments" ToRole="Apartments" />
+  </EntityType>
+  <EntityType Name="PropertyOwnership">
+    <Key>
+      <PropertyRef Name="ownership_id" />
+    </Key>
+    <Property Name="ownership_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="owner_id" Type="Int32" Nullable="false" />
+    <Property Name="apartment_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Apartments" Relationship="Self.FK__PropertyO__apart__3F466844" FromRole="PropertyOwnership" ToRole="Apartments" />
+    <NavigationProperty Name="Owners" Relationship="Self.FK__PropertyO__owner__3E52440B" FromRole="PropertyOwnership" ToRole="Owners" />
+  </EntityType>
+  <EntityType Name="ServiceRequests">
+    <Key>
+      <PropertyRef Name="request_id" />
+    </Key>
+    <Property Name="request_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="apartment_id" Type="Int32" Nullable="false" />
+    <Property Name="employee_id" Type="Int32" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="request_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Apartments" Relationship="Self.FK__ServiceRe__apart__4AB81AF0" FromRole="ServiceRequests" ToRole="Apartments" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__ServiceRe__emplo__4BAC3F29" FromRole="ServiceRequests" ToRole="Employees" />
+  </EntityType>
+  <Association Name="FK__Apartment__build__398D8EEE">
+    <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
+    <End Role="Apartments" Type="Self.Apartments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Buildings">
+        <PropertyRef Name="building_id" />
+      </Principal>
+      <Dependent Role="Apartments">
+        <PropertyRef Name="building_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Debts__apartment__4222D4EF">
+    <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+    <End Role="Debts" Type="Self.Debts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartments">
+        <PropertyRef Name="apartment_id" />
+      </Principal>
+      <Dependent Role="Debts">
+        <PropertyRef Name="apartment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payments__apartm__44FF419A">
+    <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartments">
+        <PropertyRef Name="apartment_id" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="apartment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PropertyO__apart__3F466844">
+    <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+    <End Role="PropertyOwnership" Type="Self.PropertyOwnership" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartments">
+        <PropertyRef Name="apartment_id" />
+      </Principal>
+      <Dependent Role="PropertyOwnership">
+        <PropertyRef Name="apartment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ServiceRe__apart__4AB81AF0">
+    <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+    <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartments">
+        <PropertyRef Name="apartment_id" />
+      </Principal>
+      <Dependent Role="ServiceRequests">
+        <PropertyRef Name="apartment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ServiceRe__emplo__4BAC3F29">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="ServiceRequests">
+        <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PropertyO__owner__3E52440B">
+    <End Role="Owners" Type="Self.Owners" Multiplicity="1" />
+    <End Role="PropertyOwnership" Type="Self.PropertyOwnership" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owners">
+        <PropertyRef Name="owner_id" />
+      </Principal>
+      <Dependent Role="PropertyOwnership">
+        <PropertyRef Name="owner_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PropertyManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Apartments" EntityType="Self.Apartments" />
+    <EntitySet Name="Buildings" EntityType="Self.Buildings" />
+    <EntitySet Name="Debts" EntityType="Self.Debts" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" />
+    <EntitySet Name="Owners" EntityType="Self.Owners" />
+    <EntitySet Name="Payments" EntityType="Self.Payments" />
+    <EntitySet Name="PropertyOwnership" EntityType="Self.PropertyOwnership" />
+    <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequests" />
+    <AssociationSet Name="FK__Apartment__build__398D8EEE" Association="Self.FK__Apartment__build__398D8EEE">
+      <End Role="Buildings" EntitySet="Buildings" />
+      <End Role="Apartments" EntitySet="Apartments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Debts__apartment__4222D4EF" Association="Self.FK__Debts__apartment__4222D4EF">
+      <End Role="Apartments" EntitySet="Apartments" />
+      <End Role="Debts" EntitySet="Debts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payments__apartm__44FF419A" Association="Self.FK__Payments__apartm__44FF419A">
+      <End Role="Apartments" EntitySet="Apartments" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PropertyO__apart__3F466844" Association="Self.FK__PropertyO__apart__3F466844">
+      <End Role="Apartments" EntitySet="Apartments" />
+      <End Role="PropertyOwnership" EntitySet="PropertyOwnership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ServiceRe__apart__4AB81AF0" Association="Self.FK__ServiceRe__apart__4AB81AF0">
+      <End Role="Apartments" EntitySet="Apartments" />
+      <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ServiceRe__emplo__4BAC3F29" Association="Self.FK__ServiceRe__emplo__4BAC3F29">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PropertyO__owner__3E52440B" Association="Self.FK__PropertyO__owner__3E52440B">
+      <End Role="Owners" EntitySet="Owners" />
+      <End Role="PropertyOwnership" EntitySet="PropertyOwnership" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище PropertyManagementModelContainer" CdmEntityContainer="PropertyManagementEntities">
+    <EntitySetMapping Name="Apartments">
+      <EntityTypeMapping TypeName="PropertyManagementModel.Apartments">
+        <MappingFragment StoreEntitySet="Apartments">
+          <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+          <ScalarProperty Name="building_id" ColumnName="building_id" />
+          <ScalarProperty Name="apartment_number" ColumnName="apartment_number" />
+          <ScalarProperty Name="area" ColumnName="area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Buildings">
+      <EntityTypeMapping TypeName="PropertyManagementModel.Buildings">
+        <MappingFragment StoreEntitySet="Buildings">
+          <ScalarProperty Name="building_id" ColumnName="building_id" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="management_start_date" ColumnName="management_start_date" />
+          <ScalarProperty Name="floors" ColumnName="floors" />
+          <ScalarProperty Name="apartments_count" ColumnName="apartments_count" />
+          <ScalarProperty Name="construction_year" ColumnName="construction_year" />
+          <ScalarProperty Name="total_area" ColumnName="total_area" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Debts">
+      <EntityTypeMapping TypeName="PropertyManagementModel.Debts">
+        <MappingFragment StoreEntitySet="Debts">
+          <ScalarProperty Name="debt_id" ColumnName="debt_id" />
+          <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+          <ScalarProperty Name="report_date" ColumnName="report_date" />
+          <ScalarProperty Name="water_debt" ColumnName="water_debt" />
+          <ScalarProperty Name="electricity_debt" ColumnName="electricity_debt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="PropertyManagementModel.Employees">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Owners">
+      <EntityTypeMapping TypeName="PropertyManagementModel.Owners">
+        <MappingFragment StoreEntitySet="Owners">
+          <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="passport_data" ColumnName="passport_data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="PropertyManagementModel.Payments">
+        <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+          <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+          <ScalarProperty Name="period_month" ColumnName="period_month" />
+          <ScalarProperty Name="period_year" ColumnName="period_year" />
+          <ScalarProperty Name="amount_charged" ColumnName="amount_charged" />
+          <ScalarProperty Name="amount_paid" ColumnName="amount_paid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PropertyOwnership">
+      <EntityTypeMapping TypeName="PropertyManagementModel.PropertyOwnership">
+        <MappingFragment StoreEntitySet="PropertyOwnership">
+          <ScalarProperty Name="ownership_id" ColumnName="ownership_id" />
+          <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+          <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceRequests">
+      <EntityTypeMapping TypeName="PropertyManagementModel.ServiceRequests">
+        <MappingFragment StoreEntitySet="ServiceRequests">
+          <ScalarProperty Name="request_id" ColumnName="request_id" />
+          <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="request_type" ColumnName="request_type" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
