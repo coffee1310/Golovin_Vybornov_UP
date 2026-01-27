@@ -1,0 +1,123 @@
+﻿<Page x:Class="PropertyManagement.Pages.ApartmentEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Квартира">
+
+    <ScrollViewer>
+        <StackPanel Margin="20">
+            <!-- Заголовок -->
+            <TextBlock x:Name="PageTitle" 
+                       Text="Новая квартира"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Margin="0,0,0,20"/>
+
+            <!-- Форма -->
+            <Border Background="White" 
+                    Padding="20"
+                    BorderBrush="#E0E0E0" 
+                    BorderThickness="1"
+                    CornerRadius="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Здание -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Здание*:" Margin="0,0,10,10"/>
+                    <ComboBox Grid.Row="0" Grid.Column="1" 
+                              x:Name="BuildingComboBox"
+                              DisplayMemberPath="Text"
+                              Margin="0,0,0,10"/>
+
+                    <!-- Номер квартиры -->
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Номер квартиры*:" Margin="0,0,10,10"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" 
+                             x:Name="NumberTextBox"
+                             Margin="0,0,0,10">
+                        <TextBox.ToolTip>
+                            <ToolTip>
+                                Номер квартиры (целое число)
+                            </ToolTip>
+                        </TextBox.ToolTip>
+                    </TextBox>
+
+                    <!-- Площадь -->
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Площадь (м²):" Margin="0,0,10,10"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" 
+                             x:Name="AreaTextBox"
+                             Margin="0,0,0,10">
+                        <TextBox.ToolTip>
+                            <ToolTip>
+                                Площадь квартиры в квадратных метрах
+                            </ToolTip>
+                        </TextBox.ToolTip>
+                    </TextBox>
+
+                    <!-- Собственник -->
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Собственник:" Margin="0,0,10,10"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1" 
+                              x:Name="OwnerComboBox"
+                              DisplayMemberPath="full_name"
+                              Margin="0,0,0,10"/>
+
+                    <!-- Примечание -->
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Примечание:" Margin="0,0,10,10"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" 
+                             x:Name="NoteTextBox"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             Height="60"
+                             VerticalScrollBarVisibility="Auto"
+                             Margin="0,0,0,20">
+                        <TextBox.ToolTip>
+                            <ToolTip>
+                                Дополнительная информация о квартире
+                            </ToolTip>
+                        </TextBox.ToolTip>
+                    </TextBox>
+
+                    <!-- Сообщения об ошибках -->
+                    <TextBlock x:Name="ErrorText" 
+                               Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                               Foreground="Red"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,20"
+                               Visibility="Collapsed"/>
+
+                    <!-- Кнопки -->
+                    <StackPanel Grid.Row="6" Grid.Column="1" 
+                                Orientation="Horizontal" 
+                                HorizontalAlignment="Right">
+                        <Button Content="Сохранить" 
+                                Click="SaveButton_Click"
+                                Padding="15,8"
+                                Background="#4CAF50"
+                                Foreground="White"
+                                BorderThickness="0"
+                                Cursor="Hand"/>
+
+                        <Button Content="Отмена" 
+                                Click="CancelButton_Click"
+                                Padding="15,8"
+                                Margin="10,0,0,0"
+                                Background="#9E9E9E"
+                                Foreground="White"
+                                BorderThickness="0"
+                                Cursor="Hand"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

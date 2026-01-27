@@ -180,7 +180,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="PropertyManagementEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="PropertyManagementEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Apartments" EntityType="Self.Apartments" />
     <EntitySet Name="Buildings" EntityType="Self.Buildings" />
     <EntitySet Name="Debts" EntityType="Self.Debts" />

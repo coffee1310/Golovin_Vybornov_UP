@@ -1,0 +1,97 @@
+﻿<Page x:Class="PropertyManagement.Pages.EmployeesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Сотрудники">
+
+    <DockPanel>
+        <!-- Заголовок -->
+        <Border DockPanel.Dock="Top" Background="#2196F3" Padding="15">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="👨‍🔧" FontSize="24" Margin="0,0,10,0"/>
+                <TextBlock Text="Сотрудники" 
+                           FontSize="20" 
+                           FontWeight="Bold" 
+                           Foreground="White"/>
+                <TextBlock x:Name="EmployeesCountText" 
+                           Text=" (0)"
+                           FontSize="16"
+                           Foreground="White"
+                           Margin="10,0,0,0"
+                           VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Панель управления -->
+        <Border DockPanel.Dock="Top" Background="#F5F5F5" Padding="10" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="➕ Добавить" 
+                        Click="AddEmployee_Click"
+                        Padding="10,5"
+                        Background="#4CAF50"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"/>
+
+                <Button Content="✏️ Редактировать" 
+                        Click="EditEmployee_Click"
+                        Padding="10,5"
+                        Margin="10,0,0,0"
+                        Background="#2196F3"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"/>
+
+                <Button Content="🗑️ Удалить" 
+                        Click="DeleteEmployee_Click"
+                        Padding="10,5"
+                        Margin="10,0,0,0"
+                        Background="#F44336"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"/>
+
+                <Button Content="🔄 Обновить" 
+                        Click="Refresh_Click"
+                        Padding="10,5"
+                        Margin="10,0,0,0"
+                        Background="#FF9800"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"/>
+
+                <!-- Поиск -->
+                <TextBlock Text="Поиск:" 
+                           VerticalAlignment="Center" 
+                           Margin="30,0,10,0"/>
+                <TextBox x:Name="SearchTextBox" 
+                         Width="200" 
+                         Padding="5"
+                         TextChanged="SearchTextBox_TextChanged"/>
+
+                <!-- Фильтр по должности -->
+                <TextBlock Text="Должность:" 
+                           VerticalAlignment="Center" 
+                           Margin="20,0,10,0"/>
+                <ComboBox x:Name="PositionFilterComboBox" 
+                          Width="150" 
+                          SelectionChanged="PositionFilterComboBox_SelectionChanged"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Таблица сотрудников -->
+        <DataGrid x:Name="EmployeesGrid" 
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  SelectionChanged="EmployeesGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding employee_id}" Width="50"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding full_name}" Width="*"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding position}" Width="150"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding phone_number}" Width="120"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding email}" Width="200"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Page>

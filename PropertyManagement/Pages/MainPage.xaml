@@ -198,35 +198,33 @@
             <Border Style="{StaticResource CardStyle}">
                 <StackPanel>
                     <TextBlock Text="📝 Последние заявки" 
-                               FontSize="18" 
-                               FontWeight="Bold" 
-                               Margin="0,0,0,15"/>
+                   FontSize="18" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,15"/>
 
                     <DataGrid x:Name="RecentRequestsGrid" 
-                              AutoGenerateColumns="False"
-                              IsReadOnly="True"
-                              HeadersVisibility="Column"
-                              BorderThickness="0">
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  HeadersVisibility="Column"
+                  BorderThickness="0">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding RequestId}" Width="60"/>
-                            <DataGridTextColumn Header="Тип" Binding="{Binding RequestType}" Width="120"/>
-                            <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
-                            <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100"/>
-                            <DataGridTextColumn Header="Дата" 
-                                                Binding="{Binding CreatedDate, StringFormat='dd.MM.yyyy HH:mm'}" 
-                                                Width="130"/>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60"/>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="120"/>
+                            <DataGridTextColumn Header="Описание" Binding="{Binding Desc}" Width="*"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding State}" Width="100"/>
+                            <!-- Дата убрана, так как поле CreatedDate может отсутствовать -->
                         </DataGrid.Columns>
                     </DataGrid>
 
                     <Button Content="Показать все заявки" 
-                            Margin="0,15,0,0"
-                            HorizontalAlignment="Right"
-                            Padding="10,5"
-                            Background="#2196F3"
-                            Foreground="White"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            Click="ViewAllRequests_Click"/>
+                Margin="0,15,0,0"
+                HorizontalAlignment="Right"
+                Padding="10,5"
+                Background="#2196F3"
+                Foreground="White"
+                BorderThickness="0"
+                Cursor="Hand"
+                Click="ViewAllRequests_Click"/>
                 </StackPanel>
             </Border>
         </StackPanel>

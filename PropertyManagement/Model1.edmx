@@ -394,7 +394,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PropertyManagementEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PropertyManagementEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Apartments" EntityType="Self.Apartments" />
           <EntitySet Name="Buildings" EntityType="Self.Buildings" />
           <EntitySet Name="Debts" EntityType="Self.Debts" />
@@ -437,7 +437,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище PropertyManagementModelContainer" CdmEntityContainer="PropertyManagementEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PropertyManagementModelContainer" CdmEntityContainer="PropertyManagementEntities1">
           <EntitySetMapping Name="Apartments">
             <EntityTypeMapping TypeName="PropertyManagementModel.Apartments">
               <MappingFragment StoreEntitySet="Apartments">

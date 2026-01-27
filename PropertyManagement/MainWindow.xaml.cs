@@ -1,32 +1,14 @@
 ﻿using PropertyManagement.Pages;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PropertyManagement
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-
-            // Загружаем главную страницу при старте
             MainFrame.Navigate(new MainPage());
         }
 
@@ -37,39 +19,33 @@ namespace PropertyManagement
 
         private void BuildingsPage_Click(object sender, RoutedEventArgs e)
         {
-            // Временная заглушка
-            MessageBox.Show("Страница 'Здания' в разработке", "Информация",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            MainFrame.Navigate(new BuildingsPage());
         }
 
         private void ApartmentsPage_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Страница 'Квартиры' в разработке", "Информация",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            MainFrame.Navigate(new ApartmentsPage());
         }
 
         private void OwnersPage_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Страница 'Собственники' в разработке", "Информация",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            MainFrame.Navigate(new OwnersPage());
         }
+
 
         private void EmployeesPage_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Страница 'Сотрудники' в разработке", "Информация",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            MainFrame.Navigate(new EmployeesPage());
         }
 
         private void ServiceRequestsPage_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Страница 'Заявки' в разработке", "Информация",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            MainFrame.Navigate(new ServiceRequestsPage());
         }
 
         private void NewRequestPage_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Страница 'Новая заявка' в разработке", "Информация",
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            MainFrame.Navigate(new ServiceRequestEditPage());
         }
 
         private void SettingsPage_Click(object sender, RoutedEventArgs e)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +13,10 @@ namespace PropertyManagement.Pages
         {
             InitializeComponent();
             _context = new PropertyManagementEntities();
+
+            // Раскомментируйте для проверки структуры
+            // CheckServiceRequestsStructure();
+
             LoadStatistics();
             LoadRecentRequests();
         }
@@ -50,13 +53,45 @@ namespace PropertyManagement.Pages
         {
             try
             {
-                // Загрузка последних заявок из базы данных (без Include)
-                var recentRequests = _context.ServiceRequests
-                    .OrderByDescending(r => r.request_id)
+                // Сначала получим все свойства ServiceRequests
+                var properties = typeof(ServiceRequests).GetProperties();
+                
+                // Если есть поле с датой создания, используем его
+                var dateProperty = properties.FirstOrDefault(p => 
+                    p.Name.Contains("Date") || 
+                    p.Name.Contains("Created") || 
+                    p.PropertyType == typeof(DateTime) ||
+                    p.PropertyType == typeof(DateTime?));
+                
+                IQueryable<ServiceRequests> query = _context.ServiceRequests;
+                
+                // Сортируем по дате, если найдено подходящее поле
+                if (dateProperty != null)
+                {
+                    // Используем динамическое LINQ или простую сортировку
+                    // Для простоты сначала возьмем без сортировки
+                    query = query.OrderByDescending(r => r.request_id);
+                }
+                
+                var recentRequests = query
                     .Take(5)
+                    .Select(r => new
+                    {
+                        Id = r.request_id,
+                        Type = r.request_type,
+                        Desc = r.description,
+                        State = r.status
+                        // Добавьте другие поля по необходимости
+                    })
                     .ToList();
 
                 RecentRequestsGrid.ItemsSource = recentRequests;
+
+                if (!recentRequests.Any())
+                {
+                    MessageBox.Show("В базе данных нет заявок", "Информация",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
             catch (Exception ex)
             {
@@ -65,6 +100,7 @@ namespace PropertyManagement.Pages
             }
         }
 
+        // Остальные методы...
         private void AddBuilding_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Функция 'Добавить здание' будет доступна на странице 'Здания'", "Информация",
@@ -95,8 +131,36 @@ namespace PropertyManagement.Pages
             var mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
             {
-                // Переходим на страницу заявок
-                //mainWindow.NavigateToServiceRequests();
+                // Просто показываем сообщение, так как метода NavigateToServiceRequests нет
+                //mainWindow.ServiceRequestsPage_Click(sender, e);
+            }
+        }
+
+        private void CheckServiceRequestsStructure()
+        {
+            try
+            {
+                var firstRequest = _context.ServiceRequests.FirstOrDefault();
+                if (firstRequest != null)
+                {
+                    var properties = firstRequest.GetType().GetProperties();
+                    string propList = "Свойства ServiceRequests:\n";
+                    foreach (var prop in properties)
+                    {
+                        var value = prop.GetValue(firstRequest);
+                        propList += $"{prop.Name} ({prop.PropertyType.Name}) = {value}\n";
+                    }
+                    
+                    MessageBox.Show(propList, "Структура таблицы ServiceRequests");
+                }
+                else
+                {
+                    MessageBox.Show("Таблица ServiceRequests пустая", "Информация");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка проверки структуры: {ex.Message}", "Ошибка");
             }
         }
     }

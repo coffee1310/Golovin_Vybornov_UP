@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\coffe\Desktop\PropertyManagement\PropertyManagement\obj\Debug\
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\
 PropertyManagement
 none
 false
 DEBUG;TRACE
-C:\Users\coffe\Desktop\PropertyManagement\PropertyManagement\App.xaml
-2-213997779
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\App.xaml
+12418337212
 2-1957146511
-18-1764417982
-18-1137369791
-MainWindow.xaml;Pages\MainPage.xaml;
+28351064383
+18-1891082291
+MainWindow.xaml;Pages\ApartmentEditPage.xaml;Pages\ApartmentsPage.xaml;Pages\BuildingEditPage.xaml;Pages\BuildingsPage.xaml;Pages\EmployeeEditPage.xaml;Pages\EmployeesPage.xaml;Pages\MainPage.xaml;Pages\OwnerEditPage.xaml;Pages\OwnersPage.xaml;Pages\ServiceRequestEditPage.xaml;Pages\ServiceRequestsPage.xaml;
 
 True
 
