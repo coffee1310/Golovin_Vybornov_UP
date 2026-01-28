@@ -1,18 +1,18 @@
-﻿<Page x:Class="PropertyManagement.Pages.OwnersPage"
+﻿<Page x:Class="PropertyManagement.Pages.RequestExpensesPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Собственники">
+      Title="Расходы на заявки">
 
     <DockPanel>
         <!-- Заголовок -->
         <Border DockPanel.Dock="Top" Background="#2196F3" Padding="15">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="👤" FontSize="24" Margin="0,0,10,0"/>
-                <TextBlock Text="Собственники"
+                <TextBlock Text="💰" FontSize="24" Margin="0,0,10,0"/>
+                <TextBlock Text="Расходы на заявки"
                            FontSize="20"
                            FontWeight="Bold"
                            Foreground="White"/>
-                <TextBlock x:Name="OwnersCountText"
+                <TextBlock x:Name="ExpensesCountText"
                            Text=" (0)"
                            FontSize="16"
                            Foreground="White"
@@ -28,8 +28,8 @@
                 BorderBrush="#E0E0E0" 
                 BorderThickness="0,0,0,1">
             <StackPanel Orientation="Horizontal">
-                <Button Content="➕ Добавить"
-                        Click="AddOwner_Click"
+                <Button Content="➕ Добавить расход"
+                        Click="AddExpense_Click"
                         Padding="10,5"
                         Background="#4CAF50"
                         Foreground="White"
@@ -37,7 +37,7 @@
                         Cursor="Hand"/>
 
                 <Button Content="✏️ Редактировать"
-                        Click="EditOwner_Click"
+                        Click="EditExpense_Click"
                         Padding="10,5"
                         Margin="10,0,0,0"
                         Background="#2196F3"
@@ -46,7 +46,7 @@
                         Cursor="Hand"/>
 
                 <Button Content="🗑️ Удалить"
-                        Click="DeleteOwner_Click"
+                        Click="DeleteExpense_Click"
                         Padding="10,5"
                         Margin="10,0,0,0"
                         Background="#F44336"
@@ -63,74 +63,77 @@
                         BorderThickness="0"
                         Cursor="Hand"/>
 
+                <!-- Фильтр по типу расхода -->
+                <TextBlock Text="Тип расхода:"
+                           VerticalAlignment="Center"
+                           Margin="30,0,10,0"/>
+
+                <ComboBox x:Name="TypeFilterComboBox"
+                          Width="150"
+                          SelectionChanged="TypeFilterComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Все типы"/>
+                    <ComboBoxItem Content="Материалы"/>
+                    <ComboBoxItem Content="Работа"/>
+                    <ComboBoxItem Content="Транспорт"/>
+                    <ComboBoxItem Content="Оборудование"/>
+                </ComboBox>
+
                 <!-- Поиск -->
                 <TextBlock Text="Поиск:"
                            VerticalAlignment="Center"
-                           Margin="30,0,10,0"/>
+                           Margin="20,0,10,0"/>
 
                 <TextBox x:Name="SearchTextBox"
                          Width="200"
                          Padding="5"
-                         TextChanged="SearchTextBox_TextChanged">
-                    <TextBox.ToolTip>
-                        Поиск по ФИО, телефону или паспорту
-                    </TextBox.ToolTip>
-                </TextBox>
-
-                <!-- Фильтр по наличию квартир -->
-                <TextBlock Text="Квартиры:"
-                           VerticalAlignment="Center"
-                           Margin="20,0,10,0"/>
-
-                <ComboBox x:Name="ApartmentFilterComboBox"
-                          Width="150"
-                          SelectionChanged="ApartmentFilterComboBox_SelectionChanged">
-                    <ComboBoxItem Content="Все"/>
-                    <ComboBoxItem Content="С квартирами"/>
-                    <ComboBoxItem Content="Без квартир"/>
-                </ComboBox>
+                         TextChanged="SearchTextBox_TextChanged"
+                         ToolTip="Поиск по описанию или номеру заявки"/>
             </StackPanel>
         </Border>
 
-        <!-- Таблица собственников -->
-        <DataGrid x:Name="OwnersGrid"
+        <!-- Таблица расходов -->
+        <DataGrid x:Name="ExpensesGrid"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
-                  SelectionChanged="OwnersGrid_SelectionChanged">
+                  SelectionChanged="ExpensesGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" 
-                                    Binding="{Binding owner_id}" 
+                                    Binding="{Binding expense_id}" 
                                     Width="50"/>
 
-                <DataGridTextColumn Header="ФИО*" 
-                                    Binding="{Binding full_name}" 
-                                    Width="*"/>
-
-                <DataGridTextColumn Header="Паспорт" 
-                                    Binding="{Binding passport_data}" 
+                <DataGridTextColumn Header="Заявка" 
+                                    Binding="{Binding RequestInfo}" 
                                     Width="150"/>
 
-                <DataGridTextColumn Header="Телефон" 
-                                    Binding="{Binding phone_number}" 
+                <DataGridTextColumn Header="Тип расхода" 
+                                    Binding="{Binding expense_type}" 
                                     Width="120"/>
 
-                <DataGridTextColumn Header="Квартиры" 
-                                    Binding="{Binding apartments_count}" 
-                                    Width="80">
+                <DataGridTextColumn Header="Описание" 
+                                    Binding="{Binding description}" 
+                                    Width="*"/>
+
+                <DataGridTextColumn Header="Сумма" 
+                                    Binding="{Binding amount, StringFormat='{}{0:N2} ₽'}" 
+                                    Width="100">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
                             <Setter Property="FontWeight" Value="Bold"/>
-                            <Setter Property="Foreground">
-                                <Setter.Value>
-                                    <SolidColorBrush Color="#2196F3"/>
-                                </Setter.Value>
-                            </Setter>
+                            <Setter Property="Foreground" Value="#F44336"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Дата" 
+                                    Binding="{Binding expense_date, StringFormat='dd.MM.yyyy'}" 
+                                    Width="100"/>
+
+                <DataGridTextColumn Header="Кто добавил" 
+                                    Binding="{Binding created_by}" 
+                                    Width="120"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

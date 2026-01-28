@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PropertyManagement.Pages
 {
@@ -18,8 +19,6 @@ namespace PropertyManagement.Pages
             public string full_name { get; set; }
             public string passport_data { get; set; }
             public string phone_number { get; set; }
-            public string email { get; set; }
-            public DateTime? registration_date { get; set; }
             public int apartments_count { get; set; }
         }
 
@@ -45,8 +44,6 @@ namespace PropertyManagement.Pages
                     full_name = o.full_name,
                     passport_data = o.passport_data ?? "Не указан",
                     phone_number = o.phone_number ?? "Не указан",
-                    email = o.email ?? "Не указан",
-                    registration_date = o.registration_date,
 
                     // Подсчитываем количество квартир у собственника
                     apartments_count = _context.PropertyOwnership
@@ -75,8 +72,7 @@ namespace PropertyManagement.Pages
                     filtered = filtered.Where(o =>
                         (o.full_name != null && o.full_name.ToLower().Contains(search)) ||
                         (o.passport_data != null && o.passport_data.ToLower().Contains(search)) ||
-                        (o.phone_number != null && o.phone_number.Contains(search)) ||
-                        (o.email != null && o.email.ToLower().Contains(search)));
+                        (o.phone_number != null && o.phone_number.Contains(search)));
                 }
 
                 // Фильтр по наличию квартир

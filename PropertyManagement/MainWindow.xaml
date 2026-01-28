@@ -84,6 +84,10 @@
                         Style="{StaticResource NavButtonStyle}"
                         Click="MainPage_Click"/>
 
+                <Button Content="📊 Отчеты"
+                    Style="{StaticResource NavButtonStyle}"
+                    Click="ReportsPage_Click"/>
+
                 <TextBlock Text="Данные" 
                            FontSize="14" 
                            FontWeight="SemiBold" 
@@ -102,6 +106,9 @@
                 <Button Content="👨‍🔧 Сотрудники" 
                         Style="{StaticResource NavButtonStyle}"
                         Click="EmployeesPage_Click"/>
+                <Button Content="💰 Расходы"
+                    Style="{StaticResource NavButtonStyle}"
+                    Click="RequestExpensesPage_Click"/>
 
                 <TextBlock Text="Заявки" 
                            FontSize="14" 

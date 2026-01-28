@@ -82,6 +82,19 @@
     <NavigationProperty Name="Apartments" Relationship="Self.FK__PropertyO__apart__3F466844" FromRole="PropertyOwnership" ToRole="Apartments" />
     <NavigationProperty Name="Owners" Relationship="Self.FK__PropertyO__owner__3E52440B" FromRole="PropertyOwnership" ToRole="Owners" />
   </EntityType>
+  <EntityType Name="RequestExpenses">
+    <Key>
+      <PropertyRef Name="expense_id" />
+    </Key>
+    <Property Name="expense_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="request_id" Type="Int32" Nullable="false" />
+    <Property Name="expense_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="expense_date" Type="DateTime" Precision="0" />
+    <Property Name="created_by" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ServiceRequests" Relationship="Self.FK__RequestEx__reque__5CD6CB2B" FromRole="RequestExpenses" ToRole="ServiceRequests" />
+  </EntityType>
   <EntityType Name="ServiceRequests">
     <Key>
       <PropertyRef Name="request_id" />
@@ -95,6 +108,7 @@
     <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Apartments" Relationship="Self.FK__ServiceRe__apart__4AB81AF0" FromRole="ServiceRequests" ToRole="Apartments" />
     <NavigationProperty Name="Employees" Relationship="Self.FK__ServiceRe__emplo__4BAC3F29" FromRole="ServiceRequests" ToRole="Employees" />
+    <NavigationProperty Name="RequestExpenses" Relationship="Self.FK__RequestEx__reque__5CD6CB2B" FromRole="ServiceRequests" ToRole="RequestExpenses" />
   </EntityType>
   <Association Name="FK__Apartment__build__398D8EEE">
     <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
@@ -180,7 +194,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="PropertyManagementEntities1" annotation:LazyLoadingEnabled="true">
+  <Association Name="FK__RequestEx__reque__5CD6CB2B">
+    <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="1" />
+    <End Role="RequestExpenses" Type="Self.RequestExpenses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceRequests">
+        <PropertyRef Name="request_id" />
+      </Principal>
+      <Dependent Role="RequestExpenses">
+        <PropertyRef Name="request_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PropertyManagementEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Apartments" EntityType="Self.Apartments" />
     <EntitySet Name="Buildings" EntityType="Self.Buildings" />
     <EntitySet Name="Debts" EntityType="Self.Debts" />
@@ -188,6 +214,7 @@
     <EntitySet Name="Owners" EntityType="Self.Owners" />
     <EntitySet Name="Payments" EntityType="Self.Payments" />
     <EntitySet Name="PropertyOwnership" EntityType="Self.PropertyOwnership" />
+    <EntitySet Name="RequestExpenses" EntityType="Self.RequestExpenses" />
     <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequests" />
     <AssociationSet Name="FK__Apartment__build__398D8EEE" Association="Self.FK__Apartment__build__398D8EEE">
       <End Role="Buildings" EntitySet="Buildings" />
@@ -216,6 +243,10 @@
     <AssociationSet Name="FK__PropertyO__owner__3E52440B" Association="Self.FK__PropertyO__owner__3E52440B">
       <End Role="Owners" EntitySet="Owners" />
       <End Role="PropertyOwnership" EntitySet="PropertyOwnership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RequestEx__reque__5CD6CB2B" Association="Self.FK__RequestEx__reque__5CD6CB2B">
+      <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+      <End Role="RequestExpenses" EntitySet="RequestExpenses" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище PropertyManagementModelContainer" CdmEntityContainer="PropertyManagementEntities1">
+  <EntityContainerMapping StorageEntityContainer="Хранилище PropertyManagementModelContainer" CdmEntityContainer="PropertyManagementEntities">
     <EntitySetMapping Name="Apartments">
       <EntityTypeMapping TypeName="PropertyManagementModel.Apartments">
         <MappingFragment StoreEntitySet="Apartments">
@@ -75,6 +75,19 @@
           <ScalarProperty Name="ownership_id" ColumnName="ownership_id" />
           <ScalarProperty Name="owner_id" ColumnName="owner_id" />
           <ScalarProperty Name="apartment_id" ColumnName="apartment_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequestExpenses">
+      <EntityTypeMapping TypeName="PropertyManagementModel.RequestExpenses">
+        <MappingFragment StoreEntitySet="RequestExpenses">
+          <ScalarProperty Name="expense_id" ColumnName="expense_id" />
+          <ScalarProperty Name="request_id" ColumnName="request_id" />
+          <ScalarProperty Name="expense_type" ColumnName="expense_type" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="expense_date" ColumnName="expense_date" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

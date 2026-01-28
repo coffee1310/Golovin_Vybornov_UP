@@ -70,6 +70,18 @@
     <Property Name="owner_id" Type="int" Nullable="false" />
     <Property Name="apartment_id" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="RequestExpenses">
+    <Key>
+      <PropertyRef Name="expense_id" />
+    </Key>
+    <Property Name="expense_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="request_id" Type="int" Nullable="false" />
+    <Property Name="expense_type" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="500" />
+    <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="expense_date" Type="date" />
+    <Property Name="created_by" Type="nvarchar" MaxLength="100" />
+  </EntityType>
   <EntityType Name="ServiceRequests">
     <Key>
       <PropertyRef Name="request_id" />
@@ -142,6 +154,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__RequestEx__reque__5CD6CB2B">
+    <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="1" />
+    <End Role="RequestExpenses" Type="Self.RequestExpenses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceRequests">
+        <PropertyRef Name="request_id" />
+      </Principal>
+      <Dependent Role="RequestExpenses">
+        <PropertyRef Name="request_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__ServiceRe__apart__4AB81AF0">
     <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
     <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="*" />
@@ -174,6 +198,7 @@
     <EntitySet Name="Owners" EntityType="Self.Owners" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PropertyOwnership" EntityType="Self.PropertyOwnership" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestExpenses" EntityType="Self.RequestExpenses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequests" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Apartment__build__398D8EEE" Association="Self.FK__Apartment__build__398D8EEE">
       <End Role="Buildings" EntitySet="Buildings" />
@@ -194,6 +219,10 @@
     <AssociationSet Name="FK__PropertyO__owner__3E52440B" Association="Self.FK__PropertyO__owner__3E52440B">
       <End Role="Owners" EntitySet="Owners" />
       <End Role="PropertyOwnership" EntitySet="PropertyOwnership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RequestEx__reque__5CD6CB2B" Association="Self.FK__RequestEx__reque__5CD6CB2B">
+      <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+      <End Role="RequestExpenses" EntitySet="RequestExpenses" />
     </AssociationSet>
     <AssociationSet Name="FK__ServiceRe__apart__4AB81AF0" Association="Self.FK__ServiceRe__apart__4AB81AF0">
       <End Role="Apartments" EntitySet="Apartments" />

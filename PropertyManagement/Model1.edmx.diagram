@@ -4,14 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7ddffffb18814eeb8bda1261d4e109b6" Name="Diagram1">
-        <EntityTypeShape EntityType="PropertyManagementModel.Apartments" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PropertyManagementModel.Buildings" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PropertyManagementModel.Debts" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+      <Diagram DiagramId="1678d15b559c4872a21fe209e6553d24" Name="Diagram1">
+        <EntityTypeShape EntityType="PropertyManagementModel.Apartments" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PropertyManagementModel.Buildings" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PropertyManagementModel.Debts" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PropertyManagementModel.Employees" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PropertyManagementModel.Owners" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PropertyManagementModel.Owners" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PropertyManagementModel.Payments" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PropertyManagementModel.PropertyOwnership" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PropertyManagementModel.PropertyOwnership" Width="1.5" PointX="8.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PropertyManagementModel.RequestExpenses" Width="1.5" PointX="10.5" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="PropertyManagementModel.ServiceRequests" Width="1.5" PointX="8.25" PointY="1.75" IsExpanded="true" />
         <AssociationConnector Association="PropertyManagementModel.FK__Apartment__build__398D8EEE" ManuallyRouted="false" />
         <AssociationConnector Association="PropertyManagementModel.FK__Debts__apartment__4222D4EF" ManuallyRouted="false" />
@@ -20,6 +21,7 @@
         <AssociationConnector Association="PropertyManagementModel.FK__ServiceRe__apart__4AB81AF0" ManuallyRouted="false" />
         <AssociationConnector Association="PropertyManagementModel.FK__ServiceRe__emplo__4BAC3F29" ManuallyRouted="false" />
         <AssociationConnector Association="PropertyManagementModel.FK__PropertyO__owner__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__RequestEx__reque__5CD6CB2B" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

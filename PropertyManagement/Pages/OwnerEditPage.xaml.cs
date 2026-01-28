@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PropertyManagement.Pages
 {
@@ -26,9 +27,6 @@ namespace PropertyManagement.Pages
             _context = new PropertyManagementEntities();
             _ownerId = ownerId;
 
-            // Устанавливаем дату по умолчанию
-            RegistrationDatePicker.SelectedDate = DateTime.Today;
-
             LoadOwnerData();
             LoadOwnerApartments();
         }
@@ -50,12 +48,6 @@ namespace PropertyManagement.Pages
                         FullNameTextBox.Text = _originalOwner.full_name ?? "";
                         PassportTextBox.Text = _originalOwner.passport_data ?? "";
                         PhoneTextBox.Text = _originalOwner.phone_number ?? "";
-                        EmailTextBox.Text = _originalOwner.email ?? "";
-
-                        if (_originalOwner.registration_date.HasValue)
-                        {
-                            RegistrationDatePicker.SelectedDate = _originalOwner.registration_date.Value;
-                        }
 
                         // Показываем раздел с квартирами
                         ApartmentsLabel.Visibility = Visibility.Visible;
@@ -117,7 +109,7 @@ namespace PropertyManagement.Pages
                             {
                                 Text = $"• {apt.DisplayText}",
                                 Margin = new Thickness(0, 2, 0, 2),
-                                Foreground = "#333"
+                                Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333"))
                             };
                             stackPanel.Children.Add(textBlock);
                         }
@@ -180,8 +172,6 @@ namespace PropertyManagement.Pages
             _originalOwner.full_name = FullNameTextBox.Text.Trim();
             _originalOwner.passport_data = PassportTextBox.Text.Trim();
             _originalOwner.phone_number = PhoneTextBox.Text.Trim();
-            _originalOwner.email = EmailTextBox.Text.Trim();
-            _originalOwner.registration_date = RegistrationDatePicker.SelectedDate;
         }
 
         private void CreateNewOwner()
@@ -190,9 +180,7 @@ namespace PropertyManagement.Pages
             {
                 full_name = FullNameTextBox.Text.Trim(),
                 passport_data = PassportTextBox.Text.Trim(),
-                phone_number = PhoneTextBox.Text.Trim(),
-                email = EmailTextBox.Text.Trim(),
-                registration_date = RegistrationDatePicker.SelectedDate
+                phone_number = PhoneTextBox.Text.Trim()
             };
 
             _context.Owners.Add(newOwner);
@@ -217,21 +205,6 @@ namespace PropertyManagement.Pages
 
                 if (phoneDigits.Length < 10 || phoneDigits.Length > 11)
                     errors.Add("• Телефон должен содержать 10-11 цифр");
-            }
-
-            // Проверка формата email (если указан)
-            if (!string.IsNullOrWhiteSpace(EmailTextBox.Text))
-            {
-                try
-                {
-                    var addr = new System.Net.Mail.MailAddress(EmailTextBox.Text);
-                    if (addr.Address != EmailTextBox.Text.Trim())
-                        errors.Add("• Email имеет неверный формат");
-                }
-                catch
-                {
-                    errors.Add("• Email имеет неверный формат");
-                }
             }
 
             // Проверка уникальности паспорта (если указан)

@@ -63,3 +63,11 @@ C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\Ap
 C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\ApartmentsPage.g.cs
 C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\OwnersPage.baml
 C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\OwnersPage.g.cs
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\OwnerEditPage.baml
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\OwnerEditPage.g.cs
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\ReportsPage.baml
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\ReportsPage.g.cs
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\RequestExpenseEditPage.baml
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\RequestExpensesPage.baml
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\RequestExpenseEditPage.g.cs
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\RequestExpensesPage.g.cs

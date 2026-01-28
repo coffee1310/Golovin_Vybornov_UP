@@ -14,6 +14,12 @@ namespace PropertyManagement
     
     public partial class ServiceRequests
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ServiceRequests()
+        {
+            this.RequestExpenses = new HashSet<RequestExpenses>();
+        }
+    
         public int request_id { get; set; }
         public int apartment_id { get; set; }
         public Nullable<int> employee_id { get; set; }
@@ -24,5 +30,7 @@ namespace PropertyManagement
     
         public virtual Apartments Apartments { get; set; }
         public virtual Employees Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RequestExpenses> RequestExpenses { get; set; }
     }
 }

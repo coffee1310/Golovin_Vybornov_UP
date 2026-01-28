@@ -17,6 +17,16 @@ namespace PropertyManagement
             MainFrame.Navigate(new MainPage());
         }
 
+        private void ReportsPage_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ReportsPage());
+        }
+
+        private void RequestExpensesPage_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new RequestExpensesPage());
+        }
+
         private void BuildingsPage_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new BuildingsPage());

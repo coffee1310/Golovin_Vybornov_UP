@@ -124,6 +124,15 @@
     <Compile Include="Pages\OwnersPage.xaml.cs">
       <DependentUpon>OwnersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ReportsPage.xaml.cs">
+      <DependentUpon>ReportsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RequestExpenseEditPage.xaml.cs">
+      <DependentUpon>RequestExpenseEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RequestExpensesPage.xaml.cs">
+      <DependentUpon>RequestExpensesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ServiceRequestEditPage.xaml.cs">
       <DependentUpon>ServiceRequestEditPage.xaml</DependentUpon>
     </Compile>
@@ -134,6 +143,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="PropertyOwnership.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RequestExpenses.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ServiceRequests.cs">
@@ -184,6 +196,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OwnersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ReportsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RequestExpenseEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RequestExpensesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
