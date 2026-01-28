@@ -48,6 +48,22 @@
             <Setter Property="FontFamily" Value="Segoe UI"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
+
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style x:Key="PasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
     </Page.Resources>
 
     <Grid Background="#F4E8D3">
@@ -117,6 +133,8 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
@@ -138,19 +156,27 @@
 
                             <!-- Должность -->
                             <TextBlock Grid.Row="1" Grid.Column="0" 
-                                       Text="Должность:" 
+                                       Text="Должность*:" 
                                        Margin="0,0,15,15"
                                        VerticalAlignment="Center"/>
 
-                            <TextBox Grid.Row="1" Grid.Column="1" 
-                                     x:Name="PositionTextBox"
-                                     Style="{StaticResource TextBoxStyle}"
+                            <ComboBox Grid.Row="1" Grid.Column="1" 
+                                     x:Name="PositionComboBox"
+                                     Style="{StaticResource ComboBoxStyle}"
                                      Margin="0,0,0,15"
-                                     ToolTip="Например: Сантехник, Электрик, Уборщик"/>
+                                     ToolTip="Выберите должность сотрудника">
+                                <ComboBoxItem Content="Администратор"/>
+                                <ComboBoxItem Content="Менеджер"/>
+                                <ComboBoxItem Content="Техник"/>
+                                <ComboBoxItem Content="Электрик"/>
+                                <ComboBoxItem Content="Сантехник"/>
+                                <ComboBoxItem Content="Уборщик"/>
+                                <ComboBoxItem Content="Охранник"/>
+                            </ComboBox>
 
                             <!-- Телефон -->
                             <TextBlock Grid.Row="2" Grid.Column="0" 
-                                       Text="Телефон:" 
+                                       Text="Телефон*:" 
                                        Margin="0,0,15,15"
                                        VerticalAlignment="Center"/>
 
@@ -158,32 +184,55 @@
                                      x:Name="PhoneTextBox"
                                      Style="{StaticResource TextBoxStyle}"
                                      Margin="0,0,0,15"
-                                     ToolTip="Формат: 89181234567"/>
+                                     ToolTip="Формат: +7(XXX)XXX-XX-XX или 8XXXXXXXXXX"/>
 
-                            <!-- Email -->
+                            <!-- Логин -->
                             <TextBlock Grid.Row="3" Grid.Column="0" 
-                                       Text="Email:" 
-                                       Margin="0,0,15,0"
+                                       Text="Логин*:" 
+                                       Margin="0,0,15,15"
                                        VerticalAlignment="Center"/>
 
                             <TextBox Grid.Row="3" Grid.Column="1" 
-                                     x:Name="EmailTextBox"
+                                     x:Name="LoginTextBox"
                                      Style="{StaticResource TextBoxStyle}"
-                                     ToolTip="Например: ivanov@company.ru"/>
+                                     Margin="0,0,0,15"
+                                     ToolTip="Логин для входа в систему (только латинские буквы, цифры и _)"/>
+
+                            <!-- Пароль -->
+                            <TextBlock Grid.Row="4" Grid.Column="0" 
+                                       Text="Пароль*:" 
+                                       Margin="0,0,15,15"
+                                       VerticalAlignment="Center"/>
+
+                            <PasswordBox Grid.Row="4" Grid.Column="1" 
+                                     x:Name="PasswordBox"
+                                     Style="{StaticResource PasswordBoxStyle}"
+                                     Margin="0,0,0,15"
+                                     ToolTip="Пароль для входа в систему (минимум 6 символов)"/>
+
+                            <!-- Подтверждение пароля -->
+                            <TextBlock Grid.Row="5" Grid.Column="0" 
+                                       Text="Подтверждение пароля*:" 
+                                       Margin="0,0,15,0"
+                                       VerticalAlignment="Center"/>
+
+                            <PasswordBox Grid.Row="5" Grid.Column="1" 
+                                     x:Name="ConfirmPasswordBox"
+                                     Style="{StaticResource PasswordBoxStyle}"
+                                     ToolTip="Повторите пароль для подтверждения"/>
                         </Grid>
 
-                        <!-- Сообщения об ошибках -->
-                        <Border x:Name="ErrorBorder" 
-                                Grid.Row="2"
-                                Background="#FFEBEE"
-                                BorderBrush="#F44336"
+                        <!-- Примечание -->
+                        <Border Grid.Row="2"
+                                Background="#F9F9F9"
+                                BorderBrush="#D4C8B3"
                                 BorderThickness="1"
                                 CornerRadius="6"
                                 Padding="15"
-                                Margin="0,0,0,20"
-                                Visibility="Collapsed">
-                            <TextBlock x:Name="ErrorText"
-                                       Foreground="#D32F2F"
+                                Margin="0,0,0,20">
+                            <TextBlock Text="Примечание: При редактировании сотрудника пароль заполнять не обязательно. 
+                                            Оставьте поля пустыми, если не хотите менять пароль."
+                                       Foreground="#666666"
                                        TextWrapping="Wrap"
                                        FontSize="13"/>
                         </Border>

@@ -49,6 +49,7 @@ namespace PropertyManagement.Pages
                 // Загружаем квартиры с адресами зданий
                 var apartmentsData = (from apt in _context.Apartments
                                       join bld in _context.Buildings on apt.building_id equals bld.building_id
+                                      orderby bld.address, apt.apartment_number
                                       select new
                                       {
                                           apt.apartment_id,
@@ -72,8 +73,11 @@ namespace PropertyManagement.Pages
                 ApartmentComboBox.ItemsSource = _apartments;
                 ApartmentComboBox.SelectedIndex = 0;
 
-                // Загружаем сотрудников
-                var employeesData = _context.Employees.ToList();
+                // Загружаем сотрудников (только тех, кто может выполнять работы)
+                var employeesData = _context.Employees
+                    .Where(e => e.position != "Охранник" && e.position != "Уборщик") // Исключаем некоторые должности
+                    .OrderBy(e => e.full_name)
+                    .ToList();
 
                 // Создаем список сотрудников
                 var employeesList = new List<EmployeeViewModel>
@@ -84,23 +88,29 @@ namespace PropertyManagement.Pages
                 employeesList.AddRange(employeesData.Select(e => new EmployeeViewModel
                 {
                     employee_id = e.employee_id,
-                    full_name = e.full_name
+                    full_name = $"{e.full_name} ({e.position})"
                 }));
 
                 _employees = employeesList;
                 EmployeeComboBox.ItemsSource = _employees;
                 EmployeeComboBox.SelectedIndex = 0;
 
-                // Устанавливаем значения по умолчанию для ComboBox
+                // Устанавливаем значения по умолчанию для ComboBox типов заявок
                 TypeComboBox.Items.Add("Ремонт");
                 TypeComboBox.Items.Add("Обслуживание");
                 TypeComboBox.Items.Add("Консультация");
                 TypeComboBox.Items.Add("Экстренный вызов");
+                TypeComboBox.Items.Add("Установка оборудования");
+                TypeComboBox.Items.Add("Проверка");
+                TypeComboBox.Items.Add("Другое");
                 TypeComboBox.SelectedIndex = 0;
 
+                // Устанавливаем значения для ComboBox статусов
                 StatusComboBox.Items.Add("Открыта");
                 StatusComboBox.Items.Add("В работе");
+                StatusComboBox.Items.Add("Выполнена");
                 StatusComboBox.Items.Add("Закрыта");
+                StatusComboBox.Items.Add("Отменена");
                 StatusComboBox.SelectedIndex = 0;
             }
             catch (Exception ex)
@@ -242,10 +252,13 @@ namespace PropertyManagement.Pages
                 _originalRequest.employee_id = null;
             }
 
-            // Если статус изменился на "Закрыта", обновляем дату
-            if (_originalRequest.status == "Закрыта" && _originalRequest.created_date == null)
+            // Обновляем дату изменения
+
+            // Если статус изменился на "Выполнена" или "Закрыта", устанавливаем дату завершения
+            if ((_originalRequest.status == "Выполнена" || _originalRequest.status == "Закрыта")
+                && !_originalRequest.completed_date.HasValue)
             {
-                _originalRequest.created_date = DateTime.Now;
+                _originalRequest.completed_date = DateTime.Now;
             }
         }
 
@@ -263,8 +276,14 @@ namespace PropertyManagement.Pages
                 request_type = TypeComboBox.SelectedItem?.ToString() ?? "",
                 description = DescriptionTextBox.Text.Trim(),
                 status = StatusComboBox.SelectedItem?.ToString() ?? "Открыта",
-                created_date = DateTime.Now
+                created_date = DateTime.Now,
             };
+
+            // Устанавливаем дату завершения если статус сразу "Выполнена" или "Закрыта"
+            if (newRequest.status == "Выполнена" || newRequest.status == "Закрыта")
+            {
+                newRequest.completed_date = DateTime.Now;
+            }
 
             var selectedEmployee = EmployeeComboBox.SelectedItem as EmployeeViewModel;
             if (selectedEmployee != null && selectedEmployee.employee_id > 0)
@@ -277,32 +296,48 @@ namespace PropertyManagement.Pages
 
         private bool ValidateData()
         {
-            ErrorBorder.Visibility = Visibility.Collapsed;
-            ErrorText.Text = "";
-
-            var errors = "";
+            var errors = new List<string>();
 
             // Проверка квартиры
             var selectedApartment = ApartmentComboBox.SelectedItem as ApartmentViewModel;
             if (selectedApartment == null || selectedApartment.apartment_id == 0)
-                errors += "• Выберите квартиру\n";
+                errors.Add("• Выберите квартиру");
 
             // Проверка типа заявки
             if (TypeComboBox.SelectedItem == null)
-                errors += "• Выберите тип заявки\n";
+                errors.Add("• Выберите тип заявки");
 
             // Проверка описания
             if (string.IsNullOrWhiteSpace(DescriptionTextBox.Text))
-                errors += "• Введите описание\n";
+                errors.Add("• Введите описание заявки");
+            else if (DescriptionTextBox.Text.Trim().Length < 10)
+                errors.Add("• Описание должно содержать минимум 10 символов");
+            else if (DescriptionTextBox.Text.Trim().Length > 1000)
+                errors.Add("• Описание не может превышать 1000 символов");
 
             // Проверка статуса
             if (StatusComboBox.SelectedItem == null)
-                errors += "• Выберите статус\n";
+                errors.Add("• Выберите статус заявки");
 
-            if (!string.IsNullOrEmpty(errors))
+            // Проверка логики статусов
+            if (StatusComboBox.SelectedItem?.ToString() == "Выполнена" ||
+                StatusComboBox.SelectedItem?.ToString() == "Закрыта")
             {
-                ErrorText.Text = errors;
-                ErrorBorder.Visibility = Visibility.Visible;
+                var selectedEmployee = EmployeeComboBox.SelectedItem as EmployeeViewModel;
+                if (selectedEmployee == null || selectedEmployee.employee_id == 0)
+                {
+                    errors.Add("• Для закрытия или завершения заявки необходимо назначить исполнителя");
+                }
+            }
+
+            if (errors.Count > 0)
+            {
+                var errorMessage = "Пожалуйста, исправьте следующие ошибки:\n\n" +
+                                  string.Join("\n", errors);
+
+                MessageBox.Show(errorMessage, "Ошибка валидации",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+
                 return false;
             }
 
@@ -312,6 +347,68 @@ namespace PropertyManagement.Pages
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ServiceRequestsPage());
+        }
+
+        // Обработчики для проверки ввода
+
+        // Ограничение длины описания
+        private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (DescriptionTextBox.Text.Length > 1000)
+            {
+                DescriptionTextBox.Text = DescriptionTextBox.Text.Substring(0, 1000);
+                DescriptionTextBox.CaretIndex = 1000;
+
+                MessageBox.Show("Описание не может превышать 1000 символов",
+                    "Предупреждение",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+            }
+        }
+
+        // Автоматический выбор исполнителя при смене типа заявки
+        private void TypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Можно добавить логику автоматического назначения исполнителя
+            // в зависимости от типа заявки
+            if (TypeComboBox.SelectedItem != null && !_requestId.HasValue)
+            {
+                string selectedType = TypeComboBox.SelectedItem.ToString();
+
+                // Пример логики: для ремонтов назначаем техников
+                if (selectedType == "Ремонт" && EmployeeComboBox.SelectedIndex == 0)
+                {
+                    // Ищем техника в списке сотрудников
+                    var technician = _employees.FirstOrDefault(emp =>
+                        emp.full_name.Contains("Техник") ||
+                        emp.full_name.Contains("Электрик") ||
+                        emp.full_name.Contains("Сантехник"));
+
+                    if (technician != null)
+                    {
+                        EmployeeComboBox.SelectedItem = technician;
+                    }
+                }
+            }
+        }
+
+        // Обработчик изменения статуса
+        private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (StatusComboBox.SelectedItem != null)
+            {
+                string selectedStatus = StatusComboBox.SelectedItem.ToString();
+
+                // Предупреждение при попытке закрыть заявку без исполнителя
+                if ((selectedStatus == "Выполнена" || selectedStatus == "Закрыта") &&
+                    EmployeeComboBox.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Рекомендуется назначить исполнителя перед закрытием заявки",
+                        "Предупреждение",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+            }
         }
     }
 }

@@ -66,8 +66,6 @@ namespace PropertyManagement
                 btnServiceRequests.Visibility = Visibility.Visible;
                 btnNewRequest.Visibility = Visibility.Visible;
                 btnReports.Visibility = Visibility.Visible;
-                btnSettings.Visibility = Visibility.Visible;
-                btnHelp.Visibility = Visibility.Visible;
             }
             // РУКОВОДИТЕЛЬ - только просмотр и управление персоналом/задачами
             else if (positionLower.Contains("руковод") || positionLower.Contains("директор") ||
@@ -92,9 +90,6 @@ namespace PropertyManagement
                 btnReports.Visibility = Visibility.Visible;
 
                 // Настройки только для админа
-                btnSettings.Visibility = Visibility.Collapsed;
-
-                btnHelp.Visibility = Visibility.Visible;
             }
             // Обычный пользователь (например, житель через мобильное приложение)
             else
@@ -108,8 +103,6 @@ namespace PropertyManagement
                 btnServiceRequests.Visibility = Visibility.Visible; // Только свои заявки
                 btnNewRequest.Visibility = Visibility.Visible; // Может создавать заявки
                 btnReports.Visibility = Visibility.Collapsed;
-                btnSettings.Visibility = Visibility.Collapsed;
-                btnHelp.Visibility = Visibility.Visible;
             }
 
             // Скрываем разделы, если все кнопки в них скрыты

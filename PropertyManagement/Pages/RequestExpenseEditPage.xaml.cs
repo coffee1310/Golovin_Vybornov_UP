@@ -223,37 +223,57 @@ namespace PropertyManagement.Pages
 
         private bool ValidateData()
         {
-            ErrorText.Visibility = Visibility.Collapsed;
-            ErrorText.Text = "";
-
             var errors = new List<string>();
 
-            // Проверка заявки
+            // Проверка заявки (обязательное)
             if (RequestComboBox.SelectedItem == null)
                 errors.Add("• Выберите заявку");
 
-            // Проверка типа расхода
+            // Проверка типа расхода (обязательное)
             if (TypeComboBox.SelectedItem == null)
                 errors.Add("• Выберите тип расхода");
 
-            // Проверка суммы
+            // Проверка суммы (обязательное)
             if (string.IsNullOrWhiteSpace(AmountTextBox.Text))
                 errors.Add("• Введите сумму расхода");
-            else if (!decimal.TryParse(AmountTextBox.Text, out decimal amount) || amount <= 0)
-                errors.Add("• Сумма должна быть положительным числом");
+            else if (!decimal.TryParse(AmountTextBox.Text, out decimal amount))
+                errors.Add("• Сумма должна быть числом");
+            else if (amount <= 0)
+                errors.Add("• Сумма должна быть больше 0");
+            else if (amount > 999999.99m)
+                errors.Add("• Сумма слишком велика (максимум 999 999.99)");
 
-            // Проверка даты
+            // Проверка даты (обязательное)
             if (!ExpenseDatePicker.SelectedDate.HasValue)
                 errors.Add("• Выберите дату расхода");
+            else if (ExpenseDatePicker.SelectedDate.Value > DateTime.Today)
+                errors.Add("• Дата расхода не может быть в будущем");
+            else if (ExpenseDatePicker.SelectedDate.Value < DateTime.Today.AddYears(-10))
+                errors.Add("• Дата расхода слишком старая");
 
-            // Проверка кто добавил
+            // Проверка кто добавил (обязательное)
             if (string.IsNullOrWhiteSpace(CreatedByTextBox.Text))
                 errors.Add("• Укажите, кто добавил расход");
+            else if (CreatedByTextBox.Text.Trim().Length < 2)
+                errors.Add("• Имя должно содержать минимум 2 символа");
+            else if (CreatedByTextBox.Text.Trim().Length > 100)
+                errors.Add("• Имя не может превышать 100 символов");
 
-            if (errors.Any())
+            // Проверка описания (необязательное, но проверяем длину если заполнено)
+            if (!string.IsNullOrWhiteSpace(DescriptionTextBox.Text))
             {
-                ErrorText.Text = string.Join("\n", errors);
-                ErrorText.Visibility = Visibility.Visible;
+                if (DescriptionTextBox.Text.Trim().Length > 1000)
+                    errors.Add("• Описание не может превышать 1000 символов");
+            }
+
+            if (errors.Count > 0)
+            {
+                var errorMessage = "Пожалуйста, исправьте следующие ошибки:\n\n" +
+                                  string.Join("\n", errors);
+
+                MessageBox.Show(errorMessage, "Ошибка валидации",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+
                 return false;
             }
 
@@ -268,6 +288,85 @@ namespace PropertyManagement.Pages
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RequestExpensesPage());
+        }
+
+        // Обработчик для проверки ввода суммы (только цифры и точка)
+        private void AmountTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            string newText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
+
+            // Разрешаем только цифры и точку
+            if (!char.IsDigit(e.Text[0]) && e.Text[0] != '.')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Проверяем, что точка только одна
+            if (e.Text[0] == '.' && (textBox.Text.Contains('.') || textBox.SelectionStart == 0))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Проверяем, что после точки не более 2 цифр
+            if (textBox.Text.Contains('.'))
+            {
+                int decimalIndex = textBox.Text.IndexOf('.');
+                int selectionStart = textBox.SelectionStart;
+
+                // Если вводим после точки и уже есть 2 цифры
+                if (selectionStart > decimalIndex)
+                {
+                    string afterDecimal = textBox.Text.Substring(decimalIndex + 1);
+                    if (afterDecimal.Length >= 2 && selectionStart > decimalIndex + 1)
+                    {
+                        e.Handled = true;
+                        return;
+                    }
+                }
+            }
+
+            // Проверяем общую длину
+            if (newText.Length > 10) // Максимум 10 символов
+            {
+                e.Handled = true;
+            }
+        }
+
+        // Обработчик для удаления лишних нулей при потере фокуса
+        private void AmountTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (decimal.TryParse(AmountTextBox.Text, out decimal amount))
+            {
+                AmountTextBox.Text = amount.ToString("F2");
+            }
+        }
+
+        // Обработчик для проверки длины описания
+        private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (DescriptionTextBox.Text.Length > 1000)
+            {
+                DescriptionTextBox.Text = DescriptionTextBox.Text.Substring(0, 1000);
+                DescriptionTextBox.CaretIndex = 1000;
+
+                MessageBox.Show("Длина описания не может превышать 1000 символов",
+                    "Предупреждение",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+            }
+        }
+
+        // Обработчик для проверки длины имени
+        private void CreatedByTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (CreatedByTextBox.Text.Length > 100)
+            {
+                CreatedByTextBox.Text = CreatedByTextBox.Text.Substring(0, 100);
+                CreatedByTextBox.CaretIndex = 100;
+            }
         }
     }
 }

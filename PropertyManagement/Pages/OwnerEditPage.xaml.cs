@@ -50,7 +50,7 @@ namespace PropertyManagement.Pages
                         PhoneTextBox.Text = _originalOwner.phone_number ?? "";
 
                         // Показываем раздел с квартирами
-                        ApartmentsPanel.Visibility = Visibility.Visible; // Используем существующий Border
+                        ApartmentsPanel.Visibility = Visibility.Visible;
                     }
                     else
                     {
@@ -186,44 +186,90 @@ namespace PropertyManagement.Pages
 
         private bool ValidateData()
         {
-            ErrorText.Visibility = Visibility.Collapsed;
-            ErrorText.Text = "";
-
             var errors = new List<string>();
 
-            // Проверка обязательных полей
+            // Проверка ФИО (обязательное)
             if (string.IsNullOrWhiteSpace(FullNameTextBox.Text))
                 errors.Add("• ФИО обязательно для заполнения");
+            else if (FullNameTextBox.Text.Trim().Length < 5)
+                errors.Add("• ФИО должно содержать минимум 5 символов");
+            else if (FullNameTextBox.Text.Trim().Length > 255)
+                errors.Add("• ФИО не может превышать 255 символов");
 
-            // Проверка формата телефона (если указан)
-            if (!string.IsNullOrWhiteSpace(PhoneTextBox.Text))
+            // Проверка паспортных данных (обязательное)
+            if (string.IsNullOrWhiteSpace(PassportTextBox.Text))
+                errors.Add("• Паспортные данные обязательны для заполнения");
+            else if (PassportTextBox.Text.Trim().Length < 5)
+                errors.Add("• Паспортные данные должны содержать минимум 5 символов");
+            else if (PassportTextBox.Text.Trim().Length > 100)
+                errors.Add("• Паспортные данные не могут превышать 100 символов");
+            else
             {
-                // Убираем все нецифровые символы
-                string phoneDigits = Regex.Replace(PhoneTextBox.Text, @"\D", "");
-
-                if (phoneDigits.Length < 10 || phoneDigits.Length > 11)
-                    errors.Add("• Телефон должен содержать 10-11 цифр");
-            }
-
-            // Проверка уникальности паспорта (если указан)
-            if (!string.IsNullOrWhiteSpace(PassportTextBox.Text))
-            {
+                // Проверка уникальности паспорта
                 var existingOwner = _context.Owners
                     .FirstOrDefault(o => o.passport_data == PassportTextBox.Text.Trim() &&
                                        (!_ownerId.HasValue || o.owner_id != _ownerId.Value));
 
                 if (existingOwner != null)
-                    errors.Add($"• Собственник с паспортом {PassportTextBox.Text} уже существует в системе");
+                    errors.Add($"• Собственник с паспортом '{PassportTextBox.Text.Trim()}' уже существует в системе");
             }
 
+            // Проверка телефона (обязательное)
+            if (string.IsNullOrWhiteSpace(PhoneTextBox.Text))
+                errors.Add("• Телефон обязателен для заполнения");
+            else
+            {
+                // Убираем все нецифровые символы
+                string phoneDigits = Regex.Replace(PhoneTextBox.Text, @"\D", "");
+
+                if (phoneDigits.Length != 11 && phoneDigits.Length != 10)
+                    errors.Add("• Телефон должен содержать 10 или 11 цифр");
+                else if (!IsValidPhoneNumber(PhoneTextBox.Text))
+                    errors.Add("• Введите корректный номер телефона (например: +7(XXX)XXX-XX-XX или 8XXXXXXXXXX)");
+
+                // Проверка уникальности телефона
+                var existingOwnerByPhone = _context.Owners
+                    .FirstOrDefault(o => o.phone_number == PhoneTextBox.Text.Trim() &&
+                                       (!_ownerId.HasValue || o.owner_id != _ownerId.Value));
+
+                if (existingOwnerByPhone != null)
+                    errors.Add($"• Собственник с телефоном '{PhoneTextBox.Text.Trim()}' уже существует в системе");
+            }
+
+            // Отображение ошибок
             if (errors.Any())
             {
-                ErrorText.Text = string.Join("\n", errors);
-                ErrorText.Visibility = Visibility.Visible;
+                var errorMessage = "Пожалуйста, исправьте следующие ошибки:\n\n" +
+                                  string.Join("\n", errors);
+
+                MessageBox.Show(errorMessage, "Ошибка валидации",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+
                 return false;
             }
 
             return true;
+        }
+
+        private bool IsValidPhoneNumber(string phone)
+        {
+            // Проверяем несколько форматов телефонов
+            var patterns = new[]
+            {
+                @"^\+7\(\d{3}\)\d{3}-\d{2}-\d{2}$", // +7(XXX)XXX-XX-XX
+                @"^8\d{10}$", // 8XXXXXXXXXX
+                @"^\+7\d{10}$", // +7XXXXXXXXXX
+                @"^\d{10}$", // XXXXXXXXXX
+                @"^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" // +7 (XXX) XXX-XX-XX
+            };
+
+            foreach (var pattern in patterns)
+            {
+                if (Regex.IsMatch(phone, pattern))
+                    return true;
+            }
+
+            return false;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -236,11 +282,55 @@ namespace PropertyManagement.Pages
             NavigationService.Navigate(new OwnersPage());
         }
 
+        // Дополнительные методы для улучшения UX
+        private void FullNameTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            FullNameTextBox.SelectAll();
+        }
+
+        private void PassportTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PassportTextBox.SelectAll();
+        }
+
+        private void PhoneTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PhoneTextBox.SelectAll();
+        }
+
+        // Маска для телефона
+        private void PhoneTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Автоматическое форматирование телефона
+            if (PhoneTextBox.IsFocused)
+            {
+                string text = PhoneTextBox.Text;
+                string digitsOnly = Regex.Replace(text, @"\D", "");
+
+                if (digitsOnly.Length <= 1)
+                {
+                    if (!text.StartsWith("+") && !text.StartsWith("8"))
+                    {
+                        PhoneTextBox.Text = "8";
+                        PhoneTextBox.CaretIndex = 1;
+                    }
+                }
+                else if (digitsOnly.Length == 11)
+                {
+                    if (digitsOnly.StartsWith("7") || digitsOnly.StartsWith("8"))
+                    {
+                        string formatted = $"+7 ({digitsOnly.Substring(1, 3)}) {digitsOnly.Substring(4, 3)}-{digitsOnly.Substring(7, 2)}-{digitsOnly.Substring(9, 2)}";
+                        PhoneTextBox.Text = formatted;
+                    }
+                }
+            }
+        }
+
         // Вспомогательные методы для показа сообщений
         private void ShowErrorMessage(string title, string message)
         {
-            ErrorBorder.Visibility = Visibility.Visible;
-            ErrorText.Text = message;
+            MessageBox.Show(message, title,
+                MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void ShowSuccessMessage(string title, string message)

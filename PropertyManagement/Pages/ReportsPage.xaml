@@ -171,15 +171,7 @@
                                 <!-- Дополнительные опции -->
                                 <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
                                             Orientation="Horizontal"
-                                            Margin="0,15,0,0">
-                                    <Button Content="📈 Экспорт в Excel"
-                                            Click="ExportToExcel_Click"
-                                            Style="{StaticResource SecondaryButtonStyle}"/>
-
-                                    <Button Content="🖨️ Печать отчета"
-                                            Style="{StaticResource SecondaryButtonStyle}"
-                                            Margin="10,0,0,0"/>
-                                </StackPanel>
+                                            Margin="0,15,0,0"/>
                             </Grid>
                         </Border>
                     </StackPanel>
