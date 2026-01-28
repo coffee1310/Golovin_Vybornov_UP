@@ -1,94 +1,248 @@
 ﻿<Page x:Class="PropertyManagement.Pages.BuildingsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Здания">
+      Title="Здания"
+      FontFamily="Segoe UI">
 
-    <DockPanel>
-        <!-- Заголовок -->
-        <Border DockPanel.Dock="Top" Background="#2196F3" Padding="15">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="🏢" FontSize="24" Margin="0,0,10,0"/>
-                <TextBlock Text="Здания" 
-                           FontSize="20" 
-                           FontWeight="Bold" 
-                           Foreground="White"/>
-                <TextBlock x:Name="BuildingsCountText" 
-                           Text=" (0)"
-                           FontSize="16"
-                           Foreground="White"
-                           Margin="10,0,0,0"
-                           VerticalAlignment="Center"/>
+    <Page.Resources>
+        <!-- Стили -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#67BA80"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5AA670"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#4D945D"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F4E8D3"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E8DCC7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#F0F0F0"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#F4E8D3">
+        <ScrollViewer>
+            <StackPanel Margin="20">
+                <!-- Заголовок страницы -->
+                <Border Background="White" 
+                        Padding="20"
+                        BorderBrush="#D4C8B3" 
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Margin="0,0,0,20">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🏢" 
+                                   FontSize="28" 
+                                   Margin="0,0,12,0"/>
+                        <TextBlock Text="Здания"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"
+                                   Foreground="#333333"/>
+                        <TextBlock x:Name="BuildingsCountText"
+                                   Text=" (0)"
+                                   FontSize="16"
+                                   Foreground="#67BA80"
+                                   Margin="12,0,0,0"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Панель управления -->
+                <Border Background="White" 
+                        Padding="20"
+                        BorderBrush="#D4C8B3" 
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Margin="0,0,0,20">
+                    <StackPanel>
+                        <!-- Кнопки действий -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                            <Button Content="➕ Добавить"
+                                    Click="AddBuilding_Click"
+                                    Style="{StaticResource PrimaryButtonStyle}"/>
+
+                            <Button Content="✏️ Редактировать"
+                                    Click="EditBuilding_Click"
+                                    Style="{StaticResource SecondaryButtonStyle}"
+                                    Margin="10,0,0,0"/>
+
+                            <Button Content="🗑️ Удалить"
+                                    Click="DeleteBuilding_Click"
+                                    Style="{StaticResource SecondaryButtonStyle}"
+                                    Margin="10,0,0,0"/>
+
+                            <Button Content="🔄 Обновить"
+                                    Click="Refresh_Click"
+                                    Style="{StaticResource SecondaryButtonStyle}"
+                                    Margin="10,0,0,0"/>
+                        </StackPanel>
+
+                        <!-- Поиск -->
+                        <Border Background="#F4E8D3" 
+                                Padding="15"
+                                CornerRadius="6"
+                                Margin="0,10,0,0">
+                            <StackPanel>
+                                <TextBlock Text="🔍 Поиск зданий"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Margin="0,0,0,10"
+                                           Foreground="#333333"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Поиск -->
+                                    <TextBlock Grid.Column="0" 
+                                               Text="Поиск:"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,10,0"/>
+
+                                    <TextBox Grid.Column="1" 
+                                             x:Name="SearchTextBox"
+                                             Style="{StaticResource TextBoxStyle}"
+                                             TextChanged="SearchTextBox_TextChanged"
+                                             ToolTip="Поиск по адресу или городу"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- Таблица зданий -->
+                <Border Background="White" 
+                        Padding="20"
+                        BorderBrush="#D4C8B3" 
+                        BorderThickness="1"
+                        CornerRadius="8">
+                    <StackPanel>
+                        <TextBlock Text="📋 Список зданий"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,15"
+                                   Foreground="#333333"/>
+
+                        <DataGrid x:Name="BuildingsGrid"
+                                  Style="{StaticResource DataGridStyle}"
+                                  SelectionChanged="BuildingsGrid_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" 
+                                                    Binding="{Binding building_id}" 
+                                                    Width="60"/>
+
+                                <DataGridTextColumn Header="Адрес" 
+                                                    Binding="{Binding address}" 
+                                                    Width="*"/>
+
+                                <DataGridTextColumn Header="Город" 
+                                                    Binding="{Binding city}" 
+                                                    Width="120"/>
+
+                                <DataGridTextColumn Header="Этажи" 
+                                                    Binding="{Binding floors}" 
+                                                    Width="70">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Квартиры" 
+                                                    Binding="{Binding apartments_count}" 
+                                                    Width="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="#67BA80"/>
+                                            <Setter Property="FontWeight" Value="SemiBold"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Год постройки" 
+                                                    Binding="{Binding construction_year}" 
+                                                    Width="100">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Площадь (м²)" 
+                                                    Binding="{Binding total_area}" 
+                                                    Width="100">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Начало управления" 
+                                                    Binding="{Binding management_start_date, StringFormat='dd.MM.yyyy'}" 
+                                                    Width="120"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
             </StackPanel>
-        </Border>
-
-        <!-- Панель управления -->
-        <Border DockPanel.Dock="Top" Background="#F5F5F5" Padding="10" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
-            <StackPanel Orientation="Horizontal">
-                <Button Content="➕ Добавить" 
-                        Click="AddBuilding_Click"
-                        Padding="10,5"
-                        Background="#4CAF50"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Cursor="Hand"/>
-
-                <Button Content="✏️ Редактировать" 
-                        Click="EditBuilding_Click"
-                        Padding="10,5"
-                        Margin="10,0,0,0"
-                        Background="#2196F3"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Cursor="Hand"/>
-
-                <Button Content="🗑️ Удалить" 
-                        Click="DeleteBuilding_Click"
-                        Padding="10,5"
-                        Margin="10,0,0,0"
-                        Background="#F44336"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Cursor="Hand"/>
-
-                <Button Content="🔄 Обновить" 
-                        Click="Refresh_Click"
-                        Padding="10,5"
-                        Margin="10,0,0,0"
-                        Background="#FF9800"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Cursor="Hand"/>
-
-                <!-- Поиск -->
-                <TextBlock Text="Поиск:" 
-                           VerticalAlignment="Center" 
-                           Margin="30,0,10,0"/>
-                <TextBox x:Name="SearchTextBox" 
-                         Width="200" 
-                         Padding="5"
-                         TextChanged="SearchTextBox_TextChanged"/>
-            </StackPanel>
-        </Border>
-
-        <!-- Таблица зданий -->
-        <DataGrid x:Name="BuildingsGrid" 
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  SelectionMode="Single"
-                  SelectionUnit="FullRow"
-                  SelectionChanged="BuildingsGrid_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding building_id}" Width="60"/>
-                <DataGridTextColumn Header="Адрес" Binding="{Binding address}" Width="*"/>
-                <DataGridTextColumn Header="Город" Binding="{Binding city}" Width="120"/>
-                <DataGridTextColumn Header="Этажи" Binding="{Binding floors}" Width="70"/>
-                <DataGridTextColumn Header="Квартиры" Binding="{Binding apartments_count}" Width="80"/>
-                <DataGridTextColumn Header="Год постройки" Binding="{Binding construction_year}" Width="100"/>
-                <DataGridTextColumn Header="Площадь (м²)" Binding="{Binding total_area}" Width="100"/>
-                <DataGridTextColumn Header="Начало управления" 
-                                    Binding="{Binding management_start_date, StringFormat='dd.MM.yyyy'}" 
-                                    Width="120"/>
-            </DataGrid.Columns>
-        </DataGrid>
-    </DockPanel>
+        </ScrollViewer>
+    </Grid>
 </Page>

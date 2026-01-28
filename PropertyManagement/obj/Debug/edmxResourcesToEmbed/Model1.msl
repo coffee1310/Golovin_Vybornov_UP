@@ -43,7 +43,9 @@
           <ScalarProperty Name="full_name" ColumnName="full_name" />
           <ScalarProperty Name="position" ColumnName="position" />
           <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+          <ScalarProperty Name="position_id" ColumnName="position_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -66,6 +68,15 @@
           <ScalarProperty Name="period_year" ColumnName="period_year" />
           <ScalarProperty Name="amount_charged" ColumnName="amount_charged" />
           <ScalarProperty Name="amount_paid" ColumnName="amount_paid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="PropertyManagementModel.Positions">
+        <MappingFragment StoreEntitySet="Positions">
+          <ScalarProperty Name="position_id" ColumnName="position_id" />
+          <ScalarProperty Name="position_name" ColumnName="position_name" />
+          <ScalarProperty Name="description" ColumnName="description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

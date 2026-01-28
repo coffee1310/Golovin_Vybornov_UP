@@ -1,111 +1,209 @@
 ﻿<Page x:Class="PropertyManagement.Pages.EmployeeEditPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Сотрудник">
+      Title="Сотрудник"
+      FontFamily="Segoe UI">
 
-    <ScrollViewer>
-        <StackPanel Margin="20">
-            <!-- Заголовок -->
-            <TextBlock x:Name="PageTitle" 
-                       Text="Новый сотрудник"
-                       FontSize="24"
-                       FontWeight="Bold"
-                       Margin="0,0,0,20"/>
+    <Page.Resources>
+        <!-- Стили -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#67BA80"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5AA670"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#4D945D"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-            <!-- Форма -->
-            <Border Background="White" 
-                    Padding="20"
-                    BorderBrush="#E0E0E0" 
-                    BorderThickness="1"
-                    CornerRadius="5">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F4E8D3"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E8DCC7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Page.Resources>
 
-                    <!-- ФИО -->
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="ФИО*:" Margin="0,0,10,10"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" 
-                             x:Name="FullNameTextBox"
-                             Margin="0,0,0,10"/>
+    <Grid Background="#F4E8D3">
+        <ScrollViewer>
+            <StackPanel Margin="20">
+                <!-- Заголовок с кнопкой Назад -->
+                <Border Background="White" 
+                        Padding="20"
+                        BorderBrush="#D4C8B3" 
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Margin="0,0,0,20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <!-- Должность -->
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Должность:" Margin="0,0,10,10"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" 
-                             x:Name="PositionTextBox"
-                             Margin="0,0,0,10">
-                        <TextBox.ToolTip>
-                            <ToolTip>
-                                Например: Сантехник, Электрик, Уборщик
-                            </ToolTip>
-                        </TextBox.ToolTip>
-                    </TextBox>
+                        <!-- Кнопка Назад -->
+                        <Button Grid.Column="0"
+                                Content="← Назад" 
+                                Click="BackButton_Click"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Margin="0,0,20,0"/>
 
-                    <!-- Телефон -->
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Телефон:" Margin="0,0,10,10"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" 
-                             x:Name="PhoneTextBox"
-                             Margin="0,0,0,10">
-                        <TextBox.ToolTip>
-                            <ToolTip>
-                                Формат: 89181234567
-                            </ToolTip>
-                        </TextBox.ToolTip>
-                    </TextBox>
+                        <!-- Заголовок страницы -->
+                        <TextBlock Grid.Column="1" 
+                                   x:Name="PageTitle" 
+                                   Text="Новый сотрудник"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"
+                                   Foreground="#333333"/>
+                    </Grid>
+                </Border>
 
-                    <!-- Email -->
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Email:" Margin="0,0,10,10"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" 
-                             x:Name="EmailTextBox"
-                             Margin="0,0,0,20">
-                        <TextBox.ToolTip>
-                            <ToolTip>
-                                Например: ivanov@company.ru
-                            </ToolTip>
-                        </TextBox.ToolTip>
-                    </TextBox>
+                <!-- Форма редактирования -->
+                <Border Background="White" 
+                        Padding="20"
+                        BorderBrush="#D4C8B3" 
+                        BorderThickness="1"
+                        CornerRadius="8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <!-- Сообщения об ошибках -->
-                    <TextBlock x:Name="ErrorText" 
-                               Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
-                               Foreground="Red"
-                               TextWrapping="Wrap"
-                               Margin="0,0,0,20"
-                               Visibility="Collapsed"/>
+                        <!-- Информация о форме -->
+                        <Border Grid.Row="0"
+                                Background="#F4E8D3"
+                                Padding="15"
+                                CornerRadius="6"
+                                Margin="0,0,0,20">
+                            <TextBlock Text="✏️ Заполните информацию о сотруднике"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       Foreground="#333333"/>
+                        </Border>
 
-                    <!-- Кнопки -->
-                    <StackPanel Grid.Row="5" Grid.Column="1" 
-                                Orientation="Horizontal" 
-                                HorizontalAlignment="Right">
-                        <Button Content="Сохранить" 
-                                Click="SaveButton_Click"
-                                Padding="15,8"
-                                Background="#4CAF50"
-                                Foreground="White"
-                                BorderThickness="0"
-                                Cursor="Hand"/>
+                        <!-- Поля формы -->
+                        <Grid Grid.Row="1" Margin="0,0,0,20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                        <Button Content="Отмена" 
-                                Click="CancelButton_Click"
-                                Padding="15,8"
-                                Margin="10,0,0,0"
-                                Background="#9E9E9E"
-                                Foreground="White"
-                                BorderThickness="0"
-                                Cursor="Hand"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </StackPanel>
-    </ScrollViewer>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- ФИО -->
+                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                       Text="ФИО*:" 
+                                       Margin="0,0,15,15"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBox Grid.Row="0" Grid.Column="1" 
+                                     x:Name="FullNameTextBox"
+                                     Style="{StaticResource TextBoxStyle}"
+                                     Margin="0,0,0,15"
+                                     ToolTip="Полное имя сотрудника (например: Иванов Иван Иванович)"/>
+
+                            <!-- Должность -->
+                            <TextBlock Grid.Row="1" Grid.Column="0" 
+                                       Text="Должность:" 
+                                       Margin="0,0,15,15"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBox Grid.Row="1" Grid.Column="1" 
+                                     x:Name="PositionTextBox"
+                                     Style="{StaticResource TextBoxStyle}"
+                                     Margin="0,0,0,15"
+                                     ToolTip="Например: Сантехник, Электрик, Уборщик"/>
+
+                            <!-- Телефон -->
+                            <TextBlock Grid.Row="2" Grid.Column="0" 
+                                       Text="Телефон:" 
+                                       Margin="0,0,15,15"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBox Grid.Row="2" Grid.Column="1" 
+                                     x:Name="PhoneTextBox"
+                                     Style="{StaticResource TextBoxStyle}"
+                                     Margin="0,0,0,15"
+                                     ToolTip="Формат: 89181234567"/>
+
+                            <!-- Email -->
+                            <TextBlock Grid.Row="3" Grid.Column="0" 
+                                       Text="Email:" 
+                                       Margin="0,0,15,0"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBox Grid.Row="3" Grid.Column="1" 
+                                     x:Name="EmailTextBox"
+                                     Style="{StaticResource TextBoxStyle}"
+                                     ToolTip="Например: ivanov@company.ru"/>
+                        </Grid>
+
+                        <!-- Сообщения об ошибках -->
+                        <Border x:Name="ErrorBorder" 
+                                Grid.Row="2"
+                                Background="#FFEBEE"
+                                BorderBrush="#F44336"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Padding="15"
+                                Margin="0,0,0,20"
+                                Visibility="Collapsed">
+                            <TextBlock x:Name="ErrorText"
+                                       Foreground="#D32F2F"
+                                       TextWrapping="Wrap"
+                                       FontSize="13"/>
+                        </Border>
+
+                        <!-- Кнопки -->
+                        <StackPanel Grid.Row="3" 
+                                    Orientation="Horizontal" 
+                                    HorizontalAlignment="Right">
+                            <Button Content="💾 Сохранить" 
+                                    Click="SaveButton_Click"
+                                    Style="{StaticResource PrimaryButtonStyle}"/>
+
+                            <Button Content="✖ Отмена" 
+                                    Click="CancelButton_Click"
+                                    Style="{StaticResource SecondaryButtonStyle}"
+                                    Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Page>

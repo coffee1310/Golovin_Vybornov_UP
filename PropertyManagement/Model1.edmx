@@ -45,7 +45,9 @@
           <Property Name="full_name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="position" Type="nvarchar" MaxLength="100" />
           <Property Name="phone_number" Type="nvarchar" MaxLength="20" />
-          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
+          <Property Name="password_hash" Type="nvarchar" MaxLength="255" />
+          <Property Name="position_id" Type="int" />
         </EntityType>
         <EntityType Name="Owners">
           <Key>
@@ -66,6 +68,14 @@
           <Property Name="period_year" Type="int" Nullable="false" />
           <Property Name="amount_charged" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="amount_paid" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="position_id" />
+          </Key>
+          <Property Name="position_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="PropertyOwnership">
           <Key>
@@ -120,6 +130,42 @@
             </Principal>
             <Dependent Role="Debts">
               <PropertyRef Name="apartment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__posit__628FA481">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__posit__66603565">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__posit__6C190EBB">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="position_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -202,6 +248,7 @@
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Owners" EntityType="Self.Owners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PropertyOwnership" EntityType="Self.PropertyOwnership" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RequestExpenses" EntityType="Self.RequestExpenses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequests" Schema="dbo" store:Type="Tables" />
@@ -212,6 +259,18 @@
           <AssociationSet Name="FK__Debts__apartment__4222D4EF" Association="Self.FK__Debts__apartment__4222D4EF">
             <End Role="Apartments" EntitySet="Apartments" />
             <End Role="Debts" EntitySet="Debts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__posit__628FA481" Association="Self.FK__Employees__posit__628FA481">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__posit__66603565" Association="Self.FK__Employees__posit__66603565">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__posit__6C190EBB" Association="Self.FK__Employees__posit__6C190EBB">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK__Payments__apartm__44FF419A" Association="Self.FK__Payments__apartm__44FF419A">
             <End Role="Apartments" EntitySet="Apartments" />
@@ -290,7 +349,12 @@
           <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password_hash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="position_id" Type="Int32" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK__Employees__posit__628FA481" FromRole="Employees" ToRole="Positions" />
+          <NavigationProperty Name="Positions1" Relationship="Self.FK__Employees__posit__66603565" FromRole="Employees" ToRole="Positions" />
+          <NavigationProperty Name="Positions2" Relationship="Self.FK__Employees__posit__6C190EBB" FromRole="Employees" ToRole="Positions" />
           <NavigationProperty Name="ServiceRequests" Relationship="Self.FK__ServiceRe__emplo__4BAC3F29" FromRole="Employees" ToRole="ServiceRequests" />
         </EntityType>
         <EntityType Name="Owners">
@@ -314,6 +378,17 @@
           <Property Name="amount_charged" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="amount_paid" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Apartments" Relationship="Self.FK__Payments__apartm__44FF419A" FromRole="Payments" ToRole="Apartments" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="position_id" />
+          </Key>
+          <Property Name="position_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__posit__628FA481" FromRole="Positions" ToRole="Employees" />
+          <NavigationProperty Name="Employees1" Relationship="Self.FK__Employees__posit__66603565" FromRole="Positions" ToRole="Employees" />
+          <NavigationProperty Name="Employees2" Relationship="Self.FK__Employees__posit__6C190EBB" FromRole="Positions" ToRole="Employees" />
         </EntityType>
         <EntityType Name="PropertyOwnership">
           <Key>
@@ -413,6 +488,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Employees__posit__628FA481">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__posit__66603565">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__posit__6C190EBB">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="position_id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="position_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ServiceRe__emplo__4BAC3F29">
           <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
           <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="*" />
@@ -456,6 +567,7 @@
           <EntitySet Name="Employees" EntityType="Self.Employees" />
           <EntitySet Name="Owners" EntityType="Self.Owners" />
           <EntitySet Name="Payments" EntityType="Self.Payments" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" />
           <EntitySet Name="PropertyOwnership" EntityType="Self.PropertyOwnership" />
           <EntitySet Name="RequestExpenses" EntityType="Self.RequestExpenses" />
           <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequests" />
@@ -478,6 +590,18 @@
           <AssociationSet Name="FK__ServiceRe__apart__4AB81AF0" Association="Self.FK__ServiceRe__apart__4AB81AF0">
             <End Role="Apartments" EntitySet="Apartments" />
             <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__posit__628FA481" Association="Self.FK__Employees__posit__628FA481">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__posit__66603565" Association="Self.FK__Employees__posit__66603565">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__posit__6C190EBB" Association="Self.FK__Employees__posit__6C190EBB">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK__ServiceRe__emplo__4BAC3F29" Association="Self.FK__ServiceRe__emplo__4BAC3F29">
             <End Role="Employees" EntitySet="Employees" />
@@ -540,7 +664,9 @@
                 <ScalarProperty Name="full_name" ColumnName="full_name" />
                 <ScalarProperty Name="position" ColumnName="position" />
                 <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -563,6 +689,15 @@
                 <ScalarProperty Name="period_year" ColumnName="period_year" />
                 <ScalarProperty Name="amount_charged" ColumnName="amount_charged" />
                 <ScalarProperty Name="amount_paid" ColumnName="amount_paid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="PropertyManagementModel.Positions">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="position_id" ColumnName="position_id" />
+                <ScalarProperty Name="position_name" ColumnName="position_name" />
+                <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -72,8 +72,7 @@ namespace PropertyManagement.Pages
                 filtered = filtered.Where(e =>
                     (e.full_name != null && e.full_name.ToLower().Contains(search)) ||
                     (e.position != null && e.position.ToLower().Contains(search)) ||
-                    (e.phone_number != null && e.phone_number.Contains(search)) ||
-                    (e.email != null && e.email.ToLower().Contains(search)));
+                    (e.phone_number != null && e.phone_number.Contains(search)));
             }
 
             // Фильтр по должности

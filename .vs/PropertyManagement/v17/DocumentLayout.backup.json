@@ -3,60 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\reportspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\reportspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\employeespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\employeespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\requestexpensespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\requestexpensespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\servicerequesteditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequesteditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\requestexpensespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\requestexpensespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\requestexpenseeditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\requestexpenseeditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\requestexpenseeditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\requestexpenseeditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\reportspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\reportspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\ownerspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\ownerspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\ownereditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\ownereditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\ownereditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\ownereditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\ownerspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\ownerspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\employeeeditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\employeeeditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,177 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ServiceRequestEditPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestEditPage.xaml",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\ServiceRequestEditPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestEditPage.xaml",
-              "RelativeToolTip": "PropertyManagement\\Pages\\ServiceRequestEditPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T08:41:39.763Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RequestExpenseEditPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\RequestExpenseEditPage.xaml.cs",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\RequestExpenseEditPage.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\RequestExpenseEditPage.xaml.cs*",
-              "RelativeToolTip": "PropertyManagement\\Pages\\RequestExpenseEditPage.xaml.cs*",
-              "ViewState": "AgIAACQAAAAAAAAAAAA6wEUAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "EmployeesPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\EmployeesPage.xaml.cs",
+              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\EmployeesPage.xaml.cs",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\EmployeesPage.xaml.cs",
+              "RelativeToolTip": "PropertyManagement\\Pages\\EmployeesPage.xaml.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAYwEoAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T08:39:05.608Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RequestExpenseEditPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\RequestExpenseEditPage.xaml",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\RequestExpenseEditPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\RequestExpenseEditPage.xaml",
-              "RelativeToolTip": "PropertyManagement\\Pages\\RequestExpenseEditPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T08:34:10.589Z",
+              "WhenOpened": "2026-01-28T12:56:50.099Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RequestExpensesPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\RequestExpensesPage.xaml.cs",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\RequestExpensesPage.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\RequestExpensesPage.xaml.cs",
-              "RelativeToolTip": "PropertyManagement\\Pages\\RequestExpensesPage.xaml.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAmwE4AAAAJAAAAAAAAAA==",
+              "Title": "EmployeeEditPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\EmployeeEditPage.xaml.cs",
+              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\EmployeeEditPage.xaml.cs",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\EmployeeEditPage.xaml.cs",
+              "RelativeToolTip": "PropertyManagement\\Pages\\EmployeeEditPage.xaml.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAIAwwHYAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T08:33:18.322Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RequestExpensesPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\RequestExpensesPage.xaml",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\RequestExpensesPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\RequestExpensesPage.xaml",
-              "RelativeToolTip": "PropertyManagement\\Pages\\RequestExpensesPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T08:33:07.308Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ReportsPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ReportsPage.xaml.cs",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\ReportsPage.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ReportsPage.xaml.cs",
-              "RelativeToolTip": "PropertyManagement\\Pages\\ReportsPage.xaml.cs",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAmwJcAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T07:42:31.402Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ReportsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ReportsPage.xaml",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\ReportsPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ReportsPage.xaml",
-              "RelativeToolTip": "PropertyManagement\\Pages\\ReportsPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T07:42:16.547Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "PropertyManagement\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\MainWindow.xaml",
-              "RelativeToolTip": "PropertyManagement\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T07:41:25.903Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "PropertyManagement\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\MainWindow.xaml.cs",
-              "RelativeToolTip": "PropertyManagement\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T07:41:24.618Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "OwnersPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\OwnersPage.xaml.cs",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\OwnersPage.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\OwnersPage.xaml.cs",
-              "RelativeToolTip": "PropertyManagement\\Pages\\OwnersPage.xaml.cs",
-              "ViewState": "AgIAAL8AAAAAAAAAAAAAAOMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T07:28:51.828Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "MainPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\MainPage.xaml.cs",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\MainPage.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\MainPage.xaml.cs",
-              "RelativeToolTip": "PropertyManagement\\Pages\\MainPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T07:28:50.81Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "OwnerEditPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\OwnerEditPage.xaml.cs",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\OwnerEditPage.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\OwnerEditPage.xaml.cs",
-              "RelativeToolTip": "PropertyManagement\\Pages\\OwnerEditPage.xaml.cs",
-              "ViewState": "AgIAANkAAAAAAAAAAAAAAP0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T07:28:43.146Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "OwnersPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\OwnersPage.xaml",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\OwnersPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\OwnersPage.xaml",
-              "RelativeToolTip": "PropertyManagement\\Pages\\OwnersPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T07:25:00.334Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "OwnerEditPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\OwnerEditPage.xaml",
-              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\OwnerEditPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\OwnerEditPage.xaml",
-              "RelativeToolTip": "PropertyManagement\\Pages\\OwnerEditPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T06:28:58.139Z",
+              "WhenOpened": "2026-01-28T12:56:42.014Z",
               "EditorCaption": ""
             }
           ]

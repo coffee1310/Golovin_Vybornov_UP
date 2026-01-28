@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\employeespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\employeespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\employeeeditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\employeeeditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +18,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeesPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\EmployeesPage.xaml.cs",
+              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\EmployeesPage.xaml.cs",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\EmployeesPage.xaml.cs",
+              "RelativeToolTip": "PropertyManagement\\Pages\\EmployeesPage.xaml.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAYwEoAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T12:56:50.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmployeeEditPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\EmployeeEditPage.xaml.cs",
+              "RelativeDocumentMoniker": "PropertyManagement\\Pages\\EmployeeEditPage.xaml.cs",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\EmployeeEditPage.xaml.cs",
+              "RelativeToolTip": "PropertyManagement\\Pages\\EmployeeEditPage.xaml.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAIAwwHYAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-28T12:56:42.014Z",
+              "EditorCaption": ""
             }
           ]
         }

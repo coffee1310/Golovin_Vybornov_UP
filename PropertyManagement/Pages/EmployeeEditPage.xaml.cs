@@ -21,6 +21,10 @@ namespace PropertyManagement.Pages
             LoadEmployeeData();
         }
 
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
         private void LoadEmployeeData()
         {
             try
@@ -38,7 +42,6 @@ namespace PropertyManagement.Pages
                         FullNameTextBox.Text = _originalEmployee.full_name ?? "";
                         PositionTextBox.Text = _originalEmployee.position ?? "";
                         PhoneTextBox.Text = _originalEmployee.phone_number ?? "";
-                        EmailTextBox.Text = _originalEmployee.email ?? "";
                     }
                     else
                     {
@@ -104,7 +107,6 @@ namespace PropertyManagement.Pages
             _originalEmployee.full_name = FullNameTextBox.Text.Trim();
             _originalEmployee.position = PositionTextBox.Text.Trim();
             _originalEmployee.phone_number = PhoneTextBox.Text.Trim();
-            _originalEmployee.email = EmailTextBox.Text.Trim();
         }
 
         private void CreateNewEmployee()
@@ -114,7 +116,6 @@ namespace PropertyManagement.Pages
                 full_name = FullNameTextBox.Text.Trim(),
                 position = PositionTextBox.Text.Trim(),
                 phone_number = PhoneTextBox.Text.Trim(),
-                email = EmailTextBox.Text.Trim()
             };
 
             _context.Employees.Add(newEmployee);

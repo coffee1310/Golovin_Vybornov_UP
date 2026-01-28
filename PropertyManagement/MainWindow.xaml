@@ -5,139 +5,269 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PropertyManagement"
         mc:Ignorable="d"
-       Title="Управляющая компания" 
+        Title="Управляющая компания - Property Management"
         WindowStartupLocation="CenterScreen"
         Width="1200" Height="700"
-        MinWidth="1000" MinHeight="600">
+        MinWidth="1000" MinHeight="600"
+        FontFamily="Segoe UI">
+
+    <!-- Установка иконки окна -->
+    <Window.Icon>
+        <BitmapImage UriSource="/Resources/logo.png" />
+    </Window.Icon>
 
     <Window.Resources>
+        <!-- Стили -->
         <Style x:Key="NavButtonStyle" TargetType="Button">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Padding" Value="10,8"/>
-            <Setter Property="Background" Value="#2196F3"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#333333"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#1976D2"/>
+                    <Setter Property="Background" Value="#F4E8D3"/>
+                    <Setter Property="Foreground" Value="#000000"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="CardStyle" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#E0E0E0"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Padding" Value="20"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect ShadowDepth="2" Opacity="0.2" BlurRadius="5"/>
-                </Setter.Value>
-            </Setter>
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#67BA80"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5AA670"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#4D945D"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
-        <Style x:Key="StatCardStyle" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F4E8D3"/>
+            <Setter Property="Foreground" Value="#333333"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Padding" Value="20"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Width" Value="180"/>
-            <Setter Property="Height" Value="120"/>
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect ShadowDepth="2" Opacity="0.2" BlurRadius="5"/>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E8DCC7"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
+
+        <!-- Стиль для заголовков секций -->
+        <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+
+        <!-- Стиль для полей ввода -->
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <!-- Стиль для DataGrid -->
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#F0F0F0"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+        </Style>
+
     </Window.Resources>
 
-    <DockPanel>
-        <!-- Заголовок -->
-        <Border DockPanel.Dock="Top" Background="#2196F3" Padding="15">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="🏢" FontSize="24" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                <TextBlock Text="Управляющая компания" 
-                           FontSize="22" 
-                           FontWeight="Bold" 
-                           Foreground="White"
-                           VerticalAlignment="Center"/>
-            </StackPanel>
+    <DockPanel Background="#F4E8D3">
+        <!-- Верхняя панель с логотипом и заголовком -->
+        <Border DockPanel.Dock="Top" Background="White" Padding="16" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Логотип -->
+                <Image Grid.Column="0" 
+                       Source="/Resources/logo.png" 
+                       Width="40" 
+                       Height="40" 
+                       Stretch="Uniform"
+                       VerticalAlignment="Center"
+                       Margin="0,0,16,0"/>
+
+                <!-- Заголовок приложения -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Управляющая компания" 
+                               FontSize="22" 
+                               FontWeight="Bold"
+                               Foreground="#333333"/>
+                    <TextBlock Text=" | " 
+                               FontSize="22" 
+                               Foreground="#999999"
+                               Margin="8,0,8,0"/>
+                    <TextBlock Text="Property Management" 
+                               FontSize="18" 
+                               Foreground="#67BA80"/>
+                </StackPanel>
+            </Grid>
         </Border>
 
         <!-- Навигационная панель -->
-        <Border DockPanel.Dock="Left" Background="#F5F5F5" Width="220">
-            <StackPanel Margin="10">
-                <TextBlock Text="Меню" 
-                           FontSize="16" 
-                           FontWeight="Bold" 
-                           Margin="5,10,5,20"
-                           Foreground="#666"/>
+        <Border DockPanel.Dock="Left" 
+                Background="White" 
+                Width="240"
+                BorderBrush="#E0E0E0" 
+                BorderThickness="0,0,1,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="8">
+                    <!-- Раздел навигации -->
+                    <Border Background="#F4E8D3" 
+                            CornerRadius="6" 
+                            Padding="12,8"
+                            Margin="0,0,0,8">
+                        <TextBlock Text="📋 Навигация" 
+                                   FontSize="14" 
+                                   FontWeight="SemiBold"
+                                   Foreground="#333333"/>
+                    </Border>
 
-                <Button Content="🏠 Главная" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Click="MainPage_Click"/>
+                    <Button Content="🏠 Главная"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="MainPage_Click"/>
 
-                <Button Content="📊 Отчеты"
-                    Style="{StaticResource NavButtonStyle}"
-                    Click="ReportsPage_Click"/>
+                    <!-- Раздел данных -->
+                    <Border Background="#F4E8D3" 
+                            CornerRadius="6" 
+                            Padding="12,8"
+                            Margin="0,16,0,8">
+                        <TextBlock Text="📊 Данные" 
+                                   FontSize="14" 
+                                   FontWeight="SemiBold"
+                                   Foreground="#333333"/>
+                    </Border>
 
-                <TextBlock Text="Данные" 
-                           FontSize="14" 
-                           FontWeight="SemiBold" 
-                           Margin="5,20,5,10"
-                           Foreground="#666"/>
+                    <Button Content="🏢 Здания"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="BuildingsPage_Click"/>
 
-                <Button Content="🏢 Здания" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Click="BuildingsPage_Click"/>
-                <Button Content="🏠 Квартиры" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Click="ApartmentsPage_Click"/>
-                <Button Content="👥 Собственники" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Click="OwnersPage_Click"/>
-                <Button Content="👨‍🔧 Сотрудники" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Click="EmployeesPage_Click"/>
-                <Button Content="💰 Расходы"
-                    Style="{StaticResource NavButtonStyle}"
-                    Click="RequestExpensesPage_Click"/>
+                    <Button Content="🏠 Квартиры"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="ApartmentsPage_Click"/>
 
-                <TextBlock Text="Заявки" 
-                           FontSize="14" 
-                           FontWeight="SemiBold" 
-                           Margin="5,20,5,10"
-                           Foreground="#666"/>
+                    <Button Content="👤 Собственники"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="OwnersPage_Click"/>
 
-                <Button Content="🔧 Заявки" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Click="ServiceRequestsPage_Click"/>
-                <Button Content="➕ Новая заявка" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Background="#4CAF50"
-                        Click="NewRequestPage_Click"/>
+                    <Button Content="👨‍🔧 Сотрудники"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="EmployeesPage_Click"/>
 
-                <Separator Margin="0,20,0,10"/>
+                    <Button Content="💰 Расходы"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="RequestExpensesPage_Click"/>
 
-                <Button Content="⚙️ Настройки" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Click="SettingsPage_Click"/>
-                <Button Content="❓ Справка" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Click="HelpPage_Click"/>
-            </StackPanel>
+                    <!-- Раздел заявок -->
+                    <Border Background="#F4E8D3" 
+                            CornerRadius="6" 
+                            Padding="12,8"
+                            Margin="0,16,0,8">
+                        <TextBlock Text="🔧 Заявки" 
+                                   FontSize="14" 
+                                   FontWeight="SemiBold"
+                                   Foreground="#333333"/>
+                    </Border>
+
+                    <Button Content="📋 Заявки"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="ServiceRequestsPage_Click"/>
+
+                    <Button Content="➕ Новая заявка"
+                            Style="{StaticResource NavButtonStyle}"
+                            Background="#67BA80"
+                            Foreground="White"
+                            Click="NewRequestPage_Click"/>
+
+                    <!-- Раздел отчетов -->
+                    <Border Background="#F4E8D3" 
+                            CornerRadius="6" 
+                            Padding="12,8"
+                            Margin="0,16,0,8">
+                        <TextBlock Text="📈 Отчеты" 
+                                   FontSize="14" 
+                                   FontWeight="SemiBold"
+                                   Foreground="#333333"/>
+                    </Border>
+
+                    <Button Content="📊 Отчеты и аналитика"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="ReportsPage_Click"/>
+
+                    <!-- Раздел дополнительно -->
+                    <Border Background="#F4E8D3" 
+                            CornerRadius="6" 
+                            Padding="12,8"
+                            Margin="0,16,0,8">
+                        <TextBlock Text="⚙️ Дополнительно" 
+                                   FontSize="14" 
+                                   FontWeight="SemiBold"
+                                   Foreground="#333333"/>
+                    </Border>
+
+                    <Button Content="⚙️ Настройки"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="SettingsPage_Click"/>
+
+                    <Button Content="❓ Справка"
+                            Style="{StaticResource NavButtonStyle}"
+                            Click="HelpPage_Click"/>
+                </StackPanel>
+            </ScrollViewer>
         </Border>
 
         <!-- Основной контент -->
-        <Frame x:Name="MainFrame" 
-               NavigationUIVisibility="Hidden"
-               Background="White"/>
+        <Border Background="White" Margin="1">
+            <Frame x:Name="MainFrame"
+                   NavigationUIVisibility="Hidden"
+                   Background="White"/>
+        </Border>
     </DockPanel>
 </Window>

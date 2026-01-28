@@ -24,8 +24,13 @@ namespace PropertyManagement
         public string full_name { get; set; }
         public string position { get; set; }
         public string phone_number { get; set; }
-        public string email { get; set; }
+        public string login { get; set; }
+        public string password_hash { get; set; }
+        public Nullable<int> position_id { get; set; }
     
+        public virtual Positions Positions { get; set; }
+        public virtual Positions Positions1 { get; set; }
+        public virtual Positions Positions2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServiceRequests> ServiceRequests { get; set; }
     }

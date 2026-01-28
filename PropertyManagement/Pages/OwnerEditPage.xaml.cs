@@ -50,8 +50,7 @@ namespace PropertyManagement.Pages
                         PhoneTextBox.Text = _originalOwner.phone_number ?? "";
 
                         // Показываем раздел с квартирами
-                        ApartmentsLabel.Visibility = Visibility.Visible;
-                        ApartmentsPanel.Visibility = Visibility.Visible;
+                        ApartmentsPanel.Visibility = Visibility.Visible; // Используем существующий Border
                     }
                     else
                     {
@@ -66,7 +65,6 @@ namespace PropertyManagement.Pages
                     PageTitle.Text = "Новый собственник";
 
                     // Скрываем раздел с квартирами
-                    ApartmentsLabel.Visibility = Visibility.Collapsed;
                     ApartmentsPanel.Visibility = Visibility.Collapsed;
                 }
             }
@@ -241,8 +239,8 @@ namespace PropertyManagement.Pages
         // Вспомогательные методы для показа сообщений
         private void ShowErrorMessage(string title, string message)
         {
-            MessageBox.Show(message, title,
-                MessageBoxButton.OK, MessageBoxImage.Error);
+            ErrorBorder.Visibility = Visibility.Visible;
+            ErrorText.Text = message;
         }
 
         private void ShowSuccessMessage(string title, string message)

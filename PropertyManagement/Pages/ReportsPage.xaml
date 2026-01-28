@@ -1,626 +1,776 @@
 ﻿<Page x:Class="PropertyManagement.Pages.ReportsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Отчеты и аналитика">
+      Title="Отчеты и аналитика"
+      FontFamily="Segoe UI">
 
-    <ScrollViewer>
-        <StackPanel Margin="20">
-            <!-- Заголовок -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                <Button Content="⬅ Назад" 
-                        Click="BackButton_Click"
-                        Padding="10,5"
-                        Background="#2196F3"
-                        Foreground="White"
-                        BorderThickness="0"
-                        Cursor="Hand"
-                        Margin="0,0,15,0"/>
+    <Page.Resources>
+        <!-- Стили -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#67BA80"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5AA670"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#4D945D"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-                <TextBlock Text="📊 Отчеты и аналитика"
-                           FontSize="24"
-                           FontWeight="Bold"
-                           VerticalAlignment="Center"/>
-            </StackPanel>
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F4E8D3"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E8DCC7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-            <!-- Панель управления -->
-            <Border Background="#F5F5F5" 
-                    Padding="15"
-                    BorderBrush="#E0E0E0" 
-                    BorderThickness="1"
-                    CornerRadius="5"
-                    Margin="0,0,0,20">
-                <StackPanel Orientation="Horizontal">
-                    <!-- Период -->
-                    <TextBlock Text="Период:" 
-                               VerticalAlignment="Center"
-                               Margin="0,0,10,0"/>
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
 
-                    <DatePicker x:Name="StartDatePicker" 
-                                Width="120"
-                                Margin="0,0,10,0"/>
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#F0F0F0"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+        </Style>
 
-                    <TextBlock Text="—" 
-                               VerticalAlignment="Center"
-                               Margin="0,0,10,0"/>
+        <Style x:Key="TabItemStyle" TargetType="TabItem">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,8"/>
+        </Style>
+    </Page.Resources>
 
-                    <DatePicker x:Name="EndDatePicker" 
-                                Width="120"
+    <Grid Background="#F4E8D3">
+        <ScrollViewer>
+            <StackPanel Margin="20">
+                <!-- Заголовок с кнопкой Назад -->
+                <Border Background="White" 
+                        Padding="20"
+                        BorderBrush="#D4C8B3" 
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Margin="0,0,0,20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Кнопка Назад -->
+                        <Button Grid.Column="0"
+                                Content="← Назад" 
+                                Click="BackButton_Click"
+                                Style="{StaticResource SecondaryButtonStyle}"
                                 Margin="0,0,20,0"/>
 
-                    <!-- Кнопки -->
-                    <Button Content="Сформировать отчет"
-                            Click="GenerateReport_Click"
-                            Padding="10,5"
-                            Background="#4CAF50"
-                            Foreground="White"
-                            BorderThickness="0"
-                            Cursor="Hand"/>
-
-                    <Button Content="Экспорт в Excel"
-                            Click="ExportToExcel_Click"
-                            Padding="10,5"
-                            Margin="10,0,0,0"
-                            Background="#2196F3"
-                            Foreground="White"
-                            BorderThickness="0"
-                            Cursor="Hand"/>
-                </StackPanel>
-            </Border>
-
-            <!-- Ключевые показатели -->
-            <TextBlock Text="📈 Ключевые показатели"
-                       FontSize="18"
-                       FontWeight="Bold"
-                       Margin="0,0,0,15"/>
-
-            <WrapPanel Margin="0,0,0,30">
-                <!-- Карточка доходов -->
-                <Border Background="White" 
-                        BorderBrush="#E0E0E0" 
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Padding="20"
-                        Margin="5"
-                        Width="280"
-                        Height="140">
-                    <StackPanel>
-                        <TextBlock Text="💰" 
-                                   FontSize="28"
-                                   HorizontalAlignment="Center"/>
-                        <TextBlock Text="Общая выручка" 
-                                   FontSize="14"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,5,0,0"/>
-                        <TextBlock x:Name="TotalRevenueText" 
-                                   Text="0 ₽"
+                        <!-- Заголовок страницы -->
+                        <TextBlock Grid.Column="1" 
+                                   Text="📊 Отчеты и аналитика"
                                    FontSize="24"
                                    FontWeight="Bold"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,5,0,0"
-                                   Foreground="#4CAF50"/>
-                        <TextBlock Text="за период"
-                                   FontSize="12"
-                                   HorizontalAlignment="Center"
-                                   Foreground="#666"/>
+                                   VerticalAlignment="Center"
+                                   Foreground="#333333"/>
+                    </Grid>
+                </Border>
+
+                <!-- Панель управления -->
+                <Border Background="White" 
+                        Padding="20"
+                        BorderBrush="#D4C8B3" 
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="🔍 Настройки отчета"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,15"
+                                   Foreground="#333333"/>
+
+                        <Border Background="#F4E8D3" 
+                                Padding="15"
+                                CornerRadius="6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Период -->
+                                <TextBlock Grid.Row="0" Grid.Column="0" 
+                                           Text="Период:" 
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,10,0"/>
+
+                                <DatePicker Grid.Row="0" Grid.Column="1" 
+                                            x:Name="StartDatePicker" 
+                                            Style="{StaticResource DatePickerStyle}"
+                                            Width="140"
+                                            Margin="0,0,10,0"/>
+
+                                <TextBlock Grid.Row="0" Grid.Column="2" 
+                                           Text="—" 
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,10,0"/>
+
+                                <DatePicker Grid.Row="0" Grid.Column="3" 
+                                            x:Name="EndDatePicker" 
+                                            Style="{StaticResource DatePickerStyle}"
+                                            Width="140"
+                                            Margin="0,0,20,0"/>
+
+                                <!-- Кнопки -->
+                                <Button Grid.Row="0" Grid.Column="4" 
+                                        Content="📊 Сформировать отчет"
+                                        Click="GenerateReport_Click"
+                                        Style="{StaticResource PrimaryButtonStyle}"/>
+
+                                <!-- Дополнительные опции -->
+                                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
+                                            Orientation="Horizontal"
+                                            Margin="0,15,0,0">
+                                    <Button Content="📈 Экспорт в Excel"
+                                            Click="ExportToExcel_Click"
+                                            Style="{StaticResource SecondaryButtonStyle}"/>
+
+                                    <Button Content="🖨️ Печать отчета"
+                                            Style="{StaticResource SecondaryButtonStyle}"
+                                            Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
                     </StackPanel>
                 </Border>
 
-                <!-- Карточка прибыли -->
+                <!-- Ключевые показатели -->
                 <Border Background="White" 
-                        BorderBrush="#E0E0E0" 
+                        Padding="20"
+                        BorderBrush="#D4C8B3" 
                         BorderThickness="1"
                         CornerRadius="8"
-                        Padding="20"
-                        Margin="5"
-                        Width="280"
-                        Height="140">
+                        Margin="0,0,0,20">
                     <StackPanel>
-                        <TextBlock Text="💵" 
-                                   FontSize="28"
-                                   HorizontalAlignment="Center"/>
-                        <TextBlock Text="Чистая прибыль" 
-                                   FontSize="14"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,5,0,0"/>
-                        <TextBlock x:Name="NetProfitText" 
-                                   Text="0 ₽"
-                                   FontSize="24"
+                        <TextBlock Text="📈 Ключевые показатели"
+                                   FontSize="18"
                                    FontWeight="Bold"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,5,0,0"
-                                   Foreground="#4CAF50"/>
-                        <TextBlock Text="от использования ресурсов"
-                                   FontSize="12"
-                                   HorizontalAlignment="Center"
-                                   Foreground="#666"/>
-                    </StackPanel>
-                </Border>
+                                   Margin="0,0,0,15"
+                                   Foreground="#333333"/>
 
-                <!-- Карточка затрат -->
-                <Border Background="White" 
-                        BorderBrush="#E0E0E0" 
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Padding="20"
-                        Margin="5"
-                        Width="280"
-                        Height="140">
-                    <StackPanel>
-                        <TextBlock Text="📉" 
-                                   FontSize="28"
-                                   HorizontalAlignment="Center"/>
-                        <TextBlock Text="Суммарные затраты" 
-                                   FontSize="14"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,5,0,0"/>
-                        <TextBlock x:Name="TotalCostsText" 
-                                   Text="0 ₽"
-                                   FontSize="24"
-                                   FontWeight="Bold"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,5,0,0"
-                                   Foreground="#F44336"/>
-                        <TextBlock Text="на ресурсы"
-                                   FontSize="12"
-                                   HorizontalAlignment="Center"
-                                   Foreground="#666"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- Карточка рентабельности -->
-                <Border Background="White" 
-                        BorderBrush="#E0E0E0" 
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Padding="20"
-                        Margin="5"
-                        Width="280"
-                        Height="140">
-                    <StackPanel>
-                        <TextBlock Text="📊" 
-                                   FontSize="28"
-                                   HorizontalAlignment="Center"/>
-                        <TextBlock Text="Рентабельность" 
-                                   FontSize="14"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,5,0,0"/>
-                        <TextBlock x:Name="ProfitabilityText" 
-                                   Text="0 %"
-                                   FontSize="24"
-                                   FontWeight="Bold"
-                                   HorizontalAlignment="Center"
-                                   Margin="0,5,0,0"
-                                   Foreground="#2196F3"/>
-                        <TextBlock Text="использования ресурсов"
-                                   FontSize="12"
-                                   HorizontalAlignment="Center"
-                                   Foreground="#666"/>
-                    </StackPanel>
-                </Border>
-            </WrapPanel>
-
-            <!-- Детальная аналитика -->
-            <TextBlock Text="📋 Детальная аналитика"
-                       FontSize="18"
-                       FontWeight="Bold"
-                       Margin="0,0,0,15"/>
-
-            <TabControl>
-                <!-- Вкладка 1: Финансовые показатели -->
-                <TabItem Header="💰 Финансы">
-                    <Border Background="White" 
-                            Padding="20"
-                            BorderBrush="#E0E0E0" 
-                            BorderThickness="1">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
-                            <!-- График доходов/расходов -->
-                            <Border Grid.Row="0"
-                                    BorderBrush="#E0E0E0" 
-                                    BorderThickness="0,0,0,1"
-                                    Padding="0,0,0,15"
-                                    Margin="0,0,0,15">
+                        <WrapPanel Margin="0">
+                            <!-- Карточка доходов -->
+                            <Border Background="White" 
+                                    BorderBrush="#D4C8B3" 
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Padding="20"
+                                    Margin="5"
+                                    Width="280"
+                                    Height="140">
                                 <StackPanel>
-                                    <TextBlock Text="Динамика доходов и расходов"
-                                               FontSize="16"
+                                    <TextBlock Text="💰" 
+                                               FontSize="28"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Общая выручка" 
+                                               FontSize="14"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,5,0,0"/>
+                                    <TextBlock x:Name="TotalRevenueText" 
+                                               Text="0 ₽"
+                                               FontSize="24"
                                                FontWeight="Bold"
-                                               Margin="0,0,0,10"/>
-
-                                    <!-- Имитация графика -->
-                                    <Border Height="200"
-                                            Background="#F9F9F9"
-                                            BorderBrush="#E0E0E0"
-                                            BorderThickness="1">
-                                        <StackPanel Orientation="Horizontal"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Bottom"
-                                                    Margin="20">
-                                            <Border Width="40" Height="150" 
-                                                    Background="#4CAF50" 
-                                                    Margin="5,0"
-                                                    ToolTip="Янв: 500 тыс. ₽">
-                                                <TextBlock Text="Я" 
-                                                           VerticalAlignment="Bottom"
-                                                           HorizontalAlignment="Center"
-                                                           Margin="0,0,0,5"
-                                                           Foreground="White"/>
-                                            </Border>
-                                            <Border Width="40" Height="180" 
-                                                    Background="#4CAF50" 
-                                                    Margin="5,0"
-                                                    ToolTip="Фев: 600 тыс. ₽">
-                                                <TextBlock Text="Ф" 
-                                                           VerticalAlignment="Bottom"
-                                                           HorizontalAlignment="Center"
-                                                           Margin="0,0,0,5"
-                                                           Foreground="White"/>
-                                            </Border>
-                                            <Border Width="40" Height="120" 
-                                                    Background="#4CAF50" 
-                                                    Margin="5,0"
-                                                    ToolTip="Мар: 400 тыс. ₽">
-                                                <TextBlock Text="М" 
-                                                           VerticalAlignment="Bottom"
-                                                           HorizontalAlignment="Center"
-                                                           Margin="0,0,0,5"
-                                                           Foreground="White"/>
-                                            </Border>
-                                            <Border Width="40" Height="90" 
-                                                    Background="#F44336" 
-                                                    Margin="5,0"
-                                                    ToolTip="Апр: 300 тыс. ₽">
-                                                <TextBlock Text="А" 
-                                                           VerticalAlignment="Bottom"
-                                                           HorizontalAlignment="Center"
-                                                           Margin="0,0,0,5"
-                                                           Foreground="White"/>
-                                            </Border>
-                                            <Border Width="40" Height="160" 
-                                                    Background="#4CAF50" 
-                                                    Margin="5,0"
-                                                    ToolTip="Май: 550 тыс. ₽">
-                                                <TextBlock Text="М" 
-                                                           VerticalAlignment="Bottom"
-                                                           HorizontalAlignment="Center"
-                                                           Margin="0,0,0,5"
-                                                           Foreground="White"/>
-                                            </Border>
-                                            <Border Width="40" Height="200" 
-                                                    Background="#4CAF50" 
-                                                    Margin="5,0"
-                                                    ToolTip="Июн: 650 тыс. ₽">
-                                                <TextBlock Text="И" 
-                                                           VerticalAlignment="Bottom"
-                                                           HorizontalAlignment="Center"
-                                                           Margin="0,0,0,5"
-                                                           Foreground="White"/>
-                                            </Border>
-                                        </StackPanel>
-                                    </Border>
-
-                                    <StackPanel Orientation="Horizontal"
-                                                HorizontalAlignment="Center"
-                                                Margin="0,10,0,0">
-                                        <StackPanel Orientation="Horizontal"
-                                                    Margin="0,0,20,0">
-                                            <Border Width="15" Height="15" 
-                                                    Background="#4CAF50"
-                                                    Margin="0,0,5,0"/>
-                                            <TextBlock Text="Доходы" 
-                                                       VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Border Width="15" Height="15" 
-                                                    Background="#F44336"
-                                                    Margin="0,0,5,0"/>
-                                            <TextBlock Text="Расходы" 
-                                                       VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                    </StackPanel>
+                                               HorizontalAlignment="Center"
+                                               Margin="0,5,0,0"
+                                               Foreground="#67BA80"/>
+                                    <TextBlock Text="за период"
+                                               FontSize="12"
+                                               HorizontalAlignment="Center"
+                                               Foreground="#666"/>
                                 </StackPanel>
                             </Border>
 
-                            <!-- Таблица платежей -->
-                            <DataGrid x:Name="PaymentsGrid"
-                                      Grid.Row="1"
-                                      AutoGenerateColumns="False"
-                                      IsReadOnly="True"
-                                      HeadersVisibility="Column"
-                                      MaxHeight="300"
-                                      Margin="0,0,0,15">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Квартира" 
-                                                        Binding="{Binding ApartmentNumber}" 
-                                                        Width="80"/>
-                                    <DataGridTextColumn Header="Период" 
-                                                        Binding="{Binding Period}" 
-                                                        Width="100"/>
-                                    <DataGridTextColumn Header="Начислено" 
-                                                        Binding="{Binding AmountCharged, StringFormat='{}{0:N2} ₽'}" 
-                                                        Width="120"/>
-                                    <DataGridTextColumn Header="Оплачено" 
-                                                        Binding="{Binding AmountPaid, StringFormat='{}{0:N2} ₽'}" 
-                                                        Width="120"/>
-                                    <DataGridTextColumn Header="Задолженность" 
-                                                        Binding="{Binding Debt, StringFormat='{}{0:N2} ₽'}" 
-                                                        Width="120"/>
-                                    <DataGridTextColumn Header="Статус" 
-                                                        Binding="{Binding Status}" 
-                                                        Width="100"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
+                            <!-- Карточка прибыли -->
+                            <Border Background="White" 
+                                    BorderBrush="#D4C8B3" 
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Padding="20"
+                                    Margin="5"
+                                    Width="280"
+                                    Height="140">
+                                <StackPanel>
+                                    <TextBlock Text="💵" 
+                                               FontSize="28"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Чистая прибыль" 
+                                               FontSize="14"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,5,0,0"/>
+                                    <TextBlock x:Name="NetProfitText" 
+                                               Text="0 ₽"
+                                               FontSize="24"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,5,0,0"
+                                               Foreground="#67BA80"/>
+                                    <TextBlock Text="от использования ресурсов"
+                                               FontSize="12"
+                                               HorizontalAlignment="Center"
+                                               Foreground="#666"/>
+                                </StackPanel>
+                            </Border>
 
-                            <!-- Сводка -->
-                            <StackPanel Grid.Row="2"
-                                        Orientation="Horizontal"
-                                        HorizontalAlignment="Center">
-                                <Border Background="#E8F5E8"
-                                        BorderBrush="#4CAF50"
+                            <!-- Карточка затрат -->
+                            <Border Background="White" 
+                                    BorderBrush="#D4C8B3" 
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Padding="20"
+                                    Margin="5"
+                                    Width="280"
+                                    Height="140">
+                                <StackPanel>
+                                    <TextBlock Text="📉" 
+                                               FontSize="28"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Суммарные затраты" 
+                                               FontSize="14"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,5,0,0"/>
+                                    <TextBlock x:Name="TotalCostsText" 
+                                               Text="0 ₽"
+                                               FontSize="24"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,5,0,0"
+                                               Foreground="#E74C3C"/>
+                                    <TextBlock Text="на ресурсы"
+                                               FontSize="12"
+                                               HorizontalAlignment="Center"
+                                               Foreground="#666"/>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Карточка рентабельности -->
+                            <Border Background="White" 
+                                    BorderBrush="#D4C8B3" 
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Padding="20"
+                                    Margin="5"
+                                    Width="280"
+                                    Height="140">
+                                <StackPanel>
+                                    <TextBlock Text="📊" 
+                                               FontSize="28"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Рентабельность" 
+                                               FontSize="14"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,5,0,0"/>
+                                    <TextBlock x:Name="ProfitabilityText" 
+                                               Text="0 %"
+                                               FontSize="24"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,5,0,0"
+                                               Foreground="#3498DB"/>
+                                    <TextBlock Text="использования ресурсов"
+                                               FontSize="12"
+                                               HorizontalAlignment="Center"
+                                               Foreground="#666"/>
+                                </StackPanel>
+                            </Border>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Детальная аналитика -->
+                <Border Background="White" 
+                        Padding="20"
+                        BorderBrush="#D4C8B3" 
+                        BorderThickness="1"
+                        CornerRadius="8">
+                    <StackPanel>
+                        <TextBlock Text="📋 Детальная аналитика"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,15"
+                                   Foreground="#333333"/>
+
+                        <TabControl>
+                            <!-- Вкладка 1: Финансовые показатели -->
+                            <TabItem Header="💰 Финансы" Style="{StaticResource TabItemStyle}">
+                                <Border Background="White" 
+                                        Padding="20"
+                                        BorderBrush="#D4C8B3" 
                                         BorderThickness="1"
-                                        Padding="15"
-                                        CornerRadius="5"
-                                        Margin="0,0,10,0">
-                                    <StackPanel>
-                                        <TextBlock Text="Оплачено полностью"
-                                                   FontWeight="Bold"
-                                                   Foreground="#4CAF50"/>
-                                        <TextBlock x:Name="FullyPaidCountText"
-                                                   Text="0"
-                                                   FontSize="18"
-                                                   FontWeight="Bold"
-                                                   HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
+                                        CornerRadius="0,0,8,8">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                <Border Background="#FFEBEE"
-                                        BorderBrush="#F44336"
+                                        <!-- График доходов/расходов -->
+                                        <Border Grid.Row="0"
+                                                BorderBrush="#D4C8B3" 
+                                                BorderThickness="0,0,0,1"
+                                                Padding="0,0,0,15"
+                                                Margin="0,0,0,15">
+                                            <StackPanel>
+                                                <TextBlock Text="Динамика доходов и расходов"
+                                                           FontSize="16"
+                                                           FontWeight="Bold"
+                                                           Margin="0,0,0,10"
+                                                           Foreground="#333333"/>
+
+                                                <!-- Имитация графика -->
+                                                <Border Height="200"
+                                                        Background="#F9F9F9"
+                                                        BorderBrush="#D4C8B3"
+                                                        BorderThickness="1"
+                                                        CornerRadius="4">
+                                                    <StackPanel Orientation="Horizontal"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Bottom"
+                                                                Margin="20">
+                                                        <Border Width="40" Height="150" 
+                                                                Background="#67BA80" 
+                                                                Margin="5,0"
+                                                                CornerRadius="4,4,0,0"
+                                                                ToolTip="Янв: 500 тыс. ₽">
+                                                            <TextBlock Text="Я" 
+                                                                       VerticalAlignment="Bottom"
+                                                                       HorizontalAlignment="Center"
+                                                                       Margin="0,0,0,5"
+                                                                       Foreground="White"/>
+                                                        </Border>
+                                                        <Border Width="40" Height="180" 
+                                                                Background="#67BA80" 
+                                                                Margin="5,0"
+                                                                CornerRadius="4,4,0,0"
+                                                                ToolTip="Фев: 600 тыс. ₽">
+                                                            <TextBlock Text="Ф" 
+                                                                       VerticalAlignment="Bottom"
+                                                                       HorizontalAlignment="Center"
+                                                                       Margin="0,0,0,5"
+                                                                       Foreground="White"/>
+                                                        </Border>
+                                                        <Border Width="40" Height="120" 
+                                                                Background="#67BA80" 
+                                                                Margin="5,0"
+                                                                CornerRadius="4,4,0,0"
+                                                                ToolTip="Мар: 400 тыс. ₽">
+                                                            <TextBlock Text="М" 
+                                                                       VerticalAlignment="Bottom"
+                                                                       HorizontalAlignment="Center"
+                                                                       Margin="0,0,0,5"
+                                                                       Foreground="White"/>
+                                                        </Border>
+                                                        <Border Width="40" Height="90" 
+                                                                Background="#E74C3C" 
+                                                                Margin="5,0"
+                                                                CornerRadius="4,4,0,0"
+                                                                ToolTip="Апр: 300 тыс. ₽">
+                                                            <TextBlock Text="А" 
+                                                                       VerticalAlignment="Bottom"
+                                                                       HorizontalAlignment="Center"
+                                                                       Margin="0,0,0,5"
+                                                                       Foreground="White"/>
+                                                        </Border>
+                                                        <Border Width="40" Height="160" 
+                                                                Background="#67BA80" 
+                                                                Margin="5,0"
+                                                                CornerRadius="4,4,0,0"
+                                                                ToolTip="Май: 550 тыс. ₽">
+                                                            <TextBlock Text="М" 
+                                                                       VerticalAlignment="Bottom"
+                                                                       HorizontalAlignment="Center"
+                                                                       Margin="0,0,0,5"
+                                                                       Foreground="White"/>
+                                                        </Border>
+                                                        <Border Width="40" Height="200" 
+                                                                Background="#67BA80" 
+                                                                Margin="5,0"
+                                                                CornerRadius="4,4,0,0"
+                                                                ToolTip="Июн: 650 тыс. ₽">
+                                                            <TextBlock Text="И" 
+                                                                       VerticalAlignment="Bottom"
+                                                                       HorizontalAlignment="Center"
+                                                                       Margin="0,0,0,5"
+                                                                       Foreground="White"/>
+                                                        </Border>
+                                                    </StackPanel>
+                                                </Border>
+
+                                                <StackPanel Orientation="Horizontal"
+                                                            HorizontalAlignment="Center"
+                                                            Margin="0,10,0,0">
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Margin="0,0,20,0">
+                                                        <Border Width="15" Height="15" 
+                                                                Background="#67BA80"
+                                                                Margin="0,0,5,0"
+                                                                CornerRadius="2"/>
+                                                        <TextBlock Text="Доходы" 
+                                                                   VerticalAlignment="Center"
+                                                                   Foreground="#333333"/>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Border Width="15" Height="15" 
+                                                                Background="#E74C3C"
+                                                                Margin="0,0,5,0"
+                                                                CornerRadius="2"/>
+                                                        <TextBlock Text="Расходы" 
+                                                                   VerticalAlignment="Center"
+                                                                   Foreground="#333333"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <!-- Таблица платежей -->
+                                        <DataGrid x:Name="PaymentsGrid"
+                                                  Grid.Row="1"
+                                                  Style="{StaticResource DataGridStyle}"
+                                                  HeadersVisibility="Column"
+                                                  MaxHeight="300"
+                                                  Margin="0,0,0,15">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="Квартира" 
+                                                                    Binding="{Binding ApartmentNumber}" 
+                                                                    Width="80"/>
+                                                <DataGridTextColumn Header="Период" 
+                                                                    Binding="{Binding Period}" 
+                                                                    Width="100"/>
+                                                <DataGridTextColumn Header="Начислено" 
+                                                                    Binding="{Binding AmountCharged, StringFormat='{}{0:N2} ₽'}" 
+                                                                    Width="120"/>
+                                                <DataGridTextColumn Header="Оплачено" 
+                                                                    Binding="{Binding AmountPaid, StringFormat='{}{0:N2} ₽'}" 
+                                                                    Width="120"/>
+                                                <DataGridTextColumn Header="Задолженность" 
+                                                                    Binding="{Binding Debt, StringFormat='{}{0:N2} ₽'}" 
+                                                                    Width="120"/>
+                                                <DataGridTextColumn Header="Статус" 
+                                                                    Binding="{Binding Status}" 
+                                                                    Width="100"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+
+                                        <!-- Сводка -->
+                                        <StackPanel Grid.Row="2"
+                                                    Orientation="Horizontal"
+                                                    HorizontalAlignment="Center">
+                                            <Border Background="#F0F9F0"
+                                                    BorderBrush="#67BA80"
+                                                    BorderThickness="1"
+                                                    Padding="15"
+                                                    CornerRadius="6"
+                                                    Margin="0,0,10,0">
+                                                <StackPanel>
+                                                    <TextBlock Text="Оплачено полностью"
+                                                               FontWeight="Bold"
+                                                               Foreground="#67BA80"/>
+                                                    <TextBlock x:Name="FullyPaidCountText"
+                                                               Text="0"
+                                                               FontSize="18"
+                                                               FontWeight="Bold"
+                                                               HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+
+                                            <Border Background="#FEE"
+                                                    BorderBrush="#E74C3C"
+                                                    BorderThickness="1"
+                                                    Padding="15"
+                                                    CornerRadius="6">
+                                                <StackPanel>
+                                                    <TextBlock Text="Есть задолженность"
+                                                               FontWeight="Bold"
+                                                               Foreground="#E74C3C"/>
+                                                    <TextBlock x:Name="DebtCountText"
+                                                               Text="0"
+                                                               FontSize="18"
+                                                               FontWeight="Bold"
+                                                               HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </TabItem>
+
+                            <!-- Вкладка 2: Заявки и работы -->
+                            <TabItem Header="🔧 Заявки" Style="{StaticResource TabItemStyle}">
+                                <Border Background="White" 
+                                        Padding="20"
+                                        BorderBrush="#D4C8B3" 
                                         BorderThickness="1"
-                                        Padding="15"
-                                        CornerRadius="5">
-                                    <StackPanel>
-                                        <TextBlock Text="Есть задолженность"
-                                                   FontWeight="Bold"
-                                                   Foreground="#F44336"/>
-                                        <TextBlock x:Name="DebtCountText"
-                                                   Text="0"
-                                                   FontSize="18"
-                                                   FontWeight="Bold"
-                                                   HorizontalAlignment="Center"/>
-                                    </StackPanel>
+                                        CornerRadius="0,0,8,8">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Статистика заявок -->
+                                        <WrapPanel Grid.Row="0"
+                                                   Margin="0,0,0,20">
+                                            <Border Background="#E8F5FF"
+                                                    BorderBrush="#3498DB"
+                                                    BorderThickness="1"
+                                                    Padding="15"
+                                                    CornerRadius="6"
+                                                    Margin="0,0,10,10">
+                                                <StackPanel>
+                                                    <TextBlock Text="Всего заявок"
+                                                               FontWeight="Bold"
+                                                               Foreground="#3498DB"/>
+                                                    <TextBlock x:Name="TotalRequestsText"
+                                                               Text="0"
+                                                               FontSize="18"
+                                                               FontWeight="Bold"
+                                                               HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+
+                                            <Border Background="#F0F9F0"
+                                                    BorderBrush="#67BA80"
+                                                    BorderThickness="1"
+                                                    Padding="15"
+                                                    CornerRadius="6"
+                                                    Margin="0,0,10,10">
+                                                <StackPanel>
+                                                    <TextBlock Text="Выполнено"
+                                                               FontWeight="Bold"
+                                                               Foreground="#67BA80"/>
+                                                    <TextBlock x:Name="CompletedRequestsText"
+                                                               Text="0"
+                                                               FontSize="18"
+                                                               FontWeight="Bold"
+                                                               HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+
+                                            <Border Background="#FFF8E1"
+                                                    BorderBrush="#F39C12"
+                                                    BorderThickness="1"
+                                                    Padding="15"
+                                                    CornerRadius="6"
+                                                    Margin="0,0,10,10">
+                                                <StackPanel>
+                                                    <TextBlock Text="В работе"
+                                                               FontWeight="Bold"
+                                                               Foreground="#F39C12"/>
+                                                    <TextBlock x:Name="InProgressRequestsText"
+                                                               Text="0"
+                                                               FontSize="18"
+                                                               FontWeight="Bold"
+                                                               HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+
+                                            <Border Background="#FEE"
+                                                    BorderBrush="#E74C3C"
+                                                    BorderThickness="1"
+                                                    Padding="15"
+                                                    CornerRadius="6"
+                                                    Margin="0,0,10,10">
+                                                <StackPanel>
+                                                    <TextBlock Text="Открыто"
+                                                               FontWeight="Bold"
+                                                               Foreground="#E74C3C"/>
+                                                    <TextBlock x:Name="OpenRequestsText"
+                                                               Text="0"
+                                                               FontSize="18"
+                                                               FontWeight="Bold"
+                                                               HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </WrapPanel>
+
+                                        <!-- Таблица заявок -->
+                                        <DataGrid x:Name="RequestsGrid"
+                                                  Grid.Row="1"
+                                                  Style="{StaticResource DataGridStyle}"
+                                                  HeadersVisibility="Column">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="ID" 
+                                                                    Binding="{Binding Id}" 
+                                                                    Width="50"/>
+                                                <DataGridTextColumn Header="Тип" 
+                                                                    Binding="{Binding Type}" 
+                                                                    Width="120"/>
+                                                <DataGridTextColumn Header="Квартира" 
+                                                                    Binding="{Binding Apartment}" 
+                                                                    Width="100"/>
+                                                <DataGridTextColumn Header="Исполнитель" 
+                                                                    Binding="{Binding Employee}" 
+                                                                    Width="150"/>
+                                                <DataGridTextColumn Header="Дата" 
+                                                                    Binding="{Binding Date, StringFormat='dd.MM.yyyy'}" 
+                                                                    Width="100"/>
+                                                <DataGridTextColumn Header="Статус" 
+                                                                    Binding="{Binding Status}" 
+                                                                    Width="100"/>
+                                                <DataGridTextColumn Header="Срок выполнения" 
+                                                                    Binding="{Binding CompletionTime}" 
+                                                                    Width="120"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Grid>
                                 </Border>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </TabItem>
+                            </TabItem>
 
-                <!-- Вкладка 2: Заявки и работы -->
-                <TabItem Header="🔧 Заявки">
-                    <Border Background="White" 
-                            Padding="20"
-                            BorderBrush="#E0E0E0" 
-                            BorderThickness="1">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <!-- Статистика заявок -->
-                            <WrapPanel Grid.Row="0"
-                                       Margin="0,0,0,20">
-                                <Border Background="#E3F2FD"
-                                        BorderBrush="#2196F3"
+                            <!-- Вкладка 3: Персонал -->
+                            <TabItem Header="👥 Персонал" Style="{StaticResource TabItemStyle}">
+                                <Border Background="White" 
+                                        Padding="20"
+                                        BorderBrush="#D4C8B3" 
                                         BorderThickness="1"
-                                        Padding="15"
-                                        CornerRadius="5"
-                                        Margin="0,0,10,10">
-                                    <StackPanel>
-                                        <TextBlock Text="Всего заявок"
-                                                   FontWeight="Bold"
-                                                   Foreground="#2196F3"/>
-                                        <TextBlock x:Name="TotalRequestsText"
-                                                   Text="0"
-                                                   FontSize="18"
-                                                   FontWeight="Bold"
-                                                   HorizontalAlignment="Center"/>
-                                    </StackPanel>
+                                        CornerRadius="0,0,8,8">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Статистика персонала -->
+                                        <WrapPanel Grid.Row="0"
+                                                   Margin="0,0,0,20">
+                                            <Border Background="#E8F5FF"
+                                                    BorderBrush="#3498DB"
+                                                    BorderThickness="1"
+                                                    Padding="15"
+                                                    CornerRadius="6"
+                                                    Margin="0,0,10,10">
+                                                <StackPanel>
+                                                    <TextBlock Text="Всего сотрудников"
+                                                               FontWeight="Bold"
+                                                               Foreground="#3498DB"/>
+                                                    <TextBlock x:Name="TotalEmployeesText"
+                                                               Text="0"
+                                                               FontSize="18"
+                                                               FontWeight="Bold"
+                                                               HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+
+                                            <Border Background="#F0F9F0"
+                                                    BorderBrush="#67BA80"
+                                                    BorderThickness="1"
+                                                    Padding="15"
+                                                    CornerRadius="6"
+                                                    Margin="0,0,10,10">
+                                                <StackPanel>
+                                                    <TextBlock Text="Активные задачи"
+                                                               FontWeight="Bold"
+                                                               Foreground="#67BA80"/>
+                                                    <TextBlock x:Name="ActiveTasksText"
+                                                               Text="0"
+                                                               FontSize="18"
+                                                               FontWeight="Bold"
+                                                               HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+
+                                            <Border Background="#F5E8FF"
+                                                    BorderBrush="#9B59B6"
+                                                    BorderThickness="1"
+                                                    Padding="15"
+                                                    CornerRadius="6"
+                                                    Margin="0,0,10,10">
+                                                <StackPanel>
+                                                    <TextBlock Text="Средняя нагрузка"
+                                                               FontWeight="Bold"
+                                                               Foreground="#9B59B6"/>
+                                                    <TextBlock x:Name="AvgWorkloadText"
+                                                               Text="0%"
+                                                               FontSize="18"
+                                                               FontWeight="Bold"
+                                                               HorizontalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </WrapPanel>
+
+                                        <!-- Таблица сотрудников -->
+                                        <DataGrid x:Name="EmployeesGrid"
+                                                  Grid.Row="1"
+                                                  Style="{StaticResource DataGridStyle}"
+                                                  HeadersVisibility="Column">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="ФИО" 
+                                                                    Binding="{Binding Name}" 
+                                                                    Width="*"/>
+                                                <DataGridTextColumn Header="Должность" 
+                                                                    Binding="{Binding Position}" 
+                                                                    Width="150"/>
+                                                <DataGridTextColumn Header="Задач в работе" 
+                                                                    Binding="{Binding TasksInProgress}" 
+                                                                    Width="100"/>
+                                                <DataGridTextColumn Header="Выполнено" 
+                                                                    Binding="{Binding TasksCompleted}" 
+                                                                    Width="100"/>
+                                                <DataGridTextColumn Header="Эффективность" 
+                                                                    Binding="{Binding Efficiency, StringFormat='{}{0}%'}" 
+                                                                    Width="100"/>
+                                                <DataGridTextColumn Header="Статус" 
+                                                                    Binding="{Binding Status}" 
+                                                                    Width="100"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Grid>
                                 </Border>
-
-                                <Border Background="#E8F5E8"
-                                        BorderBrush="#4CAF50"
-                                        BorderThickness="1"
-                                        Padding="15"
-                                        CornerRadius="5"
-                                        Margin="0,0,10,10">
-                                    <StackPanel>
-                                        <TextBlock Text="Выполнено"
-                                                   FontWeight="Bold"
-                                                   Foreground="#4CAF50"/>
-                                        <TextBlock x:Name="CompletedRequestsText"
-                                                   Text="0"
-                                                   FontSize="18"
-                                                   FontWeight="Bold"
-                                                   HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-
-                                <Border Background="#FFF3E0"
-                                        BorderBrush="#FF9800"
-                                        BorderThickness="1"
-                                        Padding="15"
-                                        CornerRadius="5"
-                                        Margin="0,0,10,10">
-                                    <StackPanel>
-                                        <TextBlock Text="В работе"
-                                                   FontWeight="Bold"
-                                                   Foreground="#FF9800"/>
-                                        <TextBlock x:Name="InProgressRequestsText"
-                                                   Text="0"
-                                                   FontSize="18"
-                                                   FontWeight="Bold"
-                                                   HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-
-                                <Border Background="#FFEBEE"
-                                        BorderBrush="#F44336"
-                                        BorderThickness="1"
-                                        Padding="15"
-                                        CornerRadius="5"
-                                        Margin="0,0,10,10">
-                                    <StackPanel>
-                                        <TextBlock Text="Открыто"
-                                                   FontWeight="Bold"
-                                                   Foreground="#F44336"/>
-                                        <TextBlock x:Name="OpenRequestsText"
-                                                   Text="0"
-                                                   FontSize="18"
-                                                   FontWeight="Bold"
-                                                   HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-                            </WrapPanel>
-
-                            <!-- Таблица заявок -->
-                            <DataGrid x:Name="RequestsGrid"
-                                      Grid.Row="1"
-                                      AutoGenerateColumns="False"
-                                      IsReadOnly="True"
-                                      HeadersVisibility="Column">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ID" 
-                                                        Binding="{Binding Id}" 
-                                                        Width="50"/>
-                                    <DataGridTextColumn Header="Тип" 
-                                                        Binding="{Binding Type}" 
-                                                        Width="120"/>
-                                    <DataGridTextColumn Header="Квартира" 
-                                                        Binding="{Binding Apartment}" 
-                                                        Width="100"/>
-                                    <DataGridTextColumn Header="Исполнитель" 
-                                                        Binding="{Binding Employee}" 
-                                                        Width="150"/>
-                                    <DataGridTextColumn Header="Дата" 
-                                                        Binding="{Binding Date, StringFormat='dd.MM.yyyy'}" 
-                                                        Width="100"/>
-                                    <DataGridTextColumn Header="Статус" 
-                                                        Binding="{Binding Status}" 
-                                                        Width="100"/>
-                                    <DataGridTextColumn Header="Срок выполнения" 
-                                                        Binding="{Binding CompletionTime}" 
-                                                        Width="120"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-                    </Border>
-                </TabItem>
-
-                <!-- Вкладка 3: Персонал -->
-                <TabItem Header="👥 Персонал">
-                    <Border Background="White" 
-                            Padding="20"
-                            BorderBrush="#E0E0E0" 
-                            BorderThickness="1">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <!-- Статистика персонала -->
-                            <WrapPanel Grid.Row="0"
-                                       Margin="0,0,0,20">
-                                <Border Background="#E3F2FD"
-                                        BorderBrush="#2196F3"
-                                        BorderThickness="1"
-                                        Padding="15"
-                                        CornerRadius="5"
-                                        Margin="0,0,10,10">
-                                    <StackPanel>
-                                        <TextBlock Text="Всего сотрудников"
-                                                   FontWeight="Bold"
-                                                   Foreground="#2196F3"/>
-                                        <TextBlock x:Name="TotalEmployeesText"
-                                                   Text="0"
-                                                   FontSize="18"
-                                                   FontWeight="Bold"
-                                                   HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-
-                                <Border Background="#E8F5E8"
-                                        BorderBrush="#4CAF50"
-                                        BorderThickness="1"
-                                        Padding="15"
-                                        CornerRadius="5"
-                                        Margin="0,0,10,10">
-                                    <StackPanel>
-                                        <TextBlock Text="Активные задачи"
-                                                   FontWeight="Bold"
-                                                   Foreground="#4CAF50"/>
-                                        <TextBlock x:Name="ActiveTasksText"
-                                                   Text="0"
-                                                   FontSize="18"
-                                                   FontWeight="Bold"
-                                                   HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-
-                                <Border Background="#F3E5F5"
-                                        BorderBrush="#9C27B0"
-                                        BorderThickness="1"
-                                        Padding="15"
-                                        CornerRadius="5"
-                                        Margin="0,0,10,10">
-                                    <StackPanel>
-                                        <TextBlock Text="Средняя нагрузка"
-                                                   FontWeight="Bold"
-                                                   Foreground="#9C27B0"/>
-                                        <TextBlock x:Name="AvgWorkloadText"
-                                                   Text="0%"
-                                                   FontSize="18"
-                                                   FontWeight="Bold"
-                                                   HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-                            </WrapPanel>
-
-                            <!-- Таблица сотрудников -->
-                            <DataGrid x:Name="EmployeesGrid"
-                                      Grid.Row="1"
-                                      AutoGenerateColumns="False"
-                                      IsReadOnly="True"
-                                      HeadersVisibility="Column">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ФИО" 
-                                                        Binding="{Binding Name}" 
-                                                        Width="*"/>
-                                    <DataGridTextColumn Header="Должность" 
-                                                        Binding="{Binding Position}" 
-                                                        Width="150"/>
-                                    <DataGridTextColumn Header="Задач в работе" 
-                                                        Binding="{Binding TasksInProgress}" 
-                                                        Width="100"/>
-                                    <DataGridTextColumn Header="Выполнено" 
-                                                        Binding="{Binding TasksCompleted}" 
-                                                        Width="100"/>
-                                    <DataGridTextColumn Header="Эффективность" 
-                                                        Binding="{Binding Efficiency, StringFormat='{}{0}%'}" 
-                                                        Width="100"/>
-                                    <DataGridTextColumn Header="Статус" 
-                                                        Binding="{Binding Status}" 
-                                                        Width="100"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-                    </Border>
-                </TabItem>
-            </TabControl>
-        </StackPanel>
-    </ScrollViewer>
+                            </TabItem>
+                        </TabControl>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Page>

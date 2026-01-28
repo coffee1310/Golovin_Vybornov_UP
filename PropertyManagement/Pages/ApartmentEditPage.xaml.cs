@@ -31,6 +31,10 @@ namespace PropertyManagement.Pages
             LoadApartmentData();
         }
 
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
         private void LoadFormData()
         {
             try

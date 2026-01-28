@@ -37,6 +37,11 @@ namespace PropertyManagement.Pages
             LoadRequestData();
         }
 
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
         private void LoadFormData()
         {
             try
@@ -97,12 +102,6 @@ namespace PropertyManagement.Pages
                 StatusComboBox.Items.Add("В работе");
                 StatusComboBox.Items.Add("Закрыта");
                 StatusComboBox.SelectedIndex = 0;
-
-                PriorityComboBox.Items.Add("Низкий");
-                PriorityComboBox.Items.Add("Средний");
-                PriorityComboBox.Items.Add("Высокий");
-                PriorityComboBox.Items.Add("Критический");
-                PriorityComboBox.SelectedIndex = 1; // Средний
             }
             catch (Exception ex)
             {
@@ -278,7 +277,7 @@ namespace PropertyManagement.Pages
 
         private bool ValidateData()
         {
-            ErrorText.Visibility = Visibility.Collapsed;
+            ErrorBorder.Visibility = Visibility.Collapsed;
             ErrorText.Text = "";
 
             var errors = "";
@@ -303,7 +302,7 @@ namespace PropertyManagement.Pages
             if (!string.IsNullOrEmpty(errors))
             {
                 ErrorText.Text = errors;
-                ErrorText.Visibility = Visibility.Visible;
+                ErrorBorder.Visibility = Visibility.Visible;
                 return false;
             }
 
