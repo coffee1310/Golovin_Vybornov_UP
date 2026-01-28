@@ -10,7 +10,7 @@
         AllowsTransparency="True"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        Width="420" Height="420">
+        Width="420" Height="488">
 
     <Grid>
         <!-- Полупрозрачный фон -->

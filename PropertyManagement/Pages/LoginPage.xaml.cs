@@ -21,14 +21,14 @@ namespace PropertyManagement.Pages
     /// </summary>
     public partial class LoginPage : Page
     {
-        private string connectionString = @"Data Source=ВАШ_СЕРВЕР;Initial Catalog=PropertyManagement;Integrated Security=True";
+        private PropertyManagementEntities db = new PropertyManagementEntities();
 
         public LoginPage()
         {
             InitializeComponent();
             txtLogin.Focus();
 
-            // Автоматический вход для тестирования
+            // Для тестирования
             txtLogin.Text = "admin";
             txtPassword.Password = "admin";
         }
@@ -54,53 +54,54 @@ namespace PropertyManagement.Pages
 
             try
             {
-                // Пытаемся найти пользователя
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                // Ищем пользователя через Entity Framework
+                // Используем другое имя переменной, чтобы не конфликтовать с параметром e
+                var employeeObj = db.Employees
+                    .FirstOrDefault(emp => emp.login == login);
+
+                if (employeeObj != null)
                 {
-                    connection.Open();
-
-                    using (SqlCommand command = new SqlCommand("SELECT * FROM Employees WHERE login = @login", connection))
+                    // Простая проверка пароля
+                    if (employeeObj.password_hash == password || password == "admin")
                     {
-                        command.Parameters.AddWithValue("@login", login);
+                        // Сохраняем данные пользователя в свойствах приложения
+                        Application.Current.Properties["EmployeeId"] = employeeObj.employee_id;
+                        Application.Current.Properties["FullName"] = employeeObj.full_name;
+                        Application.Current.Properties["Position"] = employeeObj.position;
+                        Application.Current.Properties["PositionId"] = employeeObj.position_id;
+                        Application.Current.Properties["Login"] = employeeObj.login;
 
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        // Получаем название должности
+                        if (employeeObj.position_id.HasValue)
                         {
-                            if (reader.Read())
+                            var position = db.Positions
+                                .FirstOrDefault(p => p.position_id == employeeObj.position_id.Value);
+                            if (position != null)
                             {
-                                // Получаем данные пользователя
-                                int employeeId = Convert.ToInt32(reader["employee_id"]);
-                                string storedPassword = reader["password_hash"]?.ToString();
-                                string position = reader["position"]?.ToString();
-                                string fullName = reader["full_name"]?.ToString();
-
-                                // Простая проверка пароля (в реальном приложении нужна хеширование)
-                                // Сейчас проверяем напрямую, так как в БД пароли хранятся открыто
-                                if (storedPassword == password || password == "admin") // Для теста
-                                {
-                                    // Авторизация успешна
-                                    // Переходим на главное окно
-                                    var mainWindow = new MainWindow();
-                                    mainWindow.Show();
-
-                                    // Закрываем текущее окно
-                                    Window.GetWindow(this).Close();
-                                }
-                                else
-                                {
-                                    ShowError("Неверный пароль");
-                                }
-                            }
-                            else
-                            {
-                                ShowError("Пользователь не найден");
+                                Application.Current.Properties["PositionName"] = position.position_name;
                             }
                         }
+
+                        // Открываем главное окно
+                        var mainWindow = new MainWindow();
+                        mainWindow.Show();
+
+                        // Закрываем окно авторизации
+                        Window.GetWindow(this)?.Close();
                     }
+                    else
+                    {
+                        ShowError("Неверный пароль");
+                    }
+                }
+                else
+                {
+                    ShowError("Пользователь не найден");
                 }
             }
             catch (Exception ex)
             {
-                ShowError($"Ошибка подключения к БД: {ex.Message}");
+                ShowError($"Ошибка: {ex.Message}");
             }
             finally
             {
@@ -114,19 +115,21 @@ namespace PropertyManagement.Pages
             txtError.Visibility = Visibility.Visible;
         }
 
-        private void TxtLogin_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void TxtLogin_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
                 txtPassword.Focus();
+                e.Handled = true;
             }
         }
 
-        private void TxtPassword_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void TxtPassword_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
                 BtnLogin_Click(sender, e);
+                e.Handled = true;
             }
         }
     }

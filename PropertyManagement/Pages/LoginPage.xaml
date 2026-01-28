@@ -9,45 +9,15 @@
       Title="LoginPage"
       Background="#F4E8D3">
 
-    <Page.Resources>
-        <Style x:Key="TextBoxStyle" TargetType="TextBox">
-            <Setter Property="BorderBrush" Value="#D4C8B3"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-
-        <Style x:Key="LoginButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#67BA80"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#5AA670"/>
-                </Trigger>
-                <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#4D945D"/>
-                </Trigger>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="#CCCCCC"/>
-                    <Setter Property="Foreground" Value="#666666"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Page.Resources>
-
     <Grid>
         <Border Background="White" 
                 CornerRadius="10" 
-                Margin="30"
+                Width="350"
+                Height="380"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
                 Padding="30">
-            <StackPanel>
+            <StackPanel VerticalAlignment="Center">
                 <!-- Логотип -->
                 <StackPanel HorizontalAlignment="Center" Margin="0,0,0,20">
                     <Ellipse Width="60" Height="60" 
@@ -75,34 +45,44 @@
                            Margin="0,0,0,20"/>
 
                 <!-- Поля ввода -->
-                <StackPanel Margin="0,0,0,15">
-                    <TextBlock Text="Логин" 
-                               FontSize="12" 
-                               Foreground="#666666"
-                               Margin="0,0,0,5"/>
-                    <TextBox x:Name="txtLogin" 
-                             Style="{StaticResource TextBoxStyle}"
-                             Height="36"/>
-                </StackPanel>
+                <TextBlock Text="Логин" 
+                           FontSize="12" 
+                           Foreground="#666666"
+                           Margin="0,0,0,5"/>
+                <TextBox x:Name="txtLogin" 
+                         BorderBrush="#D4C8B3"
+                         BorderThickness="1"
+                         Padding="8"
+                         FontFamily="Segoe UI"
+                         FontSize="14"
+                         Height="36"
+                         Margin="0,0,0,15"/>
 
-                <StackPanel Margin="0,0,0,25">
-                    <TextBlock Text="Пароль" 
-                               FontSize="12" 
-                               Foreground="#666666"
-                               Margin="0,0,0,5"/>
-                    <PasswordBox x:Name="txtPassword" 
-                                 BorderBrush="#D4C8B3"
-                                 BorderThickness="1"
-                                 Padding="8"
-                                 FontFamily="Segoe UI"
-                                 FontSize="14"
-                                 Height="36"/>
-                </StackPanel>
+                <TextBlock Text="Пароль" 
+                           FontSize="12" 
+                           Foreground="#666666"
+                           Margin="0,0,0,5"/>
+                <PasswordBox x:Name="txtPassword" 
+                             BorderBrush="#D4C8B3"
+                             BorderThickness="1"
+                             Padding="8"
+                             FontFamily="Segoe UI"
+                             FontSize="14"
+                             Height="36"
+                             Margin="0,0,0,20"/>
 
                 <!-- Кнопка входа -->
                 <Button x:Name="btnLogin" 
                         Content="Войти"
-                        Style="{StaticResource LoginButtonStyle}"
+                        Background="#67BA80"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Padding="12,8"
+                        FontFamily="Segoe UI"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Height="40"
+                        Cursor="Hand"
                         Click="BtnLogin_Click"/>
 
                 <!-- Сообщение об ошибке -->

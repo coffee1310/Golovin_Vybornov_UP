@@ -18,24 +18,21 @@ namespace PropertyManagement
         {
             base.OnStartup(e);
 
-            // Создаем и показываем окно авторизации
+            // Сначала показываем окно авторизации
             var loginWindow = new Window
             {
-                Title = "Авторизация",
+                Title = "Авторизация - Property Management",
                 Content = new LoginPage(),
-                WindowStyle = WindowStyle.None,
+                WindowStyle = WindowStyle.SingleBorderWindow,
                 WindowState = WindowState.Normal,
                 ResizeMode = ResizeMode.NoResize,
-                Width = 400,
-                Height = 400,
-                WindowStartupLocation = WindowStartupLocation.CenterScreen
+                Width = 450,
+                Height = 420,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                ShowInTaskbar = true
             };
 
-            // Устанавливаем прозрачный фон для окна
-            loginWindow.Background = System.Windows.Media.Brushes.Transparent;
-            loginWindow.AllowsTransparency = true;
-
-            loginWindow.Show();
+            loginWindow.ShowDialog(); // Блокирующее диалоговое окно
         }
     }
 }
