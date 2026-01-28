@@ -28,8 +28,6 @@ namespace PropertyManagement.Pages
         {
             InitializeComponent();
             txtLogin.Focus();
-
-            // Для тестирования
             txtLogin.Text = "admin";
             txtPassword.Password = "admin";
         }
@@ -39,48 +37,62 @@ namespace PropertyManagement.Pages
             string login = txtLogin.Text.Trim();
             string password = txtPassword.Password;
 
-            if (string.IsNullOrWhiteSpace(login))
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
-                ShowError("Введите логин");
+                ShowError("Введите логин и пароль");
                 return;
             }
 
-            // Для тестирования создаем пользователя по логину
-            CreateTestUser(login);
-        }
+            btnLogin.IsEnabled = false;
 
-        private void CreateTestUser(string login)
-        {
-            string positionName;
+            try
+            {
+                using (var db = new PropertyManagementEntities())
+                {
+                    // Используем LINQ join для получения данных
+                    var query = from emp in db.Employees
+                                join pos in db.Positions on emp.position_id equals pos.position_id into positionJoin
+                                from position in positionJoin.DefaultIfEmpty()
+                                where emp.login == login && emp.password_hash == password
+                                select new
+                                {
+                                    emp.employee_id,
+                                    emp.full_name,
+                                    emp.position,
+                                    emp.position_id,
+                                    emp.login,
+                                    PositionName = position != null ? position.position_name : emp.position
+                                };
 
-            // Определяем должность по логину
-            if (login.Contains("admin"))
-                positionName = "Администратор";
-            else if (login.Contains("manager"))
-                positionName = "Руководитель";
-            else if (login.Contains("accountant"))
-                positionName = "Бухгалтер";
-            else if (login.Contains("technician"))
-                positionName = "Техник";
-            else if (login.Contains("dispatcher"))
-                positionName = "Диспетчер";
-            else
-                positionName = "Пользователь";
+                    var employee = query.FirstOrDefault();
 
-            // Сохраняем данные
-            Application.Current.Properties["EmployeeId"] = 1;
-            Application.Current.Properties["FullName"] = "Тестовый пользователь (" + positionName + ")";
-            Application.Current.Properties["Position"] = positionName;
-            Application.Current.Properties["PositionId"] = 1;
-            Application.Current.Properties["Login"] = login;
-            Application.Current.Properties["PositionName"] = positionName;
+                    if (employee != null)
+                    {
+                        Application.Current.Properties["EmployeeId"] = employee.employee_id;
+                        Application.Current.Properties["FullName"] = employee.full_name;
+                        Application.Current.Properties["Position"] = employee.position;
+                        Application.Current.Properties["PositionId"] = employee.position_id;
+                        Application.Current.Properties["Login"] = employee.login;
+                        Application.Current.Properties["PositionName"] = employee.PositionName;
 
-            // Открываем главное окно
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
-
-            // Закрываем окно авторизации
-            Window.GetWindow(this)?.Close();
+                        var mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        Window.GetWindow(this)?.Close();
+                    }
+                    else
+                    {
+                        ShowError("Неверный логин или пароль");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError($"Ошибка: {ex.Message}");
+            }
+            finally
+            {
+                btnLogin.IsEnabled = true;
+            }
         }
 
         private void ShowError(string message)

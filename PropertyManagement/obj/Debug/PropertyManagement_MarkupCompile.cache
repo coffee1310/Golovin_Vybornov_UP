@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\
+C:\Users\coffe\Desktop\PropertyManagement\PropertyManagement\obj\Debug\
 PropertyManagement
 none
 false
 DEBUG;TRACE
-C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\App.xaml
-17-1290924404
+C:\Users\coffe\Desktop\PropertyManagement\PropertyManagement\App.xaml
+18-1544613325
 2-1957146511
-342020947757
-18-1891082291
-LoginWindow.xaml;MainWindow.xaml;Pages\ApartmentEditPage.xaml;Pages\ApartmentsPage.xaml;Pages\BuildingEditPage.xaml;Pages\BuildingsPage.xaml;Pages\EmployeeEditPage.xaml;Pages\EmployeesPage.xaml;Pages\LoginPage.xaml;Pages\MainPage.xaml;Pages\OwnerEditPage.xaml;Pages\OwnersPage.xaml;Pages\ReportsPage.xaml;Pages\RequestExpenseEditPage.xaml;Pages\RequestExpensesPage.xaml;Pages\ServiceRequestEditPage.xaml;Pages\ServiceRequestsPage.xaml;
+36-314868309
+18-1137369791
+LoginWindow.xaml;MainWindow.xaml;Pages\ApartmentEditPage.xaml;Pages\ApartmentsPage.xaml;Pages\BuildingEditPage.xaml;Pages\BuildingsPage.xaml;Pages\EmployeeEditPage.xaml;Pages\EmployeesPage.xaml;Pages\LoginPage.xaml;Pages\MainPage.xaml;Pages\OwnerEditPage.xaml;Pages\OwnersPage.xaml;Pages\ReportsPage.xaml;Pages\RequestExpenseEditPage.xaml;Pages\RequestExpensesPage.xaml;Pages\ServiceRequestEditPage.xaml;Pages\ServiceRequestHistoryPage.xaml;Pages\ServiceRequestsPage.xaml;
 
 False
 

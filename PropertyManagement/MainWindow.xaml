@@ -262,6 +262,10 @@
                             Style="{StaticResource NavButtonStyle}"
                             Click="ServiceRequestsPage_Click"/>
 
+                    <Button Content="📜 История заявок"
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="RequestHistoryPage_Click"/>
+
                     <Button Name="btnNewRequest"
                             Content="➕ Новая заявка"
                             Style="{StaticResource NavButtonStyle}"

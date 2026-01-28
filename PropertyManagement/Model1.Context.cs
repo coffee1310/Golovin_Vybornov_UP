@@ -34,6 +34,7 @@ namespace PropertyManagement
         public virtual DbSet<Positions> Positions { get; set; }
         public virtual DbSet<PropertyOwnership> PropertyOwnership { get; set; }
         public virtual DbSet<RequestExpenses> RequestExpenses { get; set; }
+        public virtual DbSet<RequestHistory> RequestHistory { get; set; }
         public virtual DbSet<ServiceRequests> ServiceRequests { get; set; }
     }
 }

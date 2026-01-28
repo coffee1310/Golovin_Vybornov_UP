@@ -1,0 +1,443 @@
+﻿<Page x:Class="PropertyManagement.Pages.ServiceRequestHistoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PropertyManagement.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="История выполнения заявок"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <!-- Стиль для ComboBox -->
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#333333"/>
+        </Style>
+
+        <!-- Стиль для DatePicker -->
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#333333"/>
+        </Style>
+
+        <!-- Стиль для TextBox -->
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#333333"/>
+        </Style>
+
+        <!-- Стиль для кнопок фильтра -->
+        <Style x:Key="FilterButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F4E8D3"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E8DCC7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Активный стиль фильтра -->
+        <Style x:Key="ActiveFilterButtonStyle" TargetType="Button" BasedOn="{StaticResource FilterButtonStyle}">
+            <Setter Property="Background" Value="#67BA80"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#5AA670"/>
+        </Style>
+
+        <!-- Primary Button Style -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#67BA80"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5AA670"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#4D945D"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Secondary Button Style -->
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#F4E8D3"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E8DCC7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- DataGrid Style -->
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D4C8B3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#F0F0F0"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+        </Style>
+
+        <!-- Конвертер для цвета статуса -->
+        <local:StatusColorConverter x:Key="StatusColorConverter"/>
+
+        <!-- Конвертер для даты -->
+        <local:DateConverter x:Key="DateConverter"/>
+
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель фильтров -->
+        <Border Grid.Row="0" Background="#F4E8D3" Padding="15" Margin="0,0,0,1">
+            <StackPanel>
+                <TextBlock Text="📋 История выполнения заявок" 
+                           FontSize="18" FontWeight="Bold" 
+                           Foreground="#333333" Margin="0,0,0,10"/>
+
+                <!-- Фильтры по периоду -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Период:" VerticalAlignment="Center"/>
+
+                    <Button Name="btnToday" Content="Сегодня" Style="{StaticResource FilterButtonStyle}" 
+                            Click="BtnToday_Click"/>
+                    <Button Name="btnWeek" Content="Неделя" Style="{StaticResource FilterButtonStyle}" 
+                            Click="BtnWeek_Click"/>
+                    <Button Name="btnMonth" Content="Месяц" Style="{StaticResource FilterButtonStyle}" 
+                            Click="BtnMonth_Click"/>
+                    <Button Name="btnQuarter" Content="Квартал" Style="{StaticResource FilterButtonStyle}" 
+                            Click="BtnQuarter_Click"/>
+                    <Button Name="btnYear" Content="Год" Style="{StaticResource FilterButtonStyle}" 
+                            Click="BtnYear_Click"/>
+                    <Button Name="btnAll" Content="Все" Style="{StaticResource FilterButtonStyle}" 
+                            Click="BtnAll_Click"/>
+                </StackPanel>
+
+                <!-- Дополнительные фильтры -->
+                <WrapPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,20,10">
+                        <TextBlock Text="С:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <DatePicker Name="dpDateFrom" Width="120" 
+                                    Style="{StaticResource DatePickerStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,20,10">
+                        <TextBlock Text="По:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <DatePicker Name="dpDateTo" Width="120" 
+                                    Style="{StaticResource DatePickerStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,20,10">
+                        <TextBlock Text="Статус:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ComboBox Name="cmbStatus" Width="120" Style="{StaticResource ComboBoxStyle}"
+                                  SelectionChanged="CmbStatus_SelectionChanged">
+                            <ComboBoxItem Content="Все статусы" IsSelected="True"/>
+                            <ComboBoxItem Content="Открыта"/>
+                            <ComboBoxItem Content="В работе"/>
+                            <ComboBoxItem Content="Выполнена"/>
+                            <ComboBoxItem Content="Отменена"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,20,10">
+                        <TextBlock Text="Тип:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ComboBox Name="cmbRequestType" Width="150" Style="{StaticResource ComboBoxStyle}"
+                                  SelectionChanged="CmbRequestType_SelectionChanged">
+                            <ComboBoxItem Content="Все типы" IsSelected="True"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,20,10">
+                        <TextBlock Text="Исполнитель:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ComboBox Name="cmbEmployee" Width="180" Style="{StaticResource ComboBoxStyle}"
+                                  SelectionChanged="CmbEmployee_SelectionChanged">
+                            <ComboBoxItem Content="Все исполнители" IsSelected="True"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <Button Name="btnApplyFilters" Content="Применить фильтры" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Margin="10,0,0,10" Padding="15,5" Click="BtnApplyFilters_Click"/>
+
+                    <Button Name="btnClearFilters" Content="Очистить фильтры" 
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Margin="10,0,0,10" Padding="15,5" Click="BtnClearFilters_Click"/>
+                </WrapPanel>
+
+                <!-- Поиск -->
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBox Name="txtSearch" Width="300" 
+                             Style="{StaticResource TextBoxStyle}"
+                             TextChanged="TxtSearch_TextChanged">
+                        <TextBox.ToolTip>
+                            <TextBlock Text="Поиск по номеру, описанию или адресу..."/>
+                        </TextBox.ToolTip>
+                    </TextBox>
+
+                    <Button Name="btnExport" Content="📤 Экспорт" 
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Margin="10,0,0,0" Padding="10,5" Click="BtnExport_Click"/>
+
+                    <Button Name="btnPrint" Content="🖨️ Печать" 
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Margin="5,0,0,0" Padding="10,5" Click="BtnPrint_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Основное содержимое -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Таблица истории -->
+            <DataGrid Name="dgHistory" Grid.Column="0"
+                      Style="{StaticResource DataGridStyle}"
+                      AutoGenerateColumns="False"
+                      SelectionMode="Single"
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      SelectionChanged="DgHistory_SelectionChanged">
+                <DataGrid.Columns>
+                    <!-- Номер заявки -->
+                    <DataGridTextColumn Header="№" Binding="{Binding request_id}" Width="50"/>
+
+                    <!-- Квартира и адрес -->
+                    <DataGridTemplateColumn Header="Объект" Width="180">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Apartment.apartment_number}" 
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Apartment.Building.address}" 
+                                               FontSize="11" Foreground="#666666"
+                                               TextTrimming="CharacterEllipsis"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Тип и описание заявки -->
+                    <DataGridTemplateColumn Header="Заявка" Width="250">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding request_type}" 
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding description}" 
+                                               FontSize="11" Foreground="#666666"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Даты -->
+                    <DataGridTemplateColumn Header="Даты и время" Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock>
+                                        <Run Text="Создана: "/>
+                                        <Run Text="{Binding created_date, Converter={StaticResource DateConverter}}"/>
+                                    </TextBlock>
+                                    <TextBlock FontSize="11" Foreground="#999999">
+                                        <Run Text="Длительность: "/>
+                                        <Run Text="{Binding DurationText}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Исполнитель -->
+                    <DataGridTemplateColumn Header="Исполнитель" Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Employee.full_name}"/>
+                                    <TextBlock Text="{Binding Employee.position}" 
+                                               FontSize="10" Foreground="#666666"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Статус -->
+                    <DataGridTemplateColumn Header="Статус" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border CornerRadius="3" Padding="5,2" 
+                                        Background="{Binding status, Converter={StaticResource StatusColorConverter}}">
+                                    <TextBlock Text="{Binding status}" 
+                                               HorizontalAlignment="Center"
+                                               Foreground="White"
+                                               FontWeight="SemiBold"/>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Расходы -->
+                    <DataGridTextColumn Header="Расходы, руб" 
+                                       Binding="{Binding TotalExpenses, StringFormat=N2}" 
+                                       Width="90"/>
+
+                    <!-- Кнопки действий -->
+                    <DataGridTemplateColumn Header="Действия" Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Name="btnViewDetails" Content="👁️ Подробнее" 
+                                            Style="{StaticResource SecondaryButtonStyle}"
+                                            Padding="8,3" Margin="2"
+                                            Click="BtnViewDetails_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Панель статистики -->
+            <Border Grid.Column="1" Width="200" Background="White" 
+                    BorderBrush="#D4C8B3" BorderThickness="1,0,0,0">
+                <ScrollViewer>
+                    <StackPanel Margin="10">
+                        <TextBlock Text="📊 Статистика" FontWeight="Bold" 
+                                   Margin="0,0,0,10" FontSize="14"/>
+
+                        <!-- Общая статистика -->
+                        <Border Background="#F4E8D3" CornerRadius="5" Padding="10" Margin="0,0,0,10">
+                            <StackPanel>
+                                <TextBlock Name="txtTotalRequests" Text="Всего: 0" FontWeight="SemiBold"/>
+                                <TextBlock Name="txtCompletedRequests" Text="Выполнено: 0" Foreground="#27AE60"/>
+                                <TextBlock Name="txtInProgressRequests" Text="В работе: 0" Foreground="#F39C12"/>
+                                <TextBlock Name="txtOpenRequests" Text="Открыто: 0" Foreground="#E74C3C"/>
+                                <TextBlock Name="txtAvgDuration" Text="Ср. время: -" Margin="0,5,0,0"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Статистика по исполнителям -->
+                        <TextBlock Text="👨‍🔧 По исполнителям" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                        <ListView Name="lvEmployeeStats" Height="200" 
+                                  BorderThickness="0" Background="Transparent">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,2">
+                                        <TextBlock Text="{Binding EmployeeName}" FontSize="11"/>
+                                        <TextBlock Text="{Binding Stats}" FontSize="10" Foreground="#666666"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <!-- Статистика по типам заявок -->
+                        <TextBlock Text="🔧 По типам" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                        <ListView Name="lvTypeStats" Height="150" 
+                                  BorderThickness="0" Background="Transparent">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,2">
+                                        <TextBlock Text="{Binding Type}" FontSize="11"/>
+                                        <TextBlock Text="{Binding Count}" FontSize="10" Foreground="#666666"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <!-- Панель деталей выбранной заявки -->
+        <Border x:Name="pnlRequestDetails" Grid.Row="1" Grid.ColumnSpan="2"
+                Background="White" BorderBrush="#D4C8B3" BorderThickness="1"
+                CornerRadius="5" Margin="50" Padding="20"
+                Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Заголовок -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBlock Name="txtDetailsTitle" Text="Детали заявки" 
+                               FontSize="16" FontWeight="Bold"/>
+                    <Button Name="btnCloseDetails" Content="✕" 
+                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                            Background="Transparent" BorderThickness="0"
+                            FontSize="14" Padding="10,0" Cursor="Hand"
+                            Click="BtnCloseDetails_Click"/>
+                </StackPanel>
+
+                <!-- Детали -->
+                <ScrollViewer Grid.Row="1" Margin="0,10,0,0">
+                    <StackPanel Name="spRequestDetails"/>
+                </ScrollViewer>
+
+                <!-- Кнопки -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                    <Button Name="btnViewTimeline" Content="📅 Хронология" 
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Click="BtnViewTimeline_Click"/>
+                    <Button Name="btnViewExpenses" Content="💰 Расходы" 
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Margin="10,0,0,0" Click="BtnViewExpenses_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

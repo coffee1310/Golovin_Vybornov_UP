@@ -41,6 +41,11 @@ namespace PropertyManagement
             txtUserPosition.Text = positionName;
         }
 
+        private void RequestHistoryPage_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ServiceRequestHistoryPage());
+        }
+
         private void SetupInterface()
         {
             string positionName = Application.Current.Properties["PositionName"] as string;
@@ -49,59 +54,62 @@ namespace PropertyManagement
 
             string positionLower = positionName.ToLower();
 
-            // Администратор - полный доступ
+            // АДМИНИСТРАТОР - полный доступ ко всему
             if (positionLower.Contains("админ") || positionLower.Contains("administrator"))
             {
-                // Все элементы видимы (оставляем как есть)
+                // Все кнопки видимы
+                btnBuildings.Visibility = Visibility.Visible;
+                btnApartments.Visibility = Visibility.Visible;
+                btnOwners.Visibility = Visibility.Visible;
+                btnEmployees.Visibility = Visibility.Visible;
+                btnRequestExpenses.Visibility = Visibility.Visible;
+                btnServiceRequests.Visibility = Visibility.Visible;
+                btnNewRequest.Visibility = Visibility.Visible;
+                btnReports.Visibility = Visibility.Visible;
+                btnSettings.Visibility = Visibility.Visible;
+                btnHelp.Visibility = Visibility.Visible;
             }
-            // Руководитель - почти полный доступ
+            // РУКОВОДИТЕЛЬ - только просмотр и управление персоналом/задачами
             else if (positionLower.Contains("руковод") || positionLower.Contains("директор") ||
-                     positionLower.Contains("manager"))
+                     positionLower.Contains("manager") || positionLower.Contains("управляющ"))
             {
+                // Просмотр всей информации
+                btnBuildings.Visibility = Visibility.Visible;
+                btnApartments.Visibility = Visibility.Visible;
+                btnOwners.Visibility = Visibility.Visible;
+
+                // Управление персоналом
+                btnEmployees.Visibility = Visibility.Visible;
+
+                // Просмотр расходов
+                btnRequestExpenses.Visibility = Visibility.Visible;
+
+                // Просмотр заявок (но не создание новых)
+                btnServiceRequests.Visibility = Visibility.Visible;
+                btnNewRequest.Visibility = Visibility.Collapsed; // Не может создавать
+
+                // Полный доступ к отчетам
+                btnReports.Visibility = Visibility.Visible;
+
+                // Настройки только для админа
                 btnSettings.Visibility = Visibility.Collapsed;
+
+                btnHelp.Visibility = Visibility.Visible;
             }
-            // Бухгалтер - финансовые операции
-            else if (positionLower.Contains("бухгал") || positionLower.Contains("accountant") ||
-                     positionLower.Contains("финанс"))
-            {
-                btnBuildings.Visibility = Visibility.Collapsed;
-                btnApartments.Visibility = Visibility.Collapsed;
-                btnEmployees.Visibility = Visibility.Collapsed;
-                btnServiceRequests.Visibility = Visibility.Collapsed;
-                btnNewRequest.Visibility = Visibility.Collapsed;
-                btnSettings.Visibility = Visibility.Collapsed;
-            }
-            // Техник - работа с заявками
-            else if (positionLower.Contains("техник") || positionLower.Contains("technician") ||
-                     positionLower.Contains("мастер") || positionLower.Contains("электрик") ||
-                     positionLower.Contains("сантехник"))
-            {
-                btnBuildings.Visibility = Visibility.Collapsed;
-                btnApartments.Visibility = Visibility.Collapsed;
-                btnOwners.Visibility = Visibility.Collapsed;
-                btnEmployees.Visibility = Visibility.Collapsed;
-                btnRequestExpenses.Visibility = Visibility.Collapsed;
-                btnNewRequest.Visibility = Visibility.Collapsed;
-                btnReports.Visibility = Visibility.Collapsed;
-                btnSettings.Visibility = Visibility.Collapsed;
-            }
-            // Диспетчер - прием заявок
-            else if (positionLower.Contains("диспетчер") || positionLower.Contains("dispatcher"))
-            {
-                btnBuildings.Visibility = Visibility.Collapsed;
-                btnEmployees.Visibility = Visibility.Collapsed;
-                btnRequestExpenses.Visibility = Visibility.Collapsed;
-                btnReports.Visibility = Visibility.Collapsed;
-                btnSettings.Visibility = Visibility.Collapsed;
-            }
-            // Обычный пользователь
+            // Обычный пользователь (например, житель через мобильное приложение)
             else
             {
+                // Только просмотр своих данных
+                btnBuildings.Visibility = Visibility.Visible;
+                btnApartments.Visibility = Visibility.Visible;
+                btnOwners.Visibility = Visibility.Visible;
                 btnEmployees.Visibility = Visibility.Collapsed;
                 btnRequestExpenses.Visibility = Visibility.Collapsed;
-                btnNewRequest.Visibility = Visibility.Collapsed;
+                btnServiceRequests.Visibility = Visibility.Visible; // Только свои заявки
+                btnNewRequest.Visibility = Visibility.Visible; // Может создавать заявки
                 btnReports.Visibility = Visibility.Collapsed;
                 btnSettings.Visibility = Visibility.Collapsed;
+                btnHelp.Visibility = Visibility.Visible;
             }
 
             // Скрываем разделы, если все кнопки в них скрыты

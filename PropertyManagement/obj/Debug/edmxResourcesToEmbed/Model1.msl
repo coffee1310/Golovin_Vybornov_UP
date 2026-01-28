@@ -102,6 +102,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="RequestHistory">
+      <EntityTypeMapping TypeName="PropertyManagementModel.RequestHistory">
+        <MappingFragment StoreEntitySet="RequestHistory">
+          <ScalarProperty Name="history_id" ColumnName="history_id" />
+          <ScalarProperty Name="request_id" ColumnName="request_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="changed_by" ColumnName="changed_by" />
+          <ScalarProperty Name="changed_date" ColumnName="changed_date" />
+          <ScalarProperty Name="employee_assigned" ColumnName="employee_assigned" />
+          <ScalarProperty Name="estimated_duration" ColumnName="estimated_duration" />
+          <ScalarProperty Name="actual_duration" ColumnName="actual_duration" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ServiceRequests">
       <EntityTypeMapping TypeName="PropertyManagementModel.ServiceRequests">
         <MappingFragment StoreEntitySet="ServiceRequests">
@@ -112,6 +129,8 @@
           <ScalarProperty Name="request_type" ColumnName="request_type" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="completed_date" ColumnName="completed_date" />
+          <ScalarProperty Name="estimated_duration" ColumnName="estimated_duration" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -18,6 +18,7 @@ namespace PropertyManagement
         public ServiceRequests()
         {
             this.RequestExpenses = new HashSet<RequestExpenses>();
+            this.RequestHistory = new HashSet<RequestHistory>();
         }
     
         public int request_id { get; set; }
@@ -27,10 +28,14 @@ namespace PropertyManagement
         public string request_type { get; set; }
         public string description { get; set; }
         public string status { get; set; }
+        public Nullable<System.DateTime> completed_date { get; set; }
+        public Nullable<int> estimated_duration { get; set; }
     
         public virtual Apartments Apartments { get; set; }
         public virtual Employees Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RequestExpenses> RequestExpenses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RequestHistory> RequestHistory { get; set; }
     }
 }

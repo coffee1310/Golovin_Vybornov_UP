@@ -271,42 +271,6 @@
                 </Border>
 
                 <!-- Быстрые действия -->
-                <Border Background="White" 
-                        Padding="20"
-                        BorderBrush="#D4C8B3" 
-                        BorderThickness="1"
-                        CornerRadius="8"
-                        Margin="0,0,0,20">
-                    <StackPanel>
-                        <TextBlock Text="⚡ Быстрые действия" 
-                                   FontSize="18" 
-                                   FontWeight="Bold" 
-                                   Foreground="#333333"
-                                   Margin="0,0,0,15"/>
-
-                        <WrapPanel HorizontalAlignment="Center">
-                            <Button Content="➕ Добавить здание" 
-                                    Style="{StaticResource QuickActionButtonStyle}"
-                                    Background="#67BA80"
-                                    Click="AddBuilding_Click"/>
-
-                            <Button Content="👥 Добавить сотрудника" 
-                                    Style="{StaticResource QuickActionButtonStyle}"
-                                    Background="#67BA80"
-                                    Click="AddEmployee_Click"/>
-
-                            <Button Content="🔧 Создать заявку" 
-                                    Style="{StaticResource QuickActionButtonStyle}"
-                                    Background="#67BA80"
-                                    Click="CreateRequest_Click"/>
-
-                            <Button Content="📊 Просмотреть отчеты" 
-                                    Style="{StaticResource QuickActionButtonStyle}"
-                                    Background="#67BA80"
-                                    Click="ViewReports_Click"/>
-                        </WrapPanel>
-                    </StackPanel>
-                </Border>
 
                 <!-- Последние заявки -->
                 <Border Style="{StaticResource CardStyle}">

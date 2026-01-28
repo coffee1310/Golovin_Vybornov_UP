@@ -18,6 +18,8 @@ namespace PropertyManagement
         public Employees()
         {
             this.ServiceRequests = new HashSet<ServiceRequests>();
+            this.RequestHistory = new HashSet<RequestHistory>();
+            this.RequestHistory1 = new HashSet<RequestHistory>();
         }
     
         public int employee_id { get; set; }
@@ -33,5 +35,9 @@ namespace PropertyManagement
         public virtual Positions Positions2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ServiceRequests> ServiceRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RequestHistory> RequestHistory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RequestHistory> RequestHistory1 { get; set; }
     }
 }

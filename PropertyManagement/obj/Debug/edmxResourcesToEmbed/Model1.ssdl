@@ -92,6 +92,22 @@
     <Property Name="expense_date" Type="date" />
     <Property Name="created_by" Type="nvarchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="RequestHistory">
+    <Key>
+      <PropertyRef Name="history_id" />
+    </Key>
+    <Property Name="history_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="request_id" Type="int" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="action" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="500" />
+    <Property Name="changed_by" Type="int" />
+    <Property Name="changed_date" Type="datetime" Nullable="false" />
+    <Property Name="employee_assigned" Type="int" />
+    <Property Name="estimated_duration" Type="int" />
+    <Property Name="actual_duration" Type="int" />
+    <Property Name="notes" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
   <EntityType Name="ServiceRequests">
     <Key>
       <PropertyRef Name="request_id" />
@@ -103,8 +119,10 @@
     <Property Name="request_type" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="description" Type="nvarchar" MaxLength="1000" />
     <Property Name="status" Type="nvarchar" MaxLength="50" />
+    <Property Name="completed_date" Type="datetime" />
+    <Property Name="estimated_duration" Type="int" />
   </EntityType>
-  <Association Name="FK__Apartment__build__398D8EEE">
+  <Association Name="FK__Apartment__build__4CA06362">
     <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
     <End Role="Apartments" Type="Self.Apartments" Multiplicity="*" />
     <ReferentialConstraint>
@@ -116,7 +134,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Debts__apartment__4222D4EF">
+  <Association Name="FK__Debts__apartment__4D94879B">
     <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
     <End Role="Debts" Type="Self.Debts" Multiplicity="*" />
     <ReferentialConstraint>
@@ -128,7 +146,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Employees__posit__628FA481">
+  <Association Name="FK__Employees__posit__4E88ABD4">
     <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
     <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
     <ReferentialConstraint>
@@ -140,7 +158,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Employees__posit__66603565">
+  <Association Name="FK__Employees__posit__4F7CD00D">
     <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
     <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
     <ReferentialConstraint>
@@ -152,7 +170,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Employees__posit__6C190EBB">
+  <Association Name="FK__Employees__posit__5070F446">
     <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
     <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
     <ReferentialConstraint>
@@ -164,7 +182,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Payments__apartm__44FF419A">
+  <Association Name="FK__Payments__apartm__5165187F">
     <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
     <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
     <ReferentialConstraint>
@@ -176,7 +194,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PropertyO__apart__3F466844">
+  <Association Name="FK__PropertyO__apart__52593CB8">
     <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
     <End Role="PropertyOwnership" Type="Self.PropertyOwnership" Multiplicity="*" />
     <ReferentialConstraint>
@@ -188,7 +206,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PropertyO__owner__3E52440B">
+  <Association Name="FK__PropertyO__owner__534D60F1">
     <End Role="Owners" Type="Self.Owners" Multiplicity="1" />
     <End Role="PropertyOwnership" Type="Self.PropertyOwnership" Multiplicity="*" />
     <ReferentialConstraint>
@@ -200,7 +218,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__RequestEx__reque__5CD6CB2B">
+  <Association Name="FK__RequestEx__reque__5441852A">
     <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="1" />
     <End Role="RequestExpenses" Type="Self.RequestExpenses" Multiplicity="*" />
     <ReferentialConstraint>
@@ -212,7 +230,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ServiceRe__apart__4AB81AF0">
+  <Association Name="FK__ServiceRe__apart__5535A963">
     <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
     <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="*" />
     <ReferentialConstraint>
@@ -224,7 +242,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ServiceRe__emplo__4BAC3F29">
+  <Association Name="FK__ServiceRe__emplo__5629CD9C">
     <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
     <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="*" />
     <ReferentialConstraint>
@@ -233,6 +251,44 @@
       </Principal>
       <Dependent Role="ServiceRequests">
         <PropertyRef Name="employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestHistory_ChangedBy">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="RequestHistory" Type="Self.RequestHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="RequestHistory">
+        <PropertyRef Name="changed_by" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestHistory_EmployeeAssigned">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="RequestHistory" Type="Self.RequestHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="RequestHistory">
+        <PropertyRef Name="employee_assigned" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestHistory_ServiceRequests">
+    <End Role="ServiceRequests" Type="Self.ServiceRequests" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RequestHistory" Type="Self.RequestHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceRequests">
+        <PropertyRef Name="request_id" />
+      </Principal>
+      <Dependent Role="RequestHistory">
+        <PropertyRef Name="request_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -246,50 +302,63 @@
     <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PropertyOwnership" EntityType="Self.PropertyOwnership" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RequestExpenses" EntityType="Self.RequestExpenses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestHistory" EntityType="Self.RequestHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ServiceRequests" EntityType="Self.ServiceRequests" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Apartment__build__398D8EEE" Association="Self.FK__Apartment__build__398D8EEE">
+    <AssociationSet Name="FK__Apartment__build__4CA06362" Association="Self.FK__Apartment__build__4CA06362">
       <End Role="Buildings" EntitySet="Buildings" />
       <End Role="Apartments" EntitySet="Apartments" />
     </AssociationSet>
-    <AssociationSet Name="FK__Debts__apartment__4222D4EF" Association="Self.FK__Debts__apartment__4222D4EF">
+    <AssociationSet Name="FK__Debts__apartment__4D94879B" Association="Self.FK__Debts__apartment__4D94879B">
       <End Role="Apartments" EntitySet="Apartments" />
       <End Role="Debts" EntitySet="Debts" />
     </AssociationSet>
-    <AssociationSet Name="FK__Employees__posit__628FA481" Association="Self.FK__Employees__posit__628FA481">
+    <AssociationSet Name="FK__Employees__posit__4E88ABD4" Association="Self.FK__Employees__posit__4E88ABD4">
       <End Role="Positions" EntitySet="Positions" />
       <End Role="Employees" EntitySet="Employees" />
     </AssociationSet>
-    <AssociationSet Name="FK__Employees__posit__66603565" Association="Self.FK__Employees__posit__66603565">
+    <AssociationSet Name="FK__Employees__posit__4F7CD00D" Association="Self.FK__Employees__posit__4F7CD00D">
       <End Role="Positions" EntitySet="Positions" />
       <End Role="Employees" EntitySet="Employees" />
     </AssociationSet>
-    <AssociationSet Name="FK__Employees__posit__6C190EBB" Association="Self.FK__Employees__posit__6C190EBB">
+    <AssociationSet Name="FK__Employees__posit__5070F446" Association="Self.FK__Employees__posit__5070F446">
       <End Role="Positions" EntitySet="Positions" />
       <End Role="Employees" EntitySet="Employees" />
     </AssociationSet>
-    <AssociationSet Name="FK__Payments__apartm__44FF419A" Association="Self.FK__Payments__apartm__44FF419A">
+    <AssociationSet Name="FK__Payments__apartm__5165187F" Association="Self.FK__Payments__apartm__5165187F">
       <End Role="Apartments" EntitySet="Apartments" />
       <End Role="Payments" EntitySet="Payments" />
     </AssociationSet>
-    <AssociationSet Name="FK__PropertyO__apart__3F466844" Association="Self.FK__PropertyO__apart__3F466844">
+    <AssociationSet Name="FK__PropertyO__apart__52593CB8" Association="Self.FK__PropertyO__apart__52593CB8">
       <End Role="Apartments" EntitySet="Apartments" />
       <End Role="PropertyOwnership" EntitySet="PropertyOwnership" />
     </AssociationSet>
-    <AssociationSet Name="FK__PropertyO__owner__3E52440B" Association="Self.FK__PropertyO__owner__3E52440B">
+    <AssociationSet Name="FK__PropertyO__owner__534D60F1" Association="Self.FK__PropertyO__owner__534D60F1">
       <End Role="Owners" EntitySet="Owners" />
       <End Role="PropertyOwnership" EntitySet="PropertyOwnership" />
     </AssociationSet>
-    <AssociationSet Name="FK__RequestEx__reque__5CD6CB2B" Association="Self.FK__RequestEx__reque__5CD6CB2B">
+    <AssociationSet Name="FK__RequestEx__reque__5441852A" Association="Self.FK__RequestEx__reque__5441852A">
       <End Role="ServiceRequests" EntitySet="ServiceRequests" />
       <End Role="RequestExpenses" EntitySet="RequestExpenses" />
     </AssociationSet>
-    <AssociationSet Name="FK__ServiceRe__apart__4AB81AF0" Association="Self.FK__ServiceRe__apart__4AB81AF0">
+    <AssociationSet Name="FK__ServiceRe__apart__5535A963" Association="Self.FK__ServiceRe__apart__5535A963">
       <End Role="Apartments" EntitySet="Apartments" />
       <End Role="ServiceRequests" EntitySet="ServiceRequests" />
     </AssociationSet>
-    <AssociationSet Name="FK__ServiceRe__emplo__4BAC3F29" Association="Self.FK__ServiceRe__emplo__4BAC3F29">
+    <AssociationSet Name="FK__ServiceRe__emplo__5629CD9C" Association="Self.FK__ServiceRe__emplo__5629CD9C">
       <End Role="Employees" EntitySet="Employees" />
       <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestHistory_ChangedBy" Association="Self.FK_RequestHistory_ChangedBy">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="RequestHistory" EntitySet="RequestHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestHistory_EmployeeAssigned" Association="Self.FK_RequestHistory_EmployeeAssigned">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="RequestHistory" EntitySet="RequestHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestHistory_ServiceRequests" Association="Self.FK_RequestHistory_ServiceRequests">
+      <End Role="ServiceRequests" EntitySet="ServiceRequests" />
+      <End Role="RequestHistory" EntitySet="RequestHistory" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
