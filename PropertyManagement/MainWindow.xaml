@@ -11,7 +11,6 @@
         MinWidth="1000" MinHeight="600"
         FontFamily="Segoe UI">
 
-    <!-- Установка иконки окна -->
     <Window.Icon>
         <BitmapImage UriSource="/Resources/logo.png" />
     </Window.Icon>
@@ -117,12 +116,13 @@
     </Window.Resources>
 
     <DockPanel Background="#F4E8D3">
-        <!-- Верхняя панель с логотипом и заголовком -->
+        <!-- Верхняя панель с логотипом, заголовком и информацией о пользователе -->
         <Border DockPanel.Dock="Top" Background="White" Padding="16" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Логотип -->
@@ -148,6 +148,39 @@
                                FontSize="18" 
                                Foreground="#67BA80"/>
                 </StackPanel>
+
+                <!-- Информация о пользователе и кнопка выхода -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel Margin="0,0,16,0">
+                        <TextBlock Name="txtCurrentUser" 
+                                   FontSize="12"
+                                   Foreground="#666666"/>
+                        <TextBlock Name="txtUserPosition" 
+                                   FontSize="11"
+                                   Foreground="#999999"/>
+                    </StackPanel>
+
+                    <Button Name="btnLogout"
+                            Content="Выйти"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="#67BA80"
+                            FontSize="13"
+                            Padding="8,4"
+                            Cursor="Hand"
+                            Click="LogoutButton_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="#5AA670"/>
+                                        <!-- Убрал TextDecorations -->
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
             </Grid>
         </Border>
 
@@ -170,12 +203,14 @@
                                    Foreground="#333333"/>
                     </Border>
 
-                    <Button Content="🏠 Главная"
+                    <Button Name="btnMainPage"
+                            Content="🏠 Главная"
                             Style="{StaticResource NavButtonStyle}"
                             Click="MainPage_Click"/>
 
                     <!-- Раздел данных -->
-                    <Border Background="#F4E8D3" 
+                    <Border Name="sectionData"
+                            Background="#F4E8D3" 
                             CornerRadius="6" 
                             Padding="12,8"
                             Margin="0,16,0,8">
@@ -185,28 +220,34 @@
                                    Foreground="#333333"/>
                     </Border>
 
-                    <Button Content="🏢 Здания"
+                    <Button Name="btnBuildings"
+                            Content="🏢 Здания"
                             Style="{StaticResource NavButtonStyle}"
                             Click="BuildingsPage_Click"/>
 
-                    <Button Content="🏠 Квартиры"
+                    <Button Name="btnApartments"
+                            Content="🏠 Квартиры"
                             Style="{StaticResource NavButtonStyle}"
                             Click="ApartmentsPage_Click"/>
 
-                    <Button Content="👤 Собственники"
+                    <Button Name="btnOwners"
+                            Content="👤 Собственники"
                             Style="{StaticResource NavButtonStyle}"
                             Click="OwnersPage_Click"/>
 
-                    <Button Content="👨‍🔧 Сотрудники"
+                    <Button Name="btnEmployees"
+                            Content="👨‍🔧 Сотрудники"
                             Style="{StaticResource NavButtonStyle}"
                             Click="EmployeesPage_Click"/>
 
-                    <Button Content="💰 Расходы"
+                    <Button Name="btnRequestExpenses"
+                            Content="💰 Расходы"
                             Style="{StaticResource NavButtonStyle}"
                             Click="RequestExpensesPage_Click"/>
 
                     <!-- Раздел заявок -->
-                    <Border Background="#F4E8D3" 
+                    <Border Name="sectionRequests"
+                            Background="#F4E8D3" 
                             CornerRadius="6" 
                             Padding="12,8"
                             Margin="0,16,0,8">
@@ -216,18 +257,21 @@
                                    Foreground="#333333"/>
                     </Border>
 
-                    <Button Content="📋 Заявки"
+                    <Button Name="btnServiceRequests"
+                            Content="📋 Заявки"
                             Style="{StaticResource NavButtonStyle}"
                             Click="ServiceRequestsPage_Click"/>
 
-                    <Button Content="➕ Новая заявка"
+                    <Button Name="btnNewRequest"
+                            Content="➕ Новая заявка"
                             Style="{StaticResource NavButtonStyle}"
                             Background="#67BA80"
                             Foreground="White"
                             Click="NewRequestPage_Click"/>
 
                     <!-- Раздел отчетов -->
-                    <Border Background="#F4E8D3" 
+                    <Border Name="sectionReports"
+                            Background="#F4E8D3" 
                             CornerRadius="6" 
                             Padding="12,8"
                             Margin="0,16,0,8">
@@ -237,12 +281,14 @@
                                    Foreground="#333333"/>
                     </Border>
 
-                    <Button Content="📊 Отчеты и аналитика"
+                    <Button Name="btnReports"
+                            Content="📊 Отчеты и аналитика"
                             Style="{StaticResource NavButtonStyle}"
                             Click="ReportsPage_Click"/>
 
                     <!-- Раздел дополнительно -->
-                    <Border Background="#F4E8D3" 
+                    <Border Name="sectionAdditional"
+                            Background="#F4E8D3" 
                             CornerRadius="6" 
                             Padding="12,8"
                             Margin="0,16,0,8">
@@ -252,11 +298,13 @@
                                    Foreground="#333333"/>
                     </Border>
 
-                    <Button Content="⚙️ Настройки"
+                    <Button Name="btnSettings"
+                            Content="⚙️ Настройки"
                             Style="{StaticResource NavButtonStyle}"
                             Click="SettingsPage_Click"/>
 
-                    <Button Content="❓ Справка"
+                    <Button Name="btnHelp"
+                            Content="❓ Справка"
                             Style="{StaticResource NavButtonStyle}"
                             Click="HelpPage_Click"/>
                 </StackPanel>
@@ -265,7 +313,7 @@
 
         <!-- Основной контент -->
         <Border Background="White" Margin="1">
-            <Frame x:Name="MainFrame"
+            <Frame Name="MainFrame"
                    NavigationUIVisibility="Hidden"
                    Background="White"/>
         </Border>

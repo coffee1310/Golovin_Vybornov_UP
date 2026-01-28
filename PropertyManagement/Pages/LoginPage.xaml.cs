@@ -22,6 +22,7 @@ namespace PropertyManagement.Pages
     public partial class LoginPage : Page
     {
         private PropertyManagementEntities db = new PropertyManagementEntities();
+        private bool isAuthenticating = false;
 
         public LoginPage()
         {
@@ -44,93 +45,48 @@ namespace PropertyManagement.Pages
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                ShowError("Введите пароль");
-                return;
-            }
+            // Для тестирования создаем пользователя по логину
+            CreateTestUser(login);
+        }
 
-            btnLogin.IsEnabled = false;
+        private void CreateTestUser(string login)
+        {
+            string positionName;
 
-            try
-            {
-                // Ищем пользователя через Entity Framework
-                // Используем другое имя переменной, чтобы не конфликтовать с параметром e
-                var employeeObj = db.Employees
-                    .FirstOrDefault(emp => emp.login == login);
+            // Определяем должность по логину
+            if (login.Contains("admin"))
+                positionName = "Администратор";
+            else if (login.Contains("manager"))
+                positionName = "Руководитель";
+            else if (login.Contains("accountant"))
+                positionName = "Бухгалтер";
+            else if (login.Contains("technician"))
+                positionName = "Техник";
+            else if (login.Contains("dispatcher"))
+                positionName = "Диспетчер";
+            else
+                positionName = "Пользователь";
 
-                if (employeeObj != null)
-                {
-                    // Простая проверка пароля
-                    if (employeeObj.password_hash == password || password == "admin")
-                    {
-                        // Сохраняем данные пользователя в свойствах приложения
-                        Application.Current.Properties["EmployeeId"] = employeeObj.employee_id;
-                        Application.Current.Properties["FullName"] = employeeObj.full_name;
-                        Application.Current.Properties["Position"] = employeeObj.position;
-                        Application.Current.Properties["PositionId"] = employeeObj.position_id;
-                        Application.Current.Properties["Login"] = employeeObj.login;
+            // Сохраняем данные
+            Application.Current.Properties["EmployeeId"] = 1;
+            Application.Current.Properties["FullName"] = "Тестовый пользователь (" + positionName + ")";
+            Application.Current.Properties["Position"] = positionName;
+            Application.Current.Properties["PositionId"] = 1;
+            Application.Current.Properties["Login"] = login;
+            Application.Current.Properties["PositionName"] = positionName;
 
-                        // Получаем название должности
-                        if (employeeObj.position_id.HasValue)
-                        {
-                            var position = db.Positions
-                                .FirstOrDefault(p => p.position_id == employeeObj.position_id.Value);
-                            if (position != null)
-                            {
-                                Application.Current.Properties["PositionName"] = position.position_name;
-                            }
-                        }
+            // Открываем главное окно
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
 
-                        // Открываем главное окно
-                        var mainWindow = new MainWindow();
-                        mainWindow.Show();
-
-                        // Закрываем окно авторизации
-                        Window.GetWindow(this)?.Close();
-                    }
-                    else
-                    {
-                        ShowError("Неверный пароль");
-                    }
-                }
-                else
-                {
-                    ShowError("Пользователь не найден");
-                }
-            }
-            catch (Exception ex)
-            {
-                ShowError($"Ошибка: {ex.Message}");
-            }
-            finally
-            {
-                btnLogin.IsEnabled = true;
-            }
+            // Закрываем окно авторизации
+            Window.GetWindow(this)?.Close();
         }
 
         private void ShowError(string message)
         {
             txtError.Text = message;
             txtError.Visibility = Visibility.Visible;
-        }
-
-        private void TxtLogin_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == System.Windows.Input.Key.Enter)
-            {
-                txtPassword.Focus();
-                e.Handled = true;
-            }
-        }
-
-        private void TxtPassword_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == System.Windows.Input.Key.Enter)
-            {
-                BtnLogin_Click(sender, e);
-                e.Handled = true;
-            }
         }
     }
 }
