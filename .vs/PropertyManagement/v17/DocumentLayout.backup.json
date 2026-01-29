@@ -1,45 +1,57 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\",
+  "WorkspaceRootPath": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\propertymanagement\\propertymanagement\\pages\\reportspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\reportspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\propertymanagement\\propertymanagement\\pages\\servicerequesthistorypage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequesthistorypage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\propertymanagement\\propertymanagement\\pages\\servicerequesteditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequesteditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\propertymanagement\\propertymanagement\\pages\\servicerequestspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequestspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\propertymanagement\\propertymanagement\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\propertymanagement\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\propertymanagement\\propertymanagement\\pages\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\propertymanagement\\pages\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\propertymanagement\\propertymanagement\\pages\\servicerequestspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequestspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\propertymanagement\\pages\\servicerequesteditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequesteditpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\propertymanagement\\propertymanagement\\pages\\servicerequesteditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequesteditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\propertymanagement\\propertymanagement\\pages\\employeespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\propertymanagement\\pages\\employeespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\employeespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\propertymanagement\\propertymanagement\\pages\\requestexpensespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\propertymanagement\\pages\\servicerequesteditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequesteditpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|c:\\users\\coffe\\desktop\\golovin_vybornov_up\\propertymanagement\\pages\\reportspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\reportspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\propertymanagement\\pages\\servicerequesthistorypage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequesthistorypage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\propertymanagement\\pages\\servicerequestspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequestspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\propertymanagement\\pages\\servicerequestspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\servicerequestspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\propertymanagement\\pages\\requestexpensespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{85C979F1-63CC-4A8F-A56F-1F192C78CBD3}|PropertyManagement\\PropertyManagement.csproj|solutionrelative:propertymanagement\\pages\\requestexpensespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
@@ -50,96 +62,130 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Model1.edmx",
+              "RelativeDocumentMoniker": "PropertyManagement\\Model1.edmx",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "PropertyManagement\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2026-01-29T06:23:16.149Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "App.config",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\App.config",
+              "RelativeDocumentMoniker": "PropertyManagement\\App.config",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\App.config",
+              "RelativeToolTip": "PropertyManagement\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-01-29T06:18:26.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\App.xaml",
+              "RelativeDocumentMoniker": "PropertyManagement\\App.xaml",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\App.xaml",
+              "RelativeToolTip": "PropertyManagement\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-29T06:18:23.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "ReportsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ReportsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ReportsPage.xaml",
               "RelativeDocumentMoniker": "PropertyManagement\\Pages\\ReportsPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ReportsPage.xaml*",
-              "RelativeToolTip": "PropertyManagement\\Pages\\ReportsPage.xaml*",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ReportsPage.xaml",
+              "RelativeToolTip": "PropertyManagement\\Pages\\ReportsPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-28T18:58:41.512Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "ServiceRequestHistoryPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ServiceRequestHistoryPage.xaml",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestHistoryPage.xaml",
               "RelativeDocumentMoniker": "PropertyManagement\\Pages\\ServiceRequestHistoryPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ServiceRequestHistoryPage.xaml",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestHistoryPage.xaml",
               "RelativeToolTip": "PropertyManagement\\Pages\\ServiceRequestHistoryPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T18:58:06.668Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-28T18:58:06.668Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "PropertyManagement\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\MainWindow.xaml.cs",
               "RelativeToolTip": "PropertyManagement\\MainWindow.xaml.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAowGkAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAADwv0cAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-28T18:57:34.052Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "LoginPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\LoginPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\LoginPage.xaml.cs",
               "RelativeDocumentMoniker": "PropertyManagement\\Pages\\LoginPage.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\LoginPage.xaml.cs",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\LoginPage.xaml.cs",
               "RelativeToolTip": "PropertyManagement\\Pages\\LoginPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAmwBwAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-28T18:57:24.707Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "ServiceRequestsPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ServiceRequestsPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestsPage.xaml.cs",
               "RelativeDocumentMoniker": "PropertyManagement\\Pages\\ServiceRequestsPage.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ServiceRequestsPage.xaml.cs",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestsPage.xaml.cs",
               "RelativeToolTip": "PropertyManagement\\Pages\\ServiceRequestsPage.xaml.cs",
               "ViewState": "AgIAANkAAAAAAAAAAAAkwBkBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T18:51:12.526Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-28T18:51:12.526Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "ServiceRequestsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ServiceRequestsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestsPage.xaml",
               "RelativeDocumentMoniker": "PropertyManagement\\Pages\\ServiceRequestsPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ServiceRequestsPage.xaml",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestsPage.xaml",
               "RelativeToolTip": "PropertyManagement\\Pages\\ServiceRequestsPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T18:48:21.517Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-28T18:48:21.517Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "ServiceRequestEditPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ServiceRequestEditPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestEditPage.xaml.cs",
               "RelativeDocumentMoniker": "PropertyManagement\\Pages\\ServiceRequestEditPage.xaml.cs",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ServiceRequestEditPage.xaml.cs",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestEditPage.xaml.cs",
               "RelativeToolTip": "PropertyManagement\\Pages\\ServiceRequestEditPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABABAAAAAAAAAAAiwBwBAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-28T18:50:58.577Z",
               "EditorCaption": ""
@@ -148,9 +194,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "ServiceRequestEditPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ServiceRequestEditPage.xaml",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestEditPage.xaml",
               "RelativeDocumentMoniker": "PropertyManagement\\Pages\\ServiceRequestEditPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\ServiceRequestEditPage.xaml",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\ServiceRequestEditPage.xaml",
               "RelativeToolTip": "PropertyManagement\\Pages\\ServiceRequestEditPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-28T18:50:57.954Z",
@@ -158,11 +204,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "EmployeesPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\EmployeesPage.xaml",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\EmployeesPage.xaml",
               "RelativeDocumentMoniker": "PropertyManagement\\Pages\\EmployeesPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\EmployeesPage.xaml",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\EmployeesPage.xaml",
               "RelativeToolTip": "PropertyManagement\\Pages\\EmployeesPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-01-28T18:48:43.686Z",
@@ -170,15 +216,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "RequestExpensesPage.xaml",
-              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\RequestExpensesPage.xaml",
+              "DocumentMoniker": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\RequestExpensesPage.xaml",
               "RelativeDocumentMoniker": "PropertyManagement\\Pages\\RequestExpensesPage.xaml",
-              "ToolTip": "C:\\Users\\coffe\\Desktop\\PropertyManagement\\PropertyManagement\\Pages\\RequestExpensesPage.xaml",
+              "ToolTip": "C:\\Users\\coffe\\Desktop\\Golovin_Vybornov_UP\\PropertyManagement\\Pages\\RequestExpensesPage.xaml",
               "RelativeToolTip": "PropertyManagement\\Pages\\RequestExpensesPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-01-28T18:48:15.677Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-28T18:48:15.677Z"
             }
           ]
         }

@@ -110,3 +110,6 @@ C:\Users\coffe\Desktop\PropertyManagement\PropertyManagement\obj\Debug\PropertyM
 C:\Users\coffe\Desktop\PropertyManagement\PropertyManagement\obj\Debug\Pages\ServiceRequestHistoryPage.g.cs
 C:\Users\coffe\Desktop\PropertyManagement\PropertyManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\coffe\Desktop\PropertyManagement\PropertyManagement\obj\Debug\Pages\ServiceRequestHistoryPage.baml
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\ServiceRequestHistoryPage.g.cs
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\coffe\Desktop\Golovin_Vybornov_UP\PropertyManagement\obj\Debug\Pages\ServiceRequestHistoryPage.baml

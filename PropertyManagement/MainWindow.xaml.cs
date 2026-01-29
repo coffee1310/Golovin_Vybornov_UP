@@ -48,11 +48,15 @@ namespace PropertyManagement
 
         private void SetupInterface()
         {
-            string positionName = Application.Current.Properties["PositionName"] as string;
-            if (string.IsNullOrEmpty(positionName))
+            string position = Application.Current.Properties["Position"] as string;
+            if (string.IsNullOrEmpty(position))
+            {
+                MessageBox.Show("Должность не определена. Пожалуйста, войдите снова.", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
+            }
 
-            string positionLower = positionName.ToLower();
+            string positionLower = position.ToLower();
 
             // АДМИНИСТРАТОР - полный доступ ко всему
             if (positionLower.Contains("админ") || positionLower.Contains("administrator"))
@@ -65,7 +69,7 @@ namespace PropertyManagement
                 btnRequestExpenses.Visibility = Visibility.Visible;
                 btnServiceRequests.Visibility = Visibility.Visible;
                 btnNewRequest.Visibility = Visibility.Visible;
-                btnReports.Visibility = Visibility.Visible;
+                btnReports.Visibility = Visibility.Collapsed;
             }
             // РУКОВОДИТЕЛЬ - только просмотр и управление персоналом/задачами
             else if (positionLower.Contains("руковод") || positionLower.Contains("директор") ||
@@ -88,13 +92,45 @@ namespace PropertyManagement
 
                 // Полный доступ к отчетам
                 btnReports.Visibility = Visibility.Visible;
+            }
+            // ТЕХНИЧЕСКИЙ ПЕРСОНАЛ
+            else if (positionLower.Contains("техник") || positionLower.Contains("электрик") ||
+                     positionLower.Contains("сантехник") || positionLower.Contains("мастер"))
+            {
+                // Только заявки и расходы
+                btnBuildings.Visibility = Visibility.Collapsed;
+                btnApartments.Visibility = Visibility.Collapsed;
+                btnOwners.Visibility = Visibility.Collapsed;
+                btnEmployees.Visibility = Visibility.Collapsed;
 
-                // Настройки только для админа
+                // Работа с заявками и расходами
+                btnRequestExpenses.Visibility = Visibility.Visible;
+                btnServiceRequests.Visibility = Visibility.Visible;
+                btnNewRequest.Visibility = Visibility.Visible; // Может создавать заявки
+
+                btnReports.Visibility = Visibility.Collapsed;
+            }
+            // ОБСЛУЖИВАЮЩИЙ ПЕРСОНАЛ (охранник, уборщик и т.д.)
+            else if (positionLower.Contains("охранник") || positionLower.Contains("уборщик") ||
+                     positionLower.Contains("консьерж"))
+            {
+                // Минимальный доступ
+                btnBuildings.Visibility = Visibility.Collapsed;
+                btnApartments.Visibility = Visibility.Collapsed;
+                btnOwners.Visibility = Visibility.Collapsed;
+                btnEmployees.Visibility = Visibility.Collapsed;
+                btnRequestExpenses.Visibility = Visibility.Collapsed;
+
+                // Только просмотр заявок
+                btnServiceRequests.Visibility = Visibility.Visible;
+                btnNewRequest.Visibility = Visibility.Visible; // Может создавать заявки
+
+                btnReports.Visibility = Visibility.Collapsed;
             }
             // Обычный пользователь (например, житель через мобильное приложение)
             else
             {
-                // Только просмотр своих данных
+                // Только просмотр своих данных и создание заявок
                 btnBuildings.Visibility = Visibility.Visible;
                 btnApartments.Visibility = Visibility.Visible;
                 btnOwners.Visibility = Visibility.Visible;
@@ -105,6 +141,8 @@ namespace PropertyManagement
                 btnReports.Visibility = Visibility.Collapsed;
             }
 
+            btnSettings.Visibility = Visibility.Collapsed;
+            btnHelp.Visibility = Visibility.Collapsed;
             // Скрываем разделы, если все кнопки в них скрыты
             UpdateSectionVisibility();
         }

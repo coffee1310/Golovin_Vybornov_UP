@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="69784eebaa5a461c85eeda2a818ed223" Name="Diagram1">
+      <Diagram DiagramId="efa0063ceaa44e23bc7b9c55121661f4" Name="Diagram1">
         <EntityTypeShape EntityType="PropertyManagementModel.Apartments" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PropertyManagementModel.Buildings" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PropertyManagementModel.Debts" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
@@ -16,19 +16,19 @@
         <EntityTypeShape EntityType="PropertyManagementModel.RequestExpenses" Width="1.5" PointX="7.5" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PropertyManagementModel.RequestHistory" Width="1.5" PointX="10.5" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PropertyManagementModel.ServiceRequests" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
-        <AssociationConnector Association="PropertyManagementModel.FK__Apartment__build__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="PropertyManagementModel.FK__Debts__apartment__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="PropertyManagementModel.FK__Payments__apartm__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="PropertyManagementModel.FK__PropertyO__apart__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="PropertyManagementModel.FK__ServiceRe__apart__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="PropertyManagementModel.FK__Employees__posit__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="PropertyManagementModel.FK__Employees__posit__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__Apartment__build__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__Debts__apartment__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__Payments__apartm__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__PropertyO__apart__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__ServiceRe__apart__59FA5E80" ManuallyRouted="false" />
         <AssociationConnector Association="PropertyManagementModel.FK__Employees__posit__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="PropertyManagementModel.FK__ServiceRe__emplo__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__Employees__posit__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__Employees__posit__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__ServiceRe__emplo__5AEE82B9" ManuallyRouted="false" />
         <AssociationConnector Association="PropertyManagementModel.FK_RequestHistory_ChangedBy" ManuallyRouted="false" />
         <AssociationConnector Association="PropertyManagementModel.FK_RequestHistory_EmployeeAssigned" ManuallyRouted="false" />
-        <AssociationConnector Association="PropertyManagementModel.FK__PropertyO__owner__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="PropertyManagementModel.FK__RequestEx__reque__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__PropertyO__owner__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyManagementModel.FK__RequestEx__reque__5629CD9C" ManuallyRouted="false" />
         <AssociationConnector Association="PropertyManagementModel.FK_RequestHistory_ServiceRequests" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
